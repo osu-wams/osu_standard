@@ -1,0 +1,12 @@
+sitewide_token_support: false
+field:
+  sync_frequency: 2
+  overwrite: true
+  mappings:
+    name: '[cas:attribute:firstname] [cas:attribute:lastname]'
+    mail: '[cas:attribute:email]'
+role:
+  sync_frequency: 0
+  deny_login_no_match: false
+  deny_registration_no_match: false
+  mappings: {  }

@@ -1,0 +1,37 @@
+<?php
+
+use Drupal\shortcut\Entity\Shortcut;
+use Drupal\user\Entity\User;
+
+/**
+ * Implements hook_install().
+ */
+function osu_standard_install($is_syncing) {
+  // Assign user 1 the "administrator" role.
+  $user = User::load(1);
+  $user->roles[] = 'administrator';
+  $user->save();
+
+  // Populate the default shortcut set.
+  $shortcut = Shortcut::create([
+    'shortcut_set' => 'default',
+    'title' => t('Add content'),
+    'weight' => -20,
+    'link' => ['uri' => 'internal:/node/add'],
+  ]);
+  $shortcut->save();
+
+  $shortcut = Shortcut::create([
+    'shortcut_set' => 'default',
+    'title' => t('All content'),
+    'weight' => -19,
+    'link' => ['uri' => 'internal:/admin/content'],
+  ]);
+  $shortcut->save();
+  // Set Page cache to a year.
+  $page_cache = \Drupal::configFactory()->getEditable('system.performance');
+  $page_cache->set('cache.page.max_age', 31536000);
+  $page_cache->save();
+
+  \Drupal::service('purge.plugins')
+}

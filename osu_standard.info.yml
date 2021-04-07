@@ -1,0 +1,89 @@
+name: OSU Standard
+type: profile
+description: 'Standard Drupal Installation Profile.'
+core_version_requirement: ^8 || ^9
+
+distribution:
+  name: Oregon State
+  langcode: en
+dependencies:
+  # Core
+  - big_pipe
+  - block
+  - block_content
+  - breakpoint
+  - ckeditor
+  - color
+  - config
+  - contact
+  - contextual
+  - datetime
+  - dynamic_page_cache
+  - editor
+  - field
+  - field_ui
+  - file
+  - filter
+  - help
+  - history
+  - image
+  - link
+  - menu_link_content
+  - menu_ui
+  - node
+  - options
+  - page_cache
+  - path
+  - path_alias
+  - quickedit
+  - rdf
+  - search
+  - serialization
+  - shortcut
+  - syslog
+  - system
+  - taxonomy
+  - telephone
+  - text
+  - toolbar
+  - tour
+  - user
+  - views
+  - views_ui
+  # Contrib Modules
+  - acquia_connector
+  - acquia_purge
+  - admin_toolbar
+  - admin_toolbar_tools
+  - asset_injector
+  - cas
+  - cas_attributes
+  - ctools
+  - entity
+  - entitygroupfield
+  - externalauth
+  - fontawesome
+  - fontawesome_menu_icons
+  - group
+  - gnode
+  - group_content_menu
+  - libraries
+  - memcache
+  - module_filter
+  - pathauto
+  - purge_drush
+  - purge_processor_cron
+  - purge_processor_lateruntime
+  - purge_queuer_coretags
+  - purge_tokens
+  - purge_ui
+  - purge
+  - redirect
+  - token
+  - variationcache
+  # Custom Modules
+themes:
+  # Core Themes
+  - claro
+  # OSU Theme
+  - madrone
