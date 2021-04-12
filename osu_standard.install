@@ -33,5 +33,4 @@ function osu_standard_install($is_syncing) {
   $page_cache->set('cache.page.max_age', 31536000);
   $page_cache->save();
 
-  \Drupal::service('purge.plugins')
 }
