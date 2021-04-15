@@ -38,8 +38,8 @@ function osu_standard_install_tasks(&$install_state) {
  * Install modules that require a full site to be ready.
  */
 function osu_standard_default_modules(array &$install_state) {
-  \Drupal::service('module_installer')->install([
-    'osu_groups',
-    'osu_groups_basic_group',
-  ], TRUE);
+//  \Drupal::service('module_installer')->install([
+//    'osu_groups',
+//    'osu_groups_basic_group',
+//  ], TRUE);
 }
