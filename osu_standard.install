@@ -44,7 +44,7 @@ function osu_standard_install($is_syncing) {
 /**
  * Update CAS Settings on existing sites.
  */
-function osu_standard_update_8000() {
+function osu_standard_update_8001() {
   $config_factory = \Drupal::configFactory();
   $cas_settings = $config_factory->getEditable('cas.settings');
   $cas_server_settings = $cas_settings->get('server');
