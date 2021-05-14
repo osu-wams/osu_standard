@@ -3,10 +3,16 @@ field:
   sync_frequency: 2
   overwrite: true
   mappings:
-    name: '[cas:attribute:firstname] [cas:attribute:lastname]'
-    mail: '[cas:attribute:email]'
+    name: '[cas:attribute:givenName] [cas:attribute:surname]'
+    mail: '[cas:attribute:osuprimarymail]'
 role:
-  sync_frequency: 0
+  sync_frequency: 2
   deny_login_no_match: false
   deny_registration_no_match: false
-  mappings: {  }
+  mappings:
+    - rid: administrator
+      attribute: entitlement_drupal
+      value: 'urn:mace:oregonstate.edu:entitlement:drupal-admin'
+      method: exact_any
+      negate: false
+      remove_without_match: true

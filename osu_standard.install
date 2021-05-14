@@ -9,6 +9,7 @@ use Drupal\user\Entity\User;
 function osu_standard_install($is_syncing) {
   // Assign user 1 the "administrator" role.
   $user = User::load(1);
+  /** @noinspection PhpPossiblePolymorphicInvocationInspection */
   $user->roles[] = 'administrator';
   $user->save();
 
@@ -38,4 +39,41 @@ function osu_standard_install($is_syncing) {
     'osu_groups',
     'osu_groups_basic_group',
   ], TRUE);
+}
+
+/**
+ * Update CAS Settings on existing sites.
+ */
+function osu_standard_update_8000() {
+  $config_factory = \Drupal::configFactory();
+  $cas_settings = $config_factory->getEditable('cas.settings');
+  $cas_server_settings = $cas_settings->get('server');
+  $cas_server_settings['path'] = '/idp/profile/cas';
+  $cas_settings->set('server', $cas_server_settings);
+  $cas_settings->save(TRUE);
+
+  $cas_attributes = $config_factory->getEditable('cas_attributes.settings');
+  $cas_attributes_fields = $cas_attributes->get('field');
+  $cas_attributes_fields['mappings'] = [
+    "name" => "[cas:attribute:givenName] [cas:attribute:surname]",
+    "mail" => "[cas:attribute:osuprimarymail]",
+  ];
+  $cas_attributes->set('field', $cas_attributes_fields);
+
+  $cas_attributes_roles = $cas_attributes->get('role');
+  if (count($cas_attributes_roles['mappings']) == 0) {
+    $cas_attributes_roles['mappings'] = [
+      [
+        "rid" => "administrator",
+        "attribute" => "entitlement_drupal",
+        "value" => "urn:mace:oregonstate.edu:entitlement:drupal-admin",
+        "method" => "exact_any",
+        "negate" => FALSE,
+        "remove_without_match" => TRUE,
+      ],
+    ];
+  }
+  $cas_attributes->set('role', $cas_attributes_roles);
+  $cas_attributes->save(TRUE);
+
 }

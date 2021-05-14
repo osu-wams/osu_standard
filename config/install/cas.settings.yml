@@ -3,7 +3,7 @@ server:
   protocol: https
   hostname: login.oregonstate.edu
   port: 443
-  path: /cas
+  path: /idp/profile/cas
   verify: 0
   cert: ''
 gateway:
