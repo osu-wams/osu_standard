@@ -1,0 +1,22 @@
+uuid: 94192621-f2f9-4712-8502-2fe3e8337f9d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: pattern_for_all_book_page_paths
+label: 'Pattern for all Book page paths'
+type: 'canonical_entities:node'
+pattern: '[node:field_parent_unit]/[node:book:parents:join-path]/[node:title]'
+selection_criteria:
+  163ad98e-6e99-44ce-988d-26aceec6aeea:
+    id: node_type
+    bundles:
+      book: book
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 163ad98e-6e99-44ce-988d-26aceec6aeea
+selection_logic: and
+weight: -5
+relationships: {  }

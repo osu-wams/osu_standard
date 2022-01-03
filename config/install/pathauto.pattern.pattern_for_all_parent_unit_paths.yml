@@ -1,0 +1,22 @@
+uuid: 20895260-08c9-4842-941f-f08dd5f6ed4c
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: pattern_for_all_parent_unit_paths
+label: 'Pattern for all Parent Unit paths'
+type: 'canonical_entities:node'
+pattern: '[node:book:parents:join-path]/[node:title]'
+selection_criteria:
+  392030d5-acec-4710-b0cf-c7ac7da68543:
+    id: node_type
+    bundles:
+      parent_unit: parent_unit
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 392030d5-acec-4710-b0cf-c7ac7da68543
+selection_logic: and
+weight: -5
+relationships: {  }
