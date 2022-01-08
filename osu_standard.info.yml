@@ -27,6 +27,7 @@ dependencies:
   - help
   - history
   - image
+  - layout_builder
   - link
   - menu_link_content
   - menu_ui
@@ -56,17 +57,17 @@ dependencies:
   - admin_toolbar
   - admin_toolbar_tools
   - asset_injector
+  - bootstrap_layout_builder
+  - bootstrap_styles
   - cas
   - cas_attributes
   - ctools
   - entity
-  - entitygroupfield
+  - exclude_node_title
   - externalauth
   - fontawesome
   - fontawesome_menu_icons
-  - group
-  - gnode
-  - group_content_menu
+  - layout_builder_blocks
   - libraries
   - memcache
   - module_filter
