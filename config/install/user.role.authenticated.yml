@@ -9,5 +9,8 @@ permissions:
   - 'access content'
   - 'access shortcuts'
   - 'access site-wide contact form'
+  - 'exclude any node title'
+  - 'exclude own node title'
   - 'search content'
+  - 'use exclude node title'
   - 'use text format basic_html'
