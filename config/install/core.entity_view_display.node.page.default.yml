@@ -155,8 +155,20 @@ third_party_settings:
         - 'bootstrap_layout_builder:blb_col_5'
         - 'bootstrap_layout_builder:blb_col_6'
       blacklisted_blocks: {  }
-      whitelisted_blocks: {  }
-      restricted_categories: {  }
+      whitelisted_blocks:
+        'Content fields':
+          - 'field_block:node:page:uid'
+          - 'field_block:node:page:created'
+          - 'field_block:node:page:body'
+          - 'field_block:node:page:title'
+      restricted_categories:
+        - 'Chaos Tools'
+        - 'Custom block types'
+        - Forms
+        - Help
+        - 'Purge UI'
+        - User
+        - core
     entity_view_mode_restriction_by_region:
       allowed_layouts:
         - 'bootstrap_layout_builder:blb_col_1'
