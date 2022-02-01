@@ -11,3 +11,4 @@ permissions:
   - 'search content'
   - 'use exclude node title'
   - 'use text format restricted_html'
+  - 'view media'
