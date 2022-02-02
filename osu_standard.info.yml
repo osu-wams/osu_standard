@@ -1,7 +1,7 @@
 name: OSU Standard
 type: profile
 description: 'Standard Drupal Installation Profile.'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^8 || ^9 || ^10
 
 distribution:
   name: Oregon State
@@ -20,8 +20,6 @@ dependencies:
   - datetime
   - dynamic_page_cache
   - editor
-  - editor_advanced_link
-  - editor_file
   - field
   - field_ui
   - file
@@ -31,7 +29,6 @@ dependencies:
   - image
   - layout_builder
   - link
-  - linkit
   - menu_link_content
   - menu_ui
   - node
@@ -63,7 +60,11 @@ dependencies:
   - bootstrap_styles
   - cas
   - cas_attributes
+  - ckeditor_div_manager
+  - ckeditor_scayt
   - ctools
+  - editor_advanced_link
+  - editor_file
   - entity
   - exclude_node_title
   - externalauth
@@ -75,6 +76,7 @@ dependencies:
   - layout_builder_restrictions_by_region
   - layout_builder_styles
   - libraries
+  - linkit
   - memcache
   - module_filter
   - pathauto

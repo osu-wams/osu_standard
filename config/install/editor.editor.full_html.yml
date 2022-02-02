@@ -24,11 +24,21 @@ settings:
           items:
             - Bold
             - Italic
-            - Strike
             - Superscript
             - Subscript
+            - Scayt
             - '-'
             - RemoveFormat
+            - '-'
+            - Undo
+            - Redo
+        -
+          name: Paragraph
+          items:
+            - JustifyLeft
+            - JustifyCenter
+            - JustifyRight
+            - JustifyBlock
         -
           name: Linking
           items:
@@ -40,33 +50,45 @@ settings:
           items:
             - BulletedList
             - NumberedList
+            - Outdent
+            - Indent
         -
           name: Media
           items:
             - Blockquote
-            - DrupalImage
+            - DrupalMediaLibrary
             - Table
+            - SpecialChar
             - HorizontalRule
         -
           name: 'Block Formatting'
           items:
+            - Styles
             - Format
         -
           name: Tools
           items:
+            - CreateDiv
             - ShowBlocks
             - Source
+            - Maximize
   plugins:
-    stylescombo:
-      styles: ''
     drupallink:
       linkit_enabled: true
       linkit_profile: default
+    language:
+      language_list: un
+    stylescombo:
+      styles: ''
+    scayt:
+      scayt_autoStartup: 1
+      scayt_sLang: en_US
+      scayt_disableOptionsStorage: all
 image_upload:
   status: true
   scheme: public
   directory: inline-images
   max_size: ''
   max_dimensions:
-    width: 0
-    height: 0
+    width: null
+    height: null
