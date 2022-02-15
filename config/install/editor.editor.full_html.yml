@@ -55,6 +55,7 @@ settings:
         -
           name: Media
           items:
+            - osu_icons
             - Blockquote
             - DrupalMediaLibrary
             - Table
@@ -68,6 +69,7 @@ settings:
         -
           name: Tools
           items:
+            - osu_buttons
             - CreateDiv
             - ShowBlocks
             - Source

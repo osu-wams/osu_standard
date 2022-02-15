@@ -1,35 +1,108 @@
 langcode: en
 status: true
 dependencies:
+  config:
+    - core.entity_view_mode.media.fluid_image
+    - core.entity_view_mode.media.frameless
+    - core.entity_view_mode.media.full
+    - core.entity_view_mode.media.hero_background
+    - core.entity_view_mode.media.media_card
+    - core.entity_view_mode.media.media_card_caption
+    - core.entity_view_mode.media.media_library
+    - core.entity_view_mode.media.token
+    - core.entity_view_mode.media.video_720
   module:
     - editor
+    - linkit
+    - media
 name: 'Full HTML'
 format: full_html
 weight: 2
-roles:
-  - administrator
 filters:
   filter_align:
     id: filter_align
     provider: filter
     status: true
-    weight: 8
+    weight: -50
     settings: {  }
   filter_caption:
     id: filter_caption
     provider: filter
     status: true
-    weight: 9
+    weight: -49
     settings: {  }
   filter_htmlcorrector:
     id: filter_htmlcorrector
     provider: filter
     status: true
-    weight: 10
+    weight: -48
     settings: {  }
   editor_file_reference:
     id: editor_file_reference
     provider: editor
     status: true
-    weight: 11
+    weight: -47
     settings: {  }
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: false
+    weight: -43
+    settings:
+      allowed_html: '<em> <strong> <cite> <blockquote cite> <code> <ul type> <ol type start> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <sup> <sub> <drupal-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title> <table> <caption> <tbody> <thead> <tfoot> <th> <td> <tr> <hr> <p> <h1> <pre> <div> <a href hreflang data-entity-type data-entity-uuid data-entity-substitution title>'
+      filter_html_help: true
+      filter_html_nofollow: false
+  media_embed:
+    id: media_embed
+    provider: media
+    status: true
+    weight: -46
+    settings:
+      default_view_mode: default
+      allowed_view_modes:
+        default: default
+        fluid_image: fluid_image
+        frameless: frameless
+        full: full
+        hero_background: hero_background
+        media_card: media_card
+        media_card_caption: media_card_caption
+        media_library: media_library
+        token: token
+        video_720: video_720
+      allowed_media_types:
+        document: document
+        image: image
+        remote_video: remote_video
+  filter_autop:
+    id: filter_autop
+    provider: filter
+    status: false
+    weight: -41
+    settings: {  }
+  filter_html_escape:
+    id: filter_html_escape
+    provider: filter
+    status: false
+    weight: -42
+    settings: {  }
+  filter_html_image_secure:
+    id: filter_html_image_secure
+    provider: filter
+    status: false
+    weight: -40
+    settings: {  }
+  filter_url:
+    id: filter_url
+    provider: filter
+    status: true
+    weight: -45
+    settings:
+      filter_url_length: 72
+  linkit:
+    id: linkit
+    provider: linkit
+    status: true
+    weight: -44
+    settings:
+      title: true
