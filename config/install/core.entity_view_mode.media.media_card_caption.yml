@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  module:
-    - media
-id: media.media_card_caption
-label: 'Media Card Caption'
-targetEntityType: media
-cache: true

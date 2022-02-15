@@ -1,16 +1,6 @@
 langcode: en
 status: true
 dependencies:
-  config:
-    - core.entity_view_mode.media.fluid_image
-    - core.entity_view_mode.media.frameless
-    - core.entity_view_mode.media.full
-    - core.entity_view_mode.media.hero_background
-    - core.entity_view_mode.media.media_card
-    - core.entity_view_mode.media.media_card_caption
-    - core.entity_view_mode.media.media_library
-    - core.entity_view_mode.media.token
-    - core.entity_view_mode.media.video_720
   module:
     - editor
     - linkit

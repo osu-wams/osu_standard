@@ -92,6 +92,7 @@ dependencies:
   - token
   - variationcache
   # Custom Modules
+  - osu_ckeditor_plugins
 themes:
   # Core Themes
   - claro
