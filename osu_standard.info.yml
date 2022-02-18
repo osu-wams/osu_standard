@@ -88,6 +88,7 @@ dependencies:
   - purge_ui
   - purge
   - redirect
+  - responsive_preview
   - superfish
   - token
   - variationcache
