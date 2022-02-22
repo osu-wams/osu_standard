@@ -6,7 +6,7 @@ background_image:
 background_local_video:
   bundle: local_video
   field: field_media_file
-text_colors: "osu-text-body|Default\r\nosu-text-bucktoothwhite|White\r\nosu-text-paddletailblack|Black\r\n"
+text_colors: "osu-text-body|Default\r\nosu-text-bucktoothwhite|White"
 text_alignment: "bs-text-left|Left\r\nbs-text-center|Center\r\nbs-text-right|Right\r\nbs-text-justify|Justify"
 padding: "p-1|Padding 1\r\np-2|Padding 2\r\np-3|Padding 3\r\np-4|Padding 4\r\np-5|Padding 5"
 padding_left: "ps-1|Padding Left 1\r\nps-2|Padding Left 2\r\nps-3|Padding Left 3\r\nps-4|Padding Left 4\r\nps-5|Padding Left 5"
