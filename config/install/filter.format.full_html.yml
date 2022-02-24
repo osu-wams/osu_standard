@@ -48,18 +48,11 @@ filters:
     status: true
     weight: -46
     settings:
-      default_view_mode: default
-      allowed_view_modes:
-        default: default
-        fluid_image: fluid_image
-        frameless: frameless
-        full: full
-        hero_background: hero_background
-        media_card: media_card
-        media_card_caption: media_card_caption
-        media_library: media_library
-        token: token
-        video_720: video_720
+      default_view_mode: frameless
+        allowed_view_modes:
+          frameless: frameless
+          media_card: media_card
+          media_card_caption: media_card_caption
       allowed_media_types:
         document: document
         image: image
