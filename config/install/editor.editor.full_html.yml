@@ -81,7 +81,7 @@ settings:
     language:
       language_list: un
     stylescombo:
-      styles: ''
+      styles: "table.osu-table|Dark Table\r\ntable.osu-table-orange|Beaver Orange Table"
     scayt:
       scayt_autoStartup: 1
       scayt_sLang: en_US
