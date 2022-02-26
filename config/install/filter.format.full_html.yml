@@ -49,10 +49,10 @@ filters:
     weight: -46
     settings:
       default_view_mode: frameless
-        allowed_view_modes:
-          frameless: frameless
-          media_card: media_card
-          media_card_caption: media_card_caption
+      allowed_view_modes:
+        frameless: frameless
+        media_card: media_card
+        media_card_caption: media_card_caption
       allowed_media_types:
         document: document
         image: image
