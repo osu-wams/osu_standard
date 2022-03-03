@@ -163,7 +163,6 @@ third_party_settings:
           - 'field_block:node:page:title'
       restricted_categories:
         - 'Chaos Tools'
-        - 'Custom block types'
         - Forms
         - Help
         - 'Purge UI'
