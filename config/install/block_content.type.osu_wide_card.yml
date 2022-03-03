@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: osu_wide_card
+label: 'OSU Wide Card'
+revision: 1
+description: 'Create a horizontal card element with a link field.'
