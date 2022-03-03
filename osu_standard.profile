@@ -40,5 +40,6 @@ function osu_standard_install_tasks(&$install_state) {
 function osu_standard_default_modules(array &$install_state) {
   \Drupal::service('module_installer')->install([
     'osu_media',
+    'osu_block_types',
   ], TRUE);
 }
