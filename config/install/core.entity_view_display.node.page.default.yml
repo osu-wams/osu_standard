@@ -154,7 +154,9 @@ third_party_settings:
         - 'bootstrap_layout_builder:blb_col_4'
         - 'bootstrap_layout_builder:blb_col_5'
         - 'bootstrap_layout_builder:blb_col_6'
-      blacklisted_blocks: {  }
+      blacklisted_blocks:
+        Menus:
+          - 'system_menu_block:main'
       whitelisted_blocks:
         'Content fields':
           - 'field_block:node:page:uid'
