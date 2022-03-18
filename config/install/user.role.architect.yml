@@ -1,6 +1,6 @@
 langcode: en
 status: true
-dependencies: {  }
+dependencies: { }
 id: architect
 label: Architect
 weight: 2
@@ -22,6 +22,7 @@ permissions:
   - 'access tour'
   - 'access user contact forms'
   - 'access user profiles'
+  - 'administer block css classes'
   - 'administer block_content display'
   - 'administer block_content fields'
   - 'administer block_content form display'
