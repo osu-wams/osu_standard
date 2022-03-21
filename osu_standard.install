@@ -8,8 +8,8 @@ use Drupal\user\Entity\User;
  */
 function osu_standard_install($is_syncing) {
   // Assign user 1 the "administrator" role.
+  /** @var \Drupal\user\Entity\User $user */
   $user = User::load(1);
-  /** @noinspection PhpPossiblePolymorphicInvocationInspection */
   $user->roles[] = 'administrator';
   $user->save();
 
@@ -39,6 +39,17 @@ function osu_standard_install($is_syncing) {
 //    'osu_groups',
 //    'osu_groups_basic_group',
 //  ], TRUE);
+}
+
+/**
+ * Enable OSU Seckit module.
+ */
+function osu_standard_update_8002() {
+  \Drupal::service('module_installer')->install([
+    'seckit',
+    'osu_seckit',
+  ], TRUE);
+  return t('Installed new modules, Seckit and OSU Seckit');
 }
 
 /**
