@@ -35,6 +35,7 @@ permissions:
   - 'administer display modes'
   - 'administer exclude node title'
   - 'administer filters'
+  - 'administer google tag manager'
   - 'administer image styles'
   - 'administer js assets injector'
   - 'administer layout builder component attributes'
