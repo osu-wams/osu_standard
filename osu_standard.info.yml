@@ -79,6 +79,12 @@ dependencies:
   - libraries
   - linkit
   - memcache
+  - metatag
+  - metatag_google_cse
+  - metatag_open_graph
+  - metatag_twitter_cards
+  - metatag_verification
+  - metatag_views
   - module_filter
   - pathauto
   - purge_drush
