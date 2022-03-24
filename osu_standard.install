@@ -54,7 +54,10 @@ function osu_standard_update_8003() {
     'metatag_verification',
     'metatag_views',
   ], TRUE);
-  $config_path = realpath('./config/install');
+  $install_profile_path = \Drupal::service('module_handler')
+    ->getModule('osu_standard')
+    ->getPath();
+  $config_path = realpath($install_profile_path . '/config/install');
   $config_storage = \Drupal::service('config.storage');
   $source = new FileStorage($config_path);
   $metatag_defaults = glob($config_path . '/metatag.metatag_defaults.*.yml');
