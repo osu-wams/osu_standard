@@ -48,6 +48,7 @@ permissions:
   - 'administer media form display'
   - 'administer media types'
   - 'administer menu'
+  - 'administer meta tags'
   - 'administer node display'
   - 'administer node fields'
   - 'administer node form display'

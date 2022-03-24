@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies: {  }
+id: node__article
+label: 'Content: Article'
+tags:
+  og_image: '[node:field_image:medium]'
+  og_image_width: '220'
+  og_video_width: '220'
+  twitter_cards_image: '[node:field_image:thumbnail]'
+  twitter_cards_image_height: '100'
+  twitter_cards_image_width: '100'
+  twitter_cards_type: summary
