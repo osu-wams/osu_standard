@@ -24,6 +24,7 @@ dependencies:
   - field_ui
   - file
   - filter
+  - google_tag
   - help
   - history
   - image
@@ -96,11 +97,13 @@ dependencies:
   - purge
   - redirect
   - responsive_preview
+  - seckit
   - superfish
   - token
   - variationcache
   - views_bootstrap
   # Custom Modules
+  - osu_seckit
   - osu_ckeditor_plugins
 themes:
   # Core Themes
