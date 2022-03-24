@@ -54,10 +54,10 @@ function osu_standard_update_8003() {
     'metatag_verification',
     'metatag_views',
   ], TRUE);
-  $config_path = realpath('./config/sync');
+  $config_path = realpath('./config/install');
   $config_storage = \Drupal::service('config.storage');
   $source = new FileStorage($config_path);
-  $metatag_defaults = glob($config_path . 'metatag.metatag_defaults.*.yml');
+  $metatag_defaults = glob($config_path . '/metatag.metatag_defaults.*.yml');
   foreach ($metatag_defaults as $metatag_default) {
     $metatag_config_name = basename($metatag_default, '.yml');
     $config_storage->write($metatag_config_name, $source->read($metatag_config_name));
