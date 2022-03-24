@@ -24,6 +24,7 @@ dependencies:
   - field_ui
   - file
   - filter
+  - google_tag
   - help
   - history
   - image
