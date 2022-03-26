@@ -6,7 +6,7 @@ dependencies:
 id: pattern_for_all_basic_page_paths
 label: 'Pattern for all Basic page paths'
 type: 'canonical_entities:node'
-pattern: '[node:title]'
+pattern: '[node:menu-link:parent:url:path]/[node:title]'
 selection_criteria:
   6cec4fa0-67bb-49ee-9be3-3a5cab8b7f86:
     id: node_type
