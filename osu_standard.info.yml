@@ -102,6 +102,12 @@ dependencies:
   - token
   - variationcache
   - views_bootstrap
+  - webform
+  - webform_access
+  - webform_attachment
+  - webform_bootstrap
+  - webform_node
+  - webform_ui
   # Custom Modules
   - osu_seckit
   - osu_ckeditor_plugins
