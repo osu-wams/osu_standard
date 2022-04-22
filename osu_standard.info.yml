@@ -76,9 +76,9 @@ dependencies:
   - google_tag
   - layout_builder_blocks
   - layout_builder_component_attributes
+  - layout_builder_operation_link
   - layout_builder_restrictions
   - layout_builder_restrictions_by_region
-  - layout_builder_styles
   - libraries
   - linkit
   - memcache
