@@ -50,6 +50,8 @@ weight: 2
 is_admin: null
 permissions:
   - 'access administration pages'
+  - 'access all webform results'
+  - 'access any webform configuration'
   - 'access content'
   - 'access content overview'
   - 'access contextual links'
@@ -228,4 +230,3 @@ permissions:
   - 'view webform revisions'
   - 'view webform submissions any node'
   - 'view webform submissions own node'
-  
