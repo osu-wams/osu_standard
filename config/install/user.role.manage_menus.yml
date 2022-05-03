@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - contextual
+    - system
+id: manage_menus
+label: 'Manage Menus'
+weight: -3
+is_admin: null
+permissions:
+  - 'access contextual links'
+  - 'administer menu'
