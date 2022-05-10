@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - asset_injector
+id: manage_asset_injector
+label: 'Manage Asset Injector'
+weight: -6
+is_admin: null
+permissions:
+  - 'administer css assets injector'
+  - 'administer js assets injector'

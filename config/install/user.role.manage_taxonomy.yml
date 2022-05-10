@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: manage_taxonomy
+label: 'Manage Taxonomy'
+weight: -2
+is_admin: null
+permissions:
+  - 'access taxonomy overview'
+  - 'administer taxonomy'
