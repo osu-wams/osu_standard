@@ -1,9 +1,18 @@
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.restricted_html
+  module:
+    - contact
+    - exclude_node_title
+    - filter
+    - media
+    - search
+    - system
 id: anonymous
 label: 'Anonymous user'
-weight: 0
+weight: -10
 is_admin: false
 permissions:
   - 'access content'

@@ -2,7 +2,7 @@ name: OSU Standard
 type: profile
 description: 'Standard Drupal Installation Profile.'
 core_version_requirement: ^9 || ^10
-version: 1.0.0-alpha2
+version: 1.0.0-alpha3
 distribution:
   name: Oregon State
   langcode: en
@@ -29,6 +29,8 @@ dependencies:
   - image
   - layout_builder
   - link
+  - media
+  - media_library
   - menu_link_content
   - menu_ui
   - node
@@ -55,17 +57,21 @@ dependencies:
   - acquia_purge
   - admin_toolbar
   - admin_toolbar_tools
+  - admin_toolbar_links_access_filter
   - asset_injector
   - block_classes
   - block_visibility_groups
   - block_visibility_groups_admin
   - bootstrap_layout_builder
   - bootstrap_styles
+  - media_bulk_upload
+  - media_bulk_upload_dropzonejs
   - cas
   - cas_attributes
   - ckeditor_div_manager
   - ckeditor_scayt
   - ctools
+  - dropzonejs
   - editor_advanced_link
   - editor_file
   - entity
@@ -81,6 +87,8 @@ dependencies:
   - layout_builder_restrictions_by_region
   - libraries
   - linkit
+  - media_library_form_element
+  - media_library_theme_reset
   - memcache
   - metatag
   - metatag_google_cse
@@ -100,10 +108,13 @@ dependencies:
   - redirect
   - responsive_preview
   - seckit
+  - section_library
   - superfish
   - token
   - variationcache
   - views_bootstrap
+  - views_bulk_edit
+  - views_bulk_operations
   - webform
   - webform_access
   - webform_attachment
@@ -113,6 +124,7 @@ dependencies:
   # Custom Modules
   - osu_seckit
   - osu_ckeditor_plugins
+  - osu_media
 themes:
   # Core Themes
   - claro

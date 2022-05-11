@@ -12,11 +12,14 @@ dependencies:
     - media.type.remote_video
     - node.type.article
     - node.type.page
+    - node.type.webform
     - taxonomy.vocabulary.tags
   module:
     - asset_injector
     - block
+    - block_classes
     - block_content
+    - block_visibility_groups
     - bootstrap_layout_builder
     - bootstrap_styles
     - contact
@@ -25,13 +28,15 @@ dependencies:
     - field_ui
     - file
     - filter
+    - google_tag
     - image
     - layout_builder
     - layout_builder_component_attributes
     - layout_builder_restrictions
-    - layout_builder_styles
     - linkit
     - media
+    - media_bulk_upload
+    - metatag
     - node
     - path
     - pathauto
@@ -43,7 +48,10 @@ dependencies:
     - taxonomy
     - toolbar
     - tour
+    - views_bulk_edit
     - views_ui
+    - webform
+    - webform_node
 id: architect
 label: Architect
 weight: 2
@@ -99,6 +107,7 @@ permissions:
   - 'administer media fields'
   - 'administer media form display'
   - 'administer media types'
+  - 'administer media_bulk_upload configuration'
   - 'administer menu'
   - 'administer meta tags'
   - 'administer node display'
@@ -213,10 +222,12 @@ permissions:
   - 'update any media'
   - 'update media'
   - 'use advanced search'
+  - 'use bulk_image bulk upload form'
   - 'use exclude node title'
   - 'use text format basic_html'
   - 'use text format full_html'
   - 'use text format restricted_html'
+  - 'use views bulk edit'
   - 'view all media revisions'
   - 'view all revisions'
   - 'view any webform submission'

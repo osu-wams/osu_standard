@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_display.node.page.default
     - filter.format.full_html
     - media.type.document
     - media.type.image
@@ -15,9 +16,11 @@ dependencies:
     - layout_builder
     - layout_builder_component_attributes
     - media
+    - media_bulk_upload
     - node
     - path
     - redirect
+    - views_bulk_edit
 id: content_authors
 label: 'Content Authors'
 weight: -8
@@ -51,8 +54,10 @@ permissions:
   - 'revert all revisions'
   - 'revert article revisions'
   - 'revert page revisions'
+  - 'use bulk_image bulk upload form'
   - 'use exclude node title'
   - 'use text format full_html'
+  - 'use views bulk edit'
   - 'view all revisions'
   - 'view article revisions'
   - 'view own unpublished content'
