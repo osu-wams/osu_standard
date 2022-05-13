@@ -59,6 +59,7 @@ dependencies:
   - admin_toolbar_tools
   - admin_toolbar_links_access_filter
   - asset_injector
+  - better_exposed_filters
   - block_classes
   - block_visibility_groups
   - block_visibility_groups_admin

@@ -36,6 +36,12 @@ function osu_standard_install_tasks(&$install_state) {
 
 /**
  * Install modules that require a full site to be ready.
+ *
+ * This allows modules to be installed and not have a hard dependency on the
+ * installation profile.
+ *
+ * @param array $install_state
+ *   The Drupal Install State.
  */
 function osu_standard_default_modules(array &$install_state) {
   \Drupal::service('module_installer')->install([

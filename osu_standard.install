@@ -2,6 +2,7 @@
 
 use Drupal\Core\Config\FileStorage;
 use Drupal\shortcut\Entity\Shortcut;
+use Drupal\user\Entity\Role;
 use Drupal\user\Entity\User;
 
 /**
@@ -35,11 +36,54 @@ function osu_standard_install($is_syncing) {
   $page_cache->set('cache.page.max_age', 31536000);
   $page_cache->save();
 
-  // Install modules that have requirements on fields etc.
-  //  \Drupal::service('module_installer')->install([
-  //    'osu_groups',
-  //    'osu_groups_basic_group',
-  //  ], TRUE);
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function osu_standard_update_8004(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'better_exposed_filters',
+    'admin_toolbar_links_access_filter',
+    'media_bulk_upload',
+    'media_bulk_upload_dropzonejs',
+    'webform',
+    'webform_access',
+    'webform_attachment',
+    'webform_bootstrap',
+    'webform_node',
+    'webform_ui',
+    'section_library',
+    'views_bulk_edit',
+    'views_bulk_operations',
+  ], TRUE);
+  $roles = Role::loadMultiple();
+  $install_profile_path = \Drupal::service('module_handler')
+    ->getModule('osu_standard')
+    ->getPath();
+  $config_path = realpath($install_profile_path . '/config/install');
+  $config_storage = \Drupal::service('config.storage');
+  $source = new FileStorage($config_path);
+  $osu_standard_roles = glob($config_path . '/user.role.*.yml');
+  foreach ($osu_standard_roles as $osu_standard_role) {
+    $osu_standard_role_name = basename($osu_standard_role, '.yml');
+    $role_name = explode('user.role.', $osu_standard_role_name);
+    if (!array_key_exists($role_name[1], $roles)) {
+      $config_storage->write($osu_standard_role_name, $source->read($osu_standard_role_name));
+    }
+  }
+  // Grant extra permissions to the authenticated role.
+  $authenticated_role = Role::load('authenticated');
+  $authenticated_role->grantPermission('access toolbar');
+  $authenticated_role->grantPermission('access administration pages');
+  $authenticated_role->grantPermission('view the administration theme');
+  $authenticated_role->setWeight(-9);
+  $authenticated_role->save();
+  // Update the weight of the anonymous role.
+  $anonymous_role = Role::load('anonymous');
+  $anonymous_role->setWeight(-10);
+  $anonymous_role->save();
+  return t('Installed modules, imported missing roles and added permissions to authenticated role.');
 }
 
 /**
@@ -65,7 +109,7 @@ function osu_standard_update_8003() {
     $metatag_config_name = basename($metatag_default, '.yml');
     $config_storage->write($metatag_config_name, $source->read($metatag_config_name));
   }
-  return t('Installed new modules, Seckit and OSU Seckit');
+  return t('Installed Metatag modules and imported configurations');
 }
 
 /**
