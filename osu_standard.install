@@ -39,7 +39,17 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
- * Implements hook_update_N().
+ * Add Dropzone permission to architect role.
+ */
+function osu_standard_update_8005(&$sandbox) {
+  $architect = Role::load('architect');
+  $architect->grantPermission('dropzone upload files');
+  $architect->save();
+  return t('Architect Role can now use Dropzone file uploader');
+}
+
+/**
+ * Add new roles to existing sites.
  */
 function osu_standard_update_8004(&$sandbox) {
   \Drupal::service('module_installer')->install([

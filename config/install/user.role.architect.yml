@@ -24,6 +24,7 @@ dependencies:
     - bootstrap_styles
     - contact
     - contextual
+    - dropzonejs
     - exclude_node_title
     - field_ui
     - file
@@ -184,6 +185,7 @@ permissions:
   - 'delete webform revisions'
   - 'delete webform submissions any node'
   - 'delete webform submissions own node'
+  - 'dropzone upload files'
   - 'edit any article content'
   - 'edit any document media'
   - 'edit any image media'
