@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - config
     - contact
     - contextual
     - path
@@ -32,6 +33,9 @@ permissions:
   - 'administer url aliases'
   - 'create url aliases'
   - 'customize shortcut links'
+  - 'export configuration'
+  - 'import configuration'
   - 'switch shortcut sets'
+  - 'synchronize configuration'
   - 'use advanced search'
   - 'view the administration theme'

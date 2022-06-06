@@ -39,6 +39,35 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Update permissions for different roles.
+ */
+function osu_standard_update_9001(&$sandbox) {
+  $architect = Role::load('architect');
+  $architect->grantPermission('add section library templates');
+  $architect->grantPermission('delete section library templates');
+  $architect->grantPermission('edit section library templates');
+  $architect->grantPermission('export configuration');
+  $architect->grantPermission('import configuration');
+  $architect->grantPermission('import template from section library');
+  $architect->grantPermission('synchronize configuration');
+  $architect->grantPermission('view section library templates');
+  $architect->save();
+
+  $manage_layout_template = Role::load('manage_layout_templates');
+  $manage_layout_template->grantPermission('delete section library templates');
+  $manage_layout_template->grantPermission('import template from section library');
+  $manage_layout_template->save();
+
+  $manage_site_config = Role::load('manage_site_configuration');
+  $manage_site_config->grantPermission('export configuration');
+  $manage_site_config->grantPermission('import configuration');
+  $manage_site_config->grantPermission('synchronize configuration');
+  $manage_site_config->save();
+  return t('Update roles for added permissions.');
+}
+
+
+/**
  * Add Dropzone permission to architect role.
  */
 function osu_standard_update_8005(&$sandbox) {
