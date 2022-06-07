@@ -116,6 +116,7 @@ dependencies:
   - token
   - variationcache
   - views_bootstrap
+  - views_conditional
   - views_bulk_edit
   - views_bulk_operations
   - webform

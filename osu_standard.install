@@ -39,6 +39,16 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Enable views_conditional module.
+ */
+function osu_standard_update_9002(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'views_conditional',
+  ], TRUE);
+  return t('Enabled views_conditional');
+}
+
+/**
  * Update permissions for different roles.
  */
 function osu_standard_update_9001(&$sandbox) {
