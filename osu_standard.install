@@ -39,6 +39,16 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Re-order text format default.
+ */
+function osu_standard_update_9003(&$sandbox) {
+  $full_html = \Drupal::configFactory();
+  $filter_weight = $full_html->getEditable('filter.format.full_html');
+  $filter_weight->set('weight', -50);
+  $filter_weight->save(TRUE);
+}
+
+/**
  * Enable views_conditional module.
  */
 function osu_standard_update_9002(&$sandbox) {
