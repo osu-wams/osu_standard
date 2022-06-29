@@ -81,7 +81,6 @@ dependencies:
   - externalauth
   - field_group
   - fontawesome
-  - fontawesome_menu_icons
   - google_tag
   - layout_builder_blocks
   - layout_builder_component_attributes
