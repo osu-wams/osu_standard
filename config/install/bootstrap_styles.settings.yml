@@ -44,3 +44,4 @@ data_key: aos
 scroll_effects_attr_type: 1
 scroll_effects_data_key: data-aos
 scroll_effects_library_type: external
+min_height: "osu-min-h-100|100px\r\nosu-min-h-200|200px\r\nosu-min-h-300|300px\r\nosu-min-h-400|400px\r\nosu-min-h-500|500px\r\nosu-min-h-600|600px\r\nosu-min-h-700|700px\r\nosu-min-h-800|800px"
