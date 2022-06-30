@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Entity\EntityStorageException;
 use Drupal\shortcut\Entity\Shortcut;
 use Drupal\user\Entity\Role;
 use Drupal\user\Entity\User;
@@ -36,6 +37,44 @@ function osu_standard_install($is_syncing) {
   $page_cache->set('cache.page.max_age', 31536000);
   $page_cache->save();
 
+}
+
+/**
+ * Delete the Article content type.
+ */
+function osu_standard_update_9005(&$sandbox) {
+  // Get all article nodes and delete.
+  $storage_handler = \Drupal::entityTypeManager()->getStorage('node');
+  $articles = $storage_handler->loadByProperties(['type' => 'article']);
+  try {
+    $storage_handler->delete($articles);
+  }
+  catch (EntityStorageException $entityStorageException) {
+    \Drupal::logger('osu_standard')->notice('No nodes found to delete.');
+  }
+  // Delete the content type article.
+  $content_type = \Drupal::entityTypeManager()
+    ->getStorage('node_type')
+    ->load('article');
+  if (!is_null($content_type)) {
+    try {
+      $content_type->delete();
+    }
+    catch (EntityStorageException $entityStorageException) {
+      \Drupal::logger('osu_standard')
+        ->notice('Node type of article not found.');
+    }
+    return t('Node type Article Removed.');
+  }
+  return t('Node type Article not found');
+}
+
+/**
+ * Uninstall fontawesome_menu_icons module.
+ */
+function osu_standard_update_9004(&$sandbox) {
+  \Drupal::service('module_installer')->uninstall(['fontawesome_menu_icons']);
+  return t('fontawesome_menu_icons has been uninstalled');
 }
 
 /**

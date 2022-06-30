@@ -4,10 +4,7 @@ translation_sync: true
 search: true
 type: hidden
 content_types:
-  article: user
   page: user
 content_type_modes:
-  article:
-    - full
   page:
     - full
