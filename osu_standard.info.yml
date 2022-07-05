@@ -125,6 +125,7 @@ dependencies:
   - webform_node
   - webform_ui
   # Custom Modules
+  - osu_bootstrap_layout_builder
   - osu_roles
   - osu_ckeditor_plugins
   - osu_media
