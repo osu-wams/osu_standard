@@ -40,6 +40,15 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Add OSU Alignment classes to bootstrap styles alignment setting.
+ */
+function osu_standard_update_9007(&$sandbox) {
+  $vertical_alignment_options = "osu-align-items-start|Top\r\nosu-align-items-center|Center\r\nosu-align-items-end|Bottom";
+  $config = \Drupal::service('config.factory')->getEditable('bootstrap_styles.settings');
+  $config->set('items_alignment', $vertical_alignment_options);
+  $config->save();
+}
+/**
  * Update Linkit Profiles
  */
 function osu_standard_update_9006(&$sandbox) {
