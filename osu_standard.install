@@ -48,6 +48,7 @@ function osu_standard_update_9007(&$sandbox) {
   $config->set('items_alignment', $vertical_alignment_options);
   $config->save();
 }
+
 /**
  * Update Linkit Profiles
  */
