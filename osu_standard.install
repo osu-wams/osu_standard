@@ -40,6 +40,31 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Update Linkit Profiles
+ */
+function osu_standard_update_9006(&$sandbox) {
+  /** @var \Drupal\Core\Config\Config $config */
+  $config = \Drupal::service('config.factory')
+    ->getEditable('linkit.linkit_profile.default');
+  $linkit_matchers = $config->get('matchers');
+  foreach ($linkit_matchers as &$matcher) {
+    switch ($matcher["id"]) {
+      case 'entity:media':
+        $matcher["settings"]["metadata"] = "by [media:uid:entity:account-name] | [media:created:date:medium]";
+        $matcher["settings"]["group_by_bundle"] = TRUE;
+        $matcher["settings"]["substitution_type"] = "media";
+        break;
+
+      case 'entity:node':
+        $matcher["settings"]["group_by_bundle"] = TRUE;
+        break;
+    }
+  }
+  $config->set('matchers', $linkit_matchers);
+  $config->save();
+}
+
+/**
  * Delete the Article content type.
  */
 function osu_standard_update_9005(&$sandbox) {
