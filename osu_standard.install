@@ -50,6 +50,33 @@ function osu_standard_update_9008(&$sandbox) {
 }
 
 /**
+ * Update Bootstrap Styles for alignment, effects border widths and border
+ * style.
+ */
+function osu_standard_update_9007(&$sandbox) {
+  $bootstrap_style_updates = [
+    'items_alignment' => "osu-align-items-start|Top\r\nosu-align-items-center|Center\r\nosu-align-items-end|Bottom",
+    'border_style' => "bs-border-style-solid|Solid",
+    'border_left_style' => "bs-border-style-left-solid|Solid",
+    'border_top_style' => "bs-border-style-top-solid|Solid",
+    'border_right_style' => "bs-border-style-right-solid|Solid",
+    'border_bottom_style' => "bs-border-style-bottom-solid|Solid",
+    'border_width' => "osu-border-width-1|Width 1\r\nosu-border-width-2|Width 2\r\nosu-border-width-3|Width 3\r\nosu-border-width-4|Width 4\r\nosu-border-width-5|Width 5",
+    'border_left_width' => "osu-border-width-left-1|Width 1\r\nosu-border-width-left-2|Width 2\r\nosu-border-width-left-3|Width 3\r\nosu-border-width-left-4|Width 4\r\nosu-border-width-left-5|Width 5",
+    'border_top_width' => "osu-border-width-top-1|Width 1\r\nosu-border-width-top-2|Width 2\r\nosu-border-width-top-3|Width 3\r\nosu-border-width-top-4|Width 4\r\nosu-border-width-top-5|Width 5",
+    'border_right_width' => "osu-border-width-right-1|Width 1\r\nosu-border-width-right-2|Width 2\r\nosu-border-width-right-3|Width 3\r\nosu-border-width-right-4|Width 4\r\nosu-border-width-right-5|Width 5",
+    'border_bottom_width' => "osu-border-width-bottom-1|Width 1\r\nosu-border-width-bottom-2|Width 2\r\nosu-border-width-bottom-3|Width 3\r\nosu-border-width-bottom-4|Width 4\r\nosu-border-width-bottom-5|Width 5",
+    'scroll_effects' => "fade-zoom-in|Fade In\r\nfade-up|Fade Up\r\nfade-down|Fade Down\r\nfade-left|Fade Left\r\nfade-right|Fade Right\r\nfade-up-right|Fade Up Right\r\nfade-up-left|Fade Up Left\r\nfade-down-right|Fade Down Right\r\nfade-down-left|Fade Down Left\r\nzoom-in|Zoom In\r\nzoom-in-up|Zoom In Up\r\nzoom-in-down|Zoom In Down\r\nzoom-in-left|Zoom In Left\r\nzoom-in-right|Zoom In Right\r\nzoom-out|Zoom Out\r\nzoom-out-up|Zoom Out Up\r\nzoom-out-down|Zoom Out Down\r\nzoom-out-right|Zoom Out Right\r\nzoom-out-left|Zoom Out Left",
+  ];
+  $config = \Drupal::service('config.factory')
+    ->getEditable('bootstrap_styles.settings');
+  foreach ($bootstrap_style_updates as $bootstrap_style_key => $bootstrap_style_update) {
+    $config->set($bootstrap_style_key, $bootstrap_style_update);
+  }
+  $config->save();
+}
+
+/**
  * Update Linkit Profiles
  */
 function osu_standard_update_9006(&$sandbox) {

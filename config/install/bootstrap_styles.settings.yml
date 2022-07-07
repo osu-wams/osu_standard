@@ -18,16 +18,16 @@ margin_left: "ms-1|Margin Left 1\r\nms-2|Margin Left 2\r\nms-3|Margin Left 3\r\n
 margin_top: "mt-1|Margin Top 1\r\nmt-2|Margin Top 2\r\nmt-3|Margin Top 3\r\nmt-4|Margin Top 4\r\nmt-5|Margin Top 5"
 margin_right: "me-1|Margin Right 1\r\nme-2|Margin Right 2\r\nme-3|Margin Right 3\r\nme-4|Margin Right 4\r\nme-5|Margin Right 5"
 margin_bottom: "mb-1|Margin Bottom 1\r\nmb-2|Margin Bottom 2\r\nmb-3|Margin Bottom 3\r\nmb-4|Margin Bottom 4\r\nmb-5|Margin Bottom 5"
-border_style: "bs-border-style-solid|Solid\r\nbs-border-style-dashed|Dashed\r\nbs-border-style-dotted|Dotted"
-border_left_style: "bs-border-style-left-solid|Solid\r\nbs-border-style-left-dashed|Dashed\r\nbs-border-style-left-dotted|Dotted"
-border_top_style: "bs-border-style-top-solid|Solid\r\nbs-border-style-top-dashed|Dashed\r\nbs-border-style-top-dotted|Dotted"
-border_right_style: "bs-border-style-right-solid|Solid\r\nbs-border-style-right-dashed|Dashed\r\nbs-border-style-right-dotted|Dotted"
-border_bottom_style: "bs-border-style-bottom-solid|Solid\r\nbs-border-style-bottom-dashed|Dashed\r\nbs-border-style-bottom-dotted|Dotted"
-border_width: "bs-border-width-1|Width 1\r\nbs-border-width-2|Width 2\r\nbs-border-width-3|Width 3"
-border_left_width: "bs-border-width-left-1|Width 1\r\nbs-border-width-left-2|Width 2\r\nbs-border-width-left-3|Width 3"
-border_top_width: "bs-border-width-top-1|Width 1\r\nbs-border-width-top-2|Width 2\r\nbs-border-width-top-3|Width 3"
-border_right_width: "bs-border-width-right-1|Width 1\r\nbs-border-width-right-2|Width 2\r\nbs-border-width-right-3|Width 3"
-border_bottom_width: "bs-border-width-bottom-1|Width 1\r\nbs-border-width-bottom-2|Width 2\r\nbs-border-width-bottom-3|Width 3"
+border_style: bs-border-style-solid|Solid
+border_left_style: bs-border-style-left-solid|Solid
+border_top_style: bs-border-style-top-solid|Solid
+border_right_style: bs-border-style-right-solid|Solid
+border_bottom_style: bs-border-style-bottom-solid|Solid
+border_width: "osu-border-width-1|Width 1\r\nosu-border-width-2|Width 2\r\nosu-border-width-3|Width 3\r\nosu-border-width-4|Width 4\r\nosu-border-width-5|Width 5"
+border_left_width: "osu-border-width-left-1|Width 1\r\nosu-border-width-left-2|Width 2\r\nosu-border-width-left-3|Width 3\r\nosu-border-width-left-4|Width 4\r\nosu-border-width-left-5|Width 5"
+border_top_width: "osu-border-width-top-1|Width 1\r\nosu-border-width-top-2|Width 2\r\nosu-border-width-top-3|Width 3\r\nosu-border-width-top-4|Width 4\r\nosu-border-width-top-5|Width 5"
+border_right_width: "osu-border-width-right-1|Width 1\r\nosu-border-width-right-2|Width 2\r\nosu-border-width-right-3|Width 3\r\nosu-border-width-right-4|Width 4\r\nosu-border-width-right-5|Width 5"
+border_bottom_width: "osu-border-width-bottom-1|Width 1\r\nosu-border-width-bottom-2|Width 2\r\nosu-border-width-bottom-3|Width 3\r\nosu-border-width-bottom-4|Width 4\r\nosu-border-width-bottom-5|Width 5"
 border_color: "osu-border-neutral|Neutral\r\nosu-border-white|White\r\nosu-border-dark|Dark\r\nosu-border-osu|Orange\r\nosu-border-pine|Pine\r\nosu-border-rogue-wave|Rogue Wave\r\nosu-border-luminance|Luminance\r\nosu-border-stratosphere|Stratosphere"
 border_left_color: "osu-border-neutral-left|Neutral\r\nosu-border-white-left|White\r\nosu-border-dark-left|Dark\r\nosu-border-osu-left|Orange\r\nosu-border-pine-left|Pine\r\nosu-border-rogue-wave-left|Rogue Wave\r\nosu-border-luminance-left|Luminance\r\nosu-border-stratosphere-left|Stratosphere"
 border_top_color: "osu-border-neutral-top|Neutral\r\nosu-border-white-top|White\r\nosu-border-dark-top|Dark\r\nosu-border-osu-top|Orange\r\nosu-border-pine-top|Pine\r\nosu-border-rogue-wave-top|Rogue Wave\r\nosu-border-luminance-top|Luminance\r\nosu-border-stratosphere-top|Stratosphere"
@@ -38,10 +38,11 @@ rounded_corner_top_left: "bs-border-radius-top-left-1|Radius 1\r\nbs-border-radi
 rounded_corner_top_right: "bs-border-radius-top-right-1|Radius 1\r\nbs-border-radius-top-right-2|Radius 2\r\nbs-border-radius-top-right-3|Radius 3"
 rounded_corner_bottom_left: "bs-border-radius-bottom-left-1|Radius 1\r\nbs-border-radius-bottom-left-2|Radius 2\r\nbs-border-radius-bottom-left-3|Radius 3"
 rounded_corner_bottom_right: "bs-border-radius-bottom-right-1|Radius 1\r\nbs-border-radius-bottom-right-2|Radius 2\r\nbs-border-radius-bottom-right-3|Radius 3"
-scroll_effects: "fade-zoom-in|Fade In\r\nfade-up|Fade Up\r\nfade-down|Fade Down\r\nfade-left|Fade Left\r\nfade-right|Fade Right\r\nfade-up-right|Fade Up Right\r\nfade-up-left|Fade Up Left\r\nfade-down-right|Fade Down Right\r\nfade-down-left|Fade Down Left\r\nflip-left|Flip Left\r\nflip-right|Flip Right\r\nflip-up|Flip Up\r\nflip-down|Flip Down\r\nzoom-in|Zoom In\r\nzoom-in-up|Zoom In Up\r\nzoom-in-down|Zoom In Down\r\nzoom-in-left|Zoom In Left\r\nzoom-in-right|Zoom In Right\r\nzoom-out|Zoom Out\r\nzoom-out-up|Zoom Out Up\r\nzoom-out-down|Zoom Out Down\r\nzoom-out-right|Zoom Out Right\r\nzoom-out-left|Zoom Out Left"
+scroll_effects: "fade-zoom-in|Fade In\r\nfade-up|Fade Up\r\nfade-down|Fade Down\r\nfade-left|Fade Left\r\nfade-right|Fade Right\r\nfade-up-right|Fade Up Right\r\nfade-up-left|Fade Up Left\r\nfade-down-right|Fade Down Right\r\nfade-down-left|Fade Down Left\r\nzoom-in|Zoom In\r\nzoom-in-up|Zoom In Up\r\nzoom-in-down|Zoom In Down\r\nzoom-in-left|Zoom In Left\r\nzoom-in-right|Zoom In Right\r\nzoom-out|Zoom Out\r\nzoom-out-up|Zoom Out Up\r\nzoom-out-down|Zoom Out Down\r\nzoom-out-right|Zoom Out Right\r\nzoom-out-left|Zoom Out Left"
 attribute_type: data
 data_key: aos
 scroll_effects_attr_type: 1
 scroll_effects_data_key: data-aos
 scroll_effects_library_type: external
 min_height: "osu-min-h-100|100px\r\nosu-min-h-200|200px\r\nosu-min-h-300|300px\r\nosu-min-h-400|400px\r\nosu-min-h-500|500px\r\nosu-min-h-600|600px\r\nosu-min-h-700|700px\r\nosu-min-h-800|800px"
+items_alignment: "osu-align-items-start|Top\r\nosu-align-items-center|Center\r\nosu-align-items-end|Bottom"
