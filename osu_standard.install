@@ -43,6 +43,8 @@ function osu_standard_install($is_syncing) {
  * Add OSU minimum height classes to bootstrap styles alignment setting.
  */
 function osu_standard_update_9008(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'osu_bootstrap_layout_builder'], TRUE);
   $min_height_options = "osu-min-h-100|100px\r\nosu-min-h-200|200px\r\nosu-min-h-300|300px\r\nosu-min-h-400|400px\r\nosu-min-h-500|500px\r\nosu-min-h-600|600px\r\nosu-min-h-700|700px\r\nosu-min-h-800|800px";
   $config = \Drupal::service('config.factory')->getEditable('bootstrap_styles.settings');
   $config->set('min_height', $min_height_options);
