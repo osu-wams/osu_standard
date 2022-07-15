@@ -60,6 +60,7 @@ dependencies:
   - admin_toolbar_tools
   - admin_toolbar_links_access_filter
   - asset_injector
+  - auto_entitylabel
   - better_exposed_filters
   - block_classes
   - block_visibility_groups
@@ -74,6 +75,7 @@ dependencies:
   - ckeditor_scayt
   - ctools
   - dropzonejs
+  - default_content
   - editor_advanced_link
   - editor_file
   - entity
@@ -126,6 +128,8 @@ dependencies:
   - webform_ui
   # Custom Modules
   - osu_bootstrap_layout_builder
+  - osu_default_content
+  - osu_profile
   - osu_roles
   - osu_ckeditor_plugins
   - osu_media
