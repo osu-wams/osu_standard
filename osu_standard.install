@@ -40,6 +40,23 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Update exclude node title config for osu_profiles.
+ */
+function osu_standard_update_9009(&$sandbox) {
+  $config = \Drupal::service('config.factory')->getEditable('exclude_node_title.settings');
+
+  $content_types = $config->get('content_types');
+  $content_types['osu_profile'] = 'all';
+  $config->set('content_types', $content_types);
+
+  $content_modes = $config->get('content_type_modes');
+  $content_modes['osu_profile'] = ['full'];
+  $config->set('content_type_modes', $content_modes);
+
+  $config->save();
+}
+
+/**
  * Add OSU minimum height classes to bootstrap styles alignment setting.
  */
 function osu_standard_update_9008(&$sandbox) {
