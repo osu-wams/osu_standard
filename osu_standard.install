@@ -45,13 +45,7 @@ function osu_standard_install($is_syncing) {
 function osu_standard_update_9009(&$sandbox) {
   \Drupal::service('module_installer')->install([
     'auto_entitylabel',
-  ], TRUE);
-
-  \Drupal::service('module_installer')->install([
     'osu_default_content',
-  ], TRUE);
-
-  \Drupal::service('module_installer')->install([
     'osu_profile',
   ], TRUE);
 
