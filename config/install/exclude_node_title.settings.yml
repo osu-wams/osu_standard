@@ -11,3 +11,4 @@ content_type_modes:
     - full
   osu_profile:
     - full
+    - teaser

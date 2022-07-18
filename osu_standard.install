@@ -50,7 +50,7 @@ function osu_standard_update_9009(&$sandbox) {
   $config->set('content_types', $content_types);
 
   $content_modes = $config->get('content_type_modes');
-  $content_modes['osu_profile'] = ['full'];
+  $content_modes['osu_profile'] = ['full', 'teaser'];
   $config->set('content_type_modes', $content_modes);
 
   $config->save();
