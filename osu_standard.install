@@ -40,20 +40,32 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
- * Update exclude node title config for osu_profiles.
+ * Updates for osu_profiles module
  */
 function osu_standard_update_9009(&$sandbox) {
-  $config = \Drupal::service('config.factory')->getEditable('exclude_node_title.settings');
+  \Drupal::service('module_installer')->install([
+    'auto_entitylabel',
+  ], TRUE);
 
+  \Drupal::service('module_installer')->install([
+    'osu_default_content',
+  ], TRUE);
+
+  \Drupal::service('module_installer')->install([
+    'osu_profile',
+  ], TRUE);
+
+  $config = \Drupal::service('config.factory')->getEditable('exclude_node_title.settings');
   $content_types = $config->get('content_types');
   $content_types['osu_profile'] = 'all';
   $config->set('content_types', $content_types);
-
   $content_modes = $config->get('content_type_modes');
   $content_modes['osu_profile'] = ['full', 'teaser'];
   $config->set('content_type_modes', $content_modes);
 
   $config->save();
+
+  return t('Enabled osu_profile');
 }
 
 /**
