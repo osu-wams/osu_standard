@@ -5,6 +5,10 @@ search: true
 type: hidden
 content_types:
   page: user
+  osu_profile: all
 content_type_modes:
   page:
     - full
+  osu_profile:
+    - full
+    - teaser
