@@ -43,9 +43,16 @@ function osu_standard_install($is_syncing) {
  * Updates for osu_profiles module
  */
 function osu_standard_update_9009(&$sandbox) {
+  /**
+   * Content installed by this module isn't immediantly available
+   * We install it first seperatly so the content is ready when osu_profile needs it
+   */ 
+  \Drupal::service('module_installer')->install([
+    'osu_default_content',
+  ], TRUE);
+
   \Drupal::service('module_installer')->install([
     'auto_entitylabel',
-    'osu_default_content',
     'osu_profile',
   ], TRUE);
 
