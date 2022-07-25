@@ -38,6 +38,7 @@ function osu_standard_install($is_syncing) {
   $page_cache->save();
 
 }
+
 /**
  * Remove media_card_caption from embed options.
  */
@@ -71,7 +72,8 @@ function osu_standard_update_9009(&$sandbox) {
     'osu_profile',
   ], TRUE);
 
-  $config = \Drupal::service('config.factory')->getEditable('exclude_node_title.settings');
+  $config = \Drupal::service('config.factory')
+    ->getEditable('exclude_node_title.settings');
   $content_types = $config->get('content_types');
   $content_types['osu_profile'] = 'all';
   $config->set('content_types', $content_types);
