@@ -40,6 +40,19 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Add font size styles to full_html editor
+ */
+function osu_standard_update_9011(&$sandbox) {
+  $config = \Drupal::configFactory();
+  $full_html = $config->getEditable('editor.editor.full_html');
+  $full_html->set(
+    'settings.plugins.stylescombo.styles',
+    "table.osu-table|Dark Table\r\ntable.osu-table-orange|Beaver Orange Table\r\np.display-1|Display 1\r\np.display-2|Display 2\r\np.display-3|Display 3\r\np.display-4|Display 4\r\np.display-5|Display 5\r\np.fs-1|Font Size 1\r\np.fs-2|Font Size 2\r\np.fs-3|Font Size 3\r\np.fs-4|Font Size 4\r\np.fs-5|Font Size 5\r\np.fs-6|Font Size 6"
+  );
+  $full_html->save(TRUE);
+}
+
+/**
  * Remove media_card_caption from embed options.
  */
 function osu_standard_update_9010(&$sandbox) {
