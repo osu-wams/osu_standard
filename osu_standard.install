@@ -51,6 +51,7 @@ function osu_standard_update_9013(&$sandbox) {
   $architect = Role::load('architect');
   $architect->grantPermission('administer toc_js');
   $architect->grantPermission('administer toc_js per node');
+  $architect->grantPermission('administer easy breadcrumb');
   $architect->save();
 
   $content_authors = Role::load('content_authors');
@@ -63,6 +64,7 @@ function osu_standard_update_9013(&$sandbox) {
 
   $manage_site_configuration = Role::load('manage_site_configuration');
   $manage_site_configuration->grantPermission('administer toc_js');
+  $manage_site_configuration->grantPermission('administer easy breadcrumb');
   $manage_site_configuration->save();
 
   $page = \Drupal::configFactory()->getEditable('node.type.page');
