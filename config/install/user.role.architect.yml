@@ -48,6 +48,8 @@ dependencies:
     - shortcut
     - system
     - taxonomy
+    - toc_js
+    - toc_js_per_node
     - toolbar
     - tour
     - views_bulk_edit
@@ -130,6 +132,8 @@ permissions:
   - 'administer taxonomy_term fields'
   - 'administer taxonomy_term form display'
   - 'administer themes'
+  - 'administer toc_js'
+  - 'administer toc_js per node'
   - 'administer url aliases'
   - 'administer user display'
   - 'administer user fields'

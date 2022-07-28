@@ -11,6 +11,7 @@ dependencies:
     - search
     - shortcut
     - system
+    - toc_js
 id: manage_site_configuration
 label: 'Manage Site Configuration'
 weight: 1
@@ -30,6 +31,7 @@ permissions:
   - 'administer shortcuts'
   - 'administer site configuration'
   - 'administer themes'
+  - 'administer toc_js'
   - 'administer url aliases'
   - 'create url aliases'
   - 'customize shortcut links'

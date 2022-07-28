@@ -19,6 +19,7 @@ dependencies:
     - node
     - path
     - redirect
+    - toc_js_per_node
     - views_bulk_edit
 id: content_authors
 label: 'Content Authors'
@@ -29,6 +30,7 @@ permissions:
   - 'access media overview'
   - 'administer nodes'
   - 'administer redirects'
+  - 'administer toc_js per node'
   - 'configure editable page node layout overrides'
   - 'create and edit custom blocks'
   - 'create document media'
