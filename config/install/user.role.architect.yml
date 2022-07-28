@@ -99,6 +99,7 @@ permissions:
   - 'administer content types'
   - 'administer css assets injector'
   - 'administer display modes'
+  - 'administer easy breadcrumb'
   - 'administer exclude node title'
   - 'administer filters'
   - 'administer google tag manager'

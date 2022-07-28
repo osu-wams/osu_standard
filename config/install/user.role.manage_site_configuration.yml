@@ -23,6 +23,7 @@ permissions:
   - 'access site reports'
   - 'access user contact forms'
   - 'administer contact forms'
+  - 'administer easy breadcrumb'
   - 'administer menu'
   - 'administer pathauto'
   - 'administer redirect settings'
