@@ -40,6 +40,64 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Setup sticky toc
+ */
+function osu_standard_update_9013(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'toc_js',
+    'toc_js_per_node',
+  ], TRUE);
+
+  $architect = Role::load('architect');
+  $architect->grantPermission('administer toc_js');
+  $architect->grantPermission('administer toc_js per node');
+  $architect->save();
+
+  $content_authors = Role::load('content_authors');
+  $content_authors->grantPermission('administer toc_js per node');
+  $content_authors->save();
+
+  $manage_content = Role::load('manage_content');
+  $manage_content->grantPermission('administer toc_js per node');
+  $manage_content->save();
+
+  $manage_site_configuration = Role::load('manage_site_configuration');
+  $manage_site_configuration->grantPermission('administer toc_js');
+  $manage_site_configuration->save();
+
+  $page = \Drupal::configFactory()->getEditable('node.type.page');
+  $settings = $page->get('third_party_settings');
+  $settings['toc_js'] = [
+    "toc_js_active" => 1,
+    "title" => "Table of contents",
+    "selectors" => "h2, h3",
+    "selectors_minimum" => "0",
+    "container" => ".node",
+    "prefix" => "toc",
+    "list_type" => "ul",
+    "classes" => "",
+    "back_to_top" => 0,
+    "back_to_top_label" => "Back to top",
+    "smooth_scrolling" => 1,
+    "scroll_to_offset" => "0",
+    "highlight_on_scroll" => 1,
+    "highlight_offset" => "100",
+    "sticky" => 1,
+    "sticky_offset" => "0",
+    "sticky_stop" => "",
+    "sticky_stop_padding" => "0",
+  ];
+  $settings['toc_js_per_node'] = [
+    "override" => 1,
+    "override_default" => 0,
+  ];
+  $page->set('third_party_settings', $settings);
+  $page->save();
+
+  return t('Sticky toc enabled');
+}
+
+/**
  * Enable easy_breadcrumb
  */
 function osu_standard_update_9012(&$sandbox) {
