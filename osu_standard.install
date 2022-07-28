@@ -40,6 +40,17 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Enable easy_breadcrumb
+ */
+function osu_standard_update_9012(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'easy_breadcrumb',
+  ], TRUE);
+
+  return t('Enabled easy_breadcrumb');
+}
+
+/**
  * Add font size styles to full_html editor
  */
 function osu_standard_update_9011(&$sandbox) {

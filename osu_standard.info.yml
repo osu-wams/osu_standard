@@ -76,6 +76,7 @@ dependencies:
   - ctools
   - dropzonejs
   - default_content
+  - easy_breadcrumb
   - editor_advanced_link
   - editor_file
   - entity
