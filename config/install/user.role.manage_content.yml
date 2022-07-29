@@ -20,6 +20,7 @@ dependencies:
     - node
     - path
     - redirect
+    - toc_js_per_node
     - views_bulk_edit
 id: manage_content
 label: 'Manage Content'
@@ -32,6 +33,7 @@ permissions:
   - 'administer content types'
   - 'administer nodes'
   - 'administer redirects'
+  - 'administer toc_js per node'
   - 'bypass node access'
   - 'configure editable page node layout overrides'
   - 'create and edit custom blocks'

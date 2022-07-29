@@ -115,6 +115,8 @@ dependencies:
   - seckit
   - section_library
   - superfish
+  - toc_js
+  - toc_js_per_node
   - token
   - variationcache
   - views_bootstrap

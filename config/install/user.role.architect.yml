@@ -48,6 +48,8 @@ dependencies:
     - shortcut
     - system
     - taxonomy
+    - toc_js
+    - toc_js_per_node
     - toolbar
     - tour
     - views_bulk_edit
@@ -97,6 +99,7 @@ permissions:
   - 'administer content types'
   - 'administer css assets injector'
   - 'administer display modes'
+  - 'administer easy breadcrumb'
   - 'administer exclude node title'
   - 'administer filters'
   - 'administer google tag manager'
@@ -130,6 +133,8 @@ permissions:
   - 'administer taxonomy_term fields'
   - 'administer taxonomy_term form display'
   - 'administer themes'
+  - 'administer toc_js'
+  - 'administer toc_js per node'
   - 'administer url aliases'
   - 'administer user display'
   - 'administer user fields'

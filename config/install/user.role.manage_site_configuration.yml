@@ -11,6 +11,7 @@ dependencies:
     - search
     - shortcut
     - system
+    - toc_js
 id: manage_site_configuration
 label: 'Manage Site Configuration'
 weight: 1
@@ -22,6 +23,7 @@ permissions:
   - 'access site reports'
   - 'access user contact forms'
   - 'administer contact forms'
+  - 'administer easy breadcrumb'
   - 'administer menu'
   - 'administer pathauto'
   - 'administer redirect settings'
@@ -30,6 +32,7 @@ permissions:
   - 'administer shortcuts'
   - 'administer site configuration'
   - 'administer themes'
+  - 'administer toc_js'
   - 'administer url aliases'
   - 'create url aliases'
   - 'customize shortcut links'
