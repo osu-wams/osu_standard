@@ -40,6 +40,21 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Ensure that our paths have updated.
+ */
+function osu_standard_update_9013(&$sandbox) {
+  $config = \Drupal::configFactory();
+  $path_auto_pattern = $config->getEditable('pathauto.pattern.pattern_for_all_basic_page_paths');
+  $selection_criteria = $path_auto_pattern->get('selection_criteria');
+  $selection_criteria_id = $selection_criteria[array_key_first($selection_criteria)]['id'];
+  if ($selection_criteria_id === 'node_type') {
+    $selection_criteria[array_key_first($selection_criteria)]['id'] = "entity_bundle:node";
+  }
+  $path_auto_pattern->set('selection_criteria', $selection_criteria);
+  $path_auto_pattern->save();
+}
+
+/**
  * Enable easy_breadcrumb
  */
 function osu_standard_update_9012(&$sandbox) {
