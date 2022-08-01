@@ -42,7 +42,7 @@ function osu_standard_install($is_syncing) {
 /**
  * Ensure that our paths have updated.
  */
-function osu_standard_update_9013(&$sandbox) {
+function osu_standard_update_9014(&$sandbox) {
   $config = \Drupal::configFactory();
   $path_auto_pattern = $config->getEditable('pathauto.pattern.pattern_for_all_basic_page_paths');
   $selection_criteria = $path_auto_pattern->get('selection_criteria');
