@@ -40,6 +40,17 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Install new modules.
+ */
+function osu_standard_update_9015(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'field_group',
+    'paragraphs',
+    'entity_reference_revisions',
+  ], TRUE);
+}
+
+/**
  * Ensure that our paths have updated.
  */
 function osu_standard_update_9014(&$sandbox) {
