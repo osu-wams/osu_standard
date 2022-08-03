@@ -47,6 +47,7 @@ function osu_standard_update_9015(&$sandbox) {
     'field_group',
     'paragraphs',
     'entity_reference_revisions',
+    'address',
   ], TRUE);
 }
 
