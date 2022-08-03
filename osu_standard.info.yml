@@ -102,6 +102,7 @@ dependencies:
   - metatag_verification
   - metatag_views
   - module_filter
+  - paragraphs
   - pathauto
   - purge_drush
   - purge_processor_cron
