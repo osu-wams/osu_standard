@@ -3,6 +3,7 @@
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\shortcut\Entity\Shortcut;
+use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\user\Entity\Role;
 use Drupal\user\Entity\User;
 
