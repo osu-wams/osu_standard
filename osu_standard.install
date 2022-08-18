@@ -37,6 +37,23 @@ function osu_standard_install($is_syncing) {
   $page_cache->set('cache.page.max_age', 31536000);
   $page_cache->save();
 
+  $vocabulary=Vocabulary::create(array(
+    'vid'=>'organization',
+    'name'=>'Organization',
+    'description'=>'A set of tags to represent the structure of your organization. e.g. Schools and/or Units',
+  ))->save();
+
+}
+
+/**
+ * Add vocabulary to existing sites.
+ */
+function osu_standard_update_9016(&$sandbox) {
+  $vocabulary=Vocabulary::create(array(
+    'vid'=>'organization',
+    'name'=>'Organization',
+    'description'=>'A set of tags to represent the structure of your organization. e.g. Schools and/or Units',
+  ))->save();
 }
 
 /**
