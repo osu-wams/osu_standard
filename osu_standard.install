@@ -40,9 +40,18 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Add module layout_builder_operation_link.
+ */
+function osu_standard_update_9018(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'layout_builder_operation_link',
+  ], TRUE);
+}
+
+/**
  * Add date_ap_style module.
  */
-function osu_standard_update_9016(&$sandbox) {
+function osu_standard_update_9017(&$sandbox) {
   \Drupal::service('module_installer')->install([
     'date_ap_style',
   ], TRUE);
