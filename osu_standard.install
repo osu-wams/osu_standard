@@ -47,6 +47,33 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Add module layout_builder_operation_link.
+ */
+function osu_standard_update_9018(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'layout_builder_operation_link',
+  ], TRUE);
+}
+
+/**
+ * Add date_ap_style module.
+ */
+function osu_standard_update_9017(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'date_ap_style',
+  ], TRUE);
+
+  $architect = Role::load('architect');
+  $architect->grantPermission('administer ap style settings');
+  $architect->save();
+
+  $manage_site_configuration = Role::load('manage_site_configuration');
+  $manage_site_configuration->grantPermission('administer ap style settings');
+  $manage_site_configuration->save();
+
+}
+
+/**
  * Add vocabulary to existing sites.
  */
 function osu_standard_update_9016(&$sandbox) {
@@ -188,10 +215,13 @@ function osu_standard_update_9010(&$sandbox) {
  * Updates for osu_profiles module
  */
 function osu_standard_update_9009(&$sandbox) {
-  /**
-   * Content installed by this module isn't immediantly available
-   * We install it first seperatly so the content is ready when osu_profile needs it
-   */
+  // Ensure dependencies are installed first.
+  \Drupal::service('module_installer')->install([
+    'field_group',
+    'address',
+  ], TRUE);
+  // Content installed by this module isn't immediately available
+  // We install it first separately so the content is ready when osu_profile needs it
   \Drupal::service('module_installer')->install([
     'osu_default_content',
   ], TRUE);

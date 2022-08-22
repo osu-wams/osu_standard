@@ -61,6 +61,7 @@ dependencies:
   - admin_toolbar_links_access_filter
   - asset_injector
   - auto_entitylabel
+  - date_ap_style
   - better_exposed_filters
   - block_classes
   - block_visibility_groups
