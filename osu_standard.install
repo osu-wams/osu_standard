@@ -47,17 +47,6 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
- * Add vocabulary to existing sites.
- */
-function osu_standard_update_9016(&$sandbox) {
-  $vocabulary=Vocabulary::create(array(
-    'vid'=>'osu_organization',
-    'name'=>'Organization',
-    'description'=>'A set of tags to represent the structure of your organization. e.g. Schools and/or Units',
-  ))->save();
-}
-
-/**
  * Add module layout_builder_operation_link.
  */
 function osu_standard_update_9018(&$sandbox) {
@@ -82,6 +71,17 @@ function osu_standard_update_9017(&$sandbox) {
   $manage_site_configuration->grantPermission('administer ap style settings');
   $manage_site_configuration->save();
 
+}
+
+/**
+ * Add vocabulary to existing sites.
+ */
+function osu_standard_update_9016(&$sandbox) {
+  $vocabulary=Vocabulary::create(array(
+    'vid'=>'osu_organization',
+    'name'=>'Organization',
+    'description'=>'A set of tags to represent the structure of your organization. e.g. Schools and/or Units',
+  ))->save();
 }
 
 /**
