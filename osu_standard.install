@@ -57,10 +57,12 @@ function osu_standard_update_9019(&$sandbox) {
   $install_profile_config_path = realpath($install_profile_path . '/config/install');
   $file_source = new FileStorage($install_profile_config_path);
   if (is_null(FieldStorageConfig::load('field.storage.node.field_tags'))) {
-    FieldStorageConfig::create($file_source->read('field.storage.node.field_tags'));
+    FieldStorageConfig::create($file_source->read('field.storage.node.field_tags'))
+      ->save();
   }
   if (is_null(FieldStorageConfig::load('field.storage.node.field_osu_organizations'))) {
-    FieldStorageConfig::create($file_source->read('field.storage.node.field_osu_organizations'));
+    FieldStorageConfig::create($file_source->read('field.storage.node.field_osu_organizations'))
+      ->save();
   }
   \Drupal::service('module_installer')->install([
     'osu_story',
