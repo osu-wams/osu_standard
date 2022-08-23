@@ -134,11 +134,10 @@ dependencies:
   - webform_ui
   # Custom Modules
   - osu_bootstrap_layout_builder
-  - osu_default_content
-  - osu_profile
-  - osu_roles
   - osu_ckeditor_plugins
+  - osu_default_content
   - osu_media
+  - osu_roles
   - osu_seckit
 themes:
   # Core Themes

@@ -2,6 +2,7 @@
 
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\EntityStorageException;
+use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\shortcut\Entity\Shortcut;
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\user\Entity\Role;
@@ -38,12 +39,32 @@ function osu_standard_install($is_syncing) {
   $page_cache->set('cache.page.max_age', 31536000);
   $page_cache->save();
 
-  $vocabulary=Vocabulary::create(array(
-    'vid'=>'osu_organization',
-    'name'=>'Organization',
-    'description'=>'A set of tags to represent the structure of your organization. e.g. Schools and/or Units',
-  ))->save();
+  Vocabulary::create([
+    'vid' => 'osu_organization',
+    'name' => 'Organization',
+    'description' => 'A set of tags to represent the structure of your organization. e.g. Schools and/or Units',
+  ])->save();
 
+}
+
+/**
+ * Install OSU Story module.
+ */
+function osu_standard_update_9019(&$sandbox) {
+  $install_profile_path = \Drupal::service('module_handler')
+    ->getModule('osu_standard')
+    ->getPath();
+  $install_profile_config_path = realpath($install_profile_path . '/config/install');
+  $file_source = new FileStorage($install_profile_config_path);
+  if (is_null(FieldStorageConfig::load('field.storage.node.field_tags'))) {
+    FieldStorageConfig::create($file_source->read('field.storage.node.field_tags'));
+  }
+  if (is_null(FieldStorageConfig::load('field.storage.node.field_osu_organizations'))) {
+    FieldStorageConfig::create($file_source->read('field.storage.node.field_osu_organizations'));
+  }
+  \Drupal::service('module_installer')->install([
+    'osu_story',
+  ], TRUE);
 }
 
 /**
@@ -77,11 +98,11 @@ function osu_standard_update_9017(&$sandbox) {
  * Add vocabulary to existing sites.
  */
 function osu_standard_update_9016(&$sandbox) {
-  $vocabulary=Vocabulary::create(array(
-    'vid'=>'osu_organization',
-    'name'=>'Organization',
-    'description'=>'A set of tags to represent the structure of your organization. e.g. Schools and/or Units',
-  ))->save();
+  Vocabulary::create([
+    'vid' => 'osu_organization',
+    'name' => 'Organization',
+    'description' => 'A set of tags to represent the structure of your organization. e.g. Schools and/or Units',
+  ])->save();
 }
 
 /**
