@@ -48,6 +48,25 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Update Bootstrap Styles configuration.
+ */
+function osu_standard_update_9020(&$sandbox) {
+  $install_profile_path = \Drupal::service('module_handler')
+    ->getModule('osu_standard')
+    ->getPath();
+  $install_profile_config_path = realpath($install_profile_path . '/config/install');
+  $file_source = new FileStorage($install_profile_config_path);
+  /** @var \Drupal\Core\Config\Config $config */
+  $config = \Drupal::service('config.factory')
+    ->getEditable('bootstrap_styles.settings');
+  $bootstrap_styles_config_file = $file_source->read('bootstrap_styles.settings');
+  foreach ($bootstrap_styles_config_file as $key => $value) {
+    $config->set($key, $value);
+  }
+  $config->save();
+}
+
+/**
  * Install OSU Story module.
  */
 function osu_standard_update_9019(&$sandbox) {
