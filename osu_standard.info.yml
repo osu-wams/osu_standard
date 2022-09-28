@@ -84,6 +84,9 @@ dependencies:
   - entity_reference_revisions
   - exclude_node_title
   - externalauth
+  - feeds
+  - feeds_ex
+  - feeds_tamper
   - field_group
   - fontawesome
   - google_tag
@@ -118,6 +121,7 @@ dependencies:
   - seckit
   - section_library
   - superfish
+  - tamper
   - toc_js
   - toc_js_per_node
   - token

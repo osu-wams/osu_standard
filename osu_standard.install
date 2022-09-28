@@ -48,6 +48,25 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Install Feeds, Feeds Tamper, & update Architect role with Feeds permissions.
+ */
+function osu_standard_update_9021(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'feeds',
+    'feeds_ex',
+    'feeds_tamper',
+    'tamper',
+  ], TRUE);
+
+  $architect = Role::load('architect');
+  $architect->grantPermission('access feed overview');
+  $architect->grantPermission('administer feeds');
+  $architect->grantPermission('administer feeds_tamper');
+  $architect->save();
+
+}
+
+/**
  * Update Bootstrap Styles configuration.
  */
 function osu_standard_update_9020(&$sandbox) {
