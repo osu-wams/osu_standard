@@ -28,6 +28,8 @@ dependencies:
     - dropzonejs
     - easy_breadcrumb
     - exclude_node_title
+    - feeds
+    - feeds_tamper
     - field_ui
     - file
     - filter
@@ -69,6 +71,7 @@ permissions:
   - 'access content'
   - 'access content overview'
   - 'access contextual links'
+  - 'access feed overview'
   - 'access files overview'
   - 'access media overview'
   - 'access own webform configuration'
@@ -104,6 +107,8 @@ permissions:
   - 'administer display modes'
   - 'administer easy breadcrumb'
   - 'administer exclude node title'
+  - 'administer feeds'
+  - 'administer feeds_tamper'
   - 'administer filters'
   - 'administer google tag manager'
   - 'administer image styles'

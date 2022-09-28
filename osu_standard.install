@@ -50,7 +50,7 @@ function osu_standard_install($is_syncing) {
 /**
  * Implements hook_update_N().
  */
-function osu_standard_update_9021(&$sandbox) {
+function osu_standard_update_9022(&$sandbox) {
   $bootstrap_layout_builder_updates = [
     'bootstrap_layout_builder.breakpoint.extra_wide_desktop',
     'bootstrap_layout_builder.breakpoint.wide_desktop',
@@ -64,6 +64,25 @@ function osu_standard_update_9021(&$sandbox) {
     ->getPath();
   $install_profile_config_path = realpath($install_profile_path . '/config/install');
   $file_source = new FileStorage($install_profile_config_path);
+}
+
+/**
+ * Install Feeds, Feeds Tamper, & update Architect role with Feeds permissions.
+ */
+function osu_standard_update_9021(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'feeds',
+    'feeds_ex',
+    'feeds_tamper',
+    'tamper',
+  ], TRUE);
+
+  $architect = Role::load('architect');
+  $architect->grantPermission('access feed overview');
+  $architect->grantPermission('administer feeds');
+  $architect->grantPermission('administer feeds_tamper');
+  $architect->save();
+
 }
 
 /**
