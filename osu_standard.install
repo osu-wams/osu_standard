@@ -48,25 +48,6 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
- * Implements hook_update_N().
- */
-function osu_standard_update_9022(&$sandbox) {
-  $bootstrap_layout_builder_updates = [
-    'bootstrap_layout_builder.breakpoint.extra_wide_desktop',
-    'bootstrap_layout_builder.breakpoint.wide_desktop',
-    'bootstrap_layout_builder.layout_option.blb_col_1_full_width',
-    'bootstrap_layout_builder.layout_option.blb_col_2_25_75',
-    'bootstrap_layout_builder.layout_option.blb_col_2_75_25',
-    'bootstrap_layout_builder.layout_option.blb_col_2_two_equal_columns',
-  ];
-  $install_profile_path = \Drupal::service('module_handler')
-    ->getModule('osu_standard')
-    ->getPath();
-  $install_profile_config_path = realpath($install_profile_path . '/config/install');
-  $file_source = new FileStorage($install_profile_config_path);
-}
-
-/**
  * Install Feeds, Feeds Tamper, & update Architect role with Feeds permissions.
  */
 function osu_standard_update_9021(&$sandbox) {
