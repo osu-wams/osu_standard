@@ -4,4 +4,4 @@ dependencies: {  }
 id: wide_desktop
 label: 'Wide Desktop'
 base_class: col-xl
-weight: '-9'
+weight: '-14'
