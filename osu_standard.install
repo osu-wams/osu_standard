@@ -48,7 +48,7 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
- * Implements hook_update_N().
+ * Add new breakpoints for two column.
  */
 function osu_standard_update_9022(&$sandbox) {
   $bootstrap_layout_builder_updates = [
@@ -64,6 +64,12 @@ function osu_standard_update_9022(&$sandbox) {
     ->getPath();
   $install_profile_config_path = realpath($install_profile_path . '/config/install');
   $file_source = new FileStorage($install_profile_config_path);
+  foreach ($bootstrap_layout_builder_updates as $bootstrap_layout_builder_update) {
+    /** @var \Drupal\Core\Config\CachedStorage $config_storage */
+    $config_storage = \Drupal::service('config.storage');
+    $config_storage->write($bootstrap_layout_builder_update, $file_source->read($bootstrap_layout_builder_update));
+  }
+  return t('Updated Bootstrap Layout Builder Breakpoints with new option');
 }
 
 /**
