@@ -48,6 +48,21 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Force the two new breakpoints to be at the top of all lists.
+ */
+function osu_standard_update_9023(&$sandbox) {
+  /** @var Drupal\Core\Config\ConfigFactory $config */
+  $config = \Drupal::service('config.factory');
+  $wide_desktop = $config->getEditable('bootstrap_layout_builder.breakpoint.wide_desktop');
+  $wide_desktop->set('weight', '-14');
+  $wide_desktop->save();
+
+  $extra_wide_desktop = $config->getEditable('bootstrap_layout_builder.breakpoint.extra_wide_desktop');
+  $extra_wide_desktop->set('weight', '-15');
+  $extra_wide_desktop->save();
+}
+
+/**
  * Add new breakpoints for two column.
  */
 function osu_standard_update_9022(&$sandbox) {
