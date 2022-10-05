@@ -10,7 +10,7 @@ weight: -5
 is_admin: null
 permissions:
   - 'access contextual links'
-  - 'administer block css classes'
+  - 'administer block classes'
   - 'administer block visibility groups'
   - 'administer blocks'
   - 'use exclude node title'

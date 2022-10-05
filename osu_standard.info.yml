@@ -63,7 +63,7 @@ dependencies:
   - auto_entitylabel
   - date_ap_style
   - better_exposed_filters
-  - block_classes
+  - block_class
   - block_visibility_groups
   - block_visibility_groups_admin
   - bootstrap_layout_builder
