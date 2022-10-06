@@ -3,6 +3,7 @@ status: true
 dependencies:
   module:
     - block
+    - block_class
     - contextual
 id: manage_blocks
 label: 'Manage Blocks'

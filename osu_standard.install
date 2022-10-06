@@ -48,6 +48,31 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Install new modules for Library items and block_class.
+ */
+function osu_standard_update_9025(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'block_class',
+    'osu_library_hero',
+    'osu_library_three_column_cards',
+    'osu_library_three_column_equal',
+    'osu_library_two_column_25_75',
+    'osu_library_two_column_50_50',
+  ], TRUE);
+}
+
+/**
+ * Update Easy Breadcrumb Configuration to hide Front page if it's the only one.
+ */
+function osu_standard_update_9024(&$sandbox) {
+  /** @var Drupal\Core\Config\ConfigFactory $config */
+  $config = \Drupal::service('config.factory');
+  $easy_breadcrumb = $config->getEditable('easy_breadcrumb.settings');
+  $easy_breadcrumb->set('hide_single_home_item', TRUE);
+  $easy_breadcrumb->save();
+}
+
+/**
  * Force the two new breakpoints to be at the top of all lists.
  */
 function osu_standard_update_9023(&$sandbox) {

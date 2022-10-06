@@ -47,6 +47,11 @@ function osu_standard_default_modules(array &$install_state) {
   \Drupal::service('module_installer')->install([
     'osu_block_types',
     'osu_story',
-    'osu_profile'
+    'osu_profile',
+    'osu_library_hero',
+    'osu_library_three_column_cards',
+    'osu_library_three_column_equal',
+    'osu_library_two_column_25_75',
+    'osu_library_two_column_50_50',
   ], TRUE);
 }

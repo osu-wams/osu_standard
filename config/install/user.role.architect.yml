@@ -16,7 +16,7 @@ dependencies:
   module:
     - asset_injector
     - block
-    - block_classes
+    - block_class
     - block_content
     - block_visibility_groups
     - bootstrap_layout_builder
