@@ -48,6 +48,21 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Install XMLSitemap and update Architect role permissions.
+ */
+function osu_standard_update_9026(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'xmlsitemap',
+  ], TRUE);
+
+  $architect = Role::load('architect');
+  $architect->grantPermission('administer xmlsitemap');
+  $architect->grantPermission('override xmlsitemap link settings');
+  $architect->save();
+
+}
+
+/**
  * Install new modules for Library items and block_class.
  */
 function osu_standard_update_9025(&$sandbox) {

@@ -60,6 +60,7 @@ dependencies:
     - views_ui
     - webform
     - webform_node
+    - xmlsitemap
 id: architect
 label: Architect
 weight: 2
@@ -152,6 +153,7 @@ permissions:
   - 'administer webform'
   - 'administer webform element access'
   - 'administer webform submission'
+  - 'administer xmlsitemap'
   - 'bypass node access'
   - 'configure all page node layout overrides'
   - 'configure any layout'
@@ -229,6 +231,7 @@ permissions:
   - 'import template from section library'
   - 'manage layout builder component attributes'
   - 'manage layout builder styles'
+  - 'override xmlsitemap link settings'
   - 'revert all revisions'
   - 'revert page revisions'
   - 'revert webform revisions'
