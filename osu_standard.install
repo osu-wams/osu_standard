@@ -48,6 +48,39 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Add oembed module with kaltura media type
+ */
+function osu_standard_update_9027(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'oembed_providers',
+  ], TRUE);
+
+  $kaltura_media_type_configs = [
+    'core.entity_form_display.media.kaltura.default',
+    'core.entity_form_display.media.kaltura.media_library',
+    'core.entity_view_display.media.kaltura.default',
+    'core.entity_view_display.media.kaltura.media_library',
+    'field.field.media.kaltura.field_media_oembed_video',
+    'field.storage.media.field_media_oembed_video',
+    'media.type.kaltura',
+    'oembed_providers.bucket.kaltura',
+    'oembed_providers.provider.osu_mediaspace',
+  ];
+  $install_profile_path = \Drupal::service('module_handler')
+    ->getModule('osu_standard')
+    ->getPath();
+  $install_profile_config_path = realpath($install_profile_path . '/config/install');
+  $file_source = new FileStorage($install_profile_config_path);
+  foreach ($kaltura_media_type_configs as $config_name) {
+    /** @var \Drupal\Core\Config\CachedStorage $config_storage */
+    $config_storage = \Drupal::service('config.storage');
+    $config_storage->write($config_name, $file_source->read($config_name));
+  }
+
+  return t('Installed oembed_providers and added kaltura as a media type');
+}
+
+/**
  * Install XMLSitemap and update Architect role permissions.
  */
 function osu_standard_update_9026(&$sandbox) {
