@@ -107,6 +107,7 @@ dependencies:
   - metatag_verification
   - metatag_views
   - module_filter
+  - oembed_providers
   - paragraphs
   - pathauto
   - purge_drush
