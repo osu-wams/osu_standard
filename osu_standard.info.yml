@@ -75,6 +75,8 @@ dependencies:
   - ckeditor_div_manager
   - ckeditor_scayt
   - ctools
+  - ctools_block
+  - ctools_views
   - dropzonejs
   - default_content
   - easy_breadcrumb

@@ -48,6 +48,17 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Enable extra ctools modules.
+ */
+function osu_standard_update_9028(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'ctools_block',
+    'ctools_views',
+  ], TRUE);
+  return t('Enabled CTools Blocks and CTools Views');
+}
+
+/**
  * Add oembed module with kaltura media type
  */
 function osu_standard_update_9027(&$sandbox) {
