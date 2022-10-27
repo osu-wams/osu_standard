@@ -48,6 +48,15 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Install new Modules, ckeditor_liststyle, .
+ */
+function osu_standard_update_9029(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'ckeditor_liststyle',
+  ], TRUE);
+}
+
+/**
  * Enable extra ctools modules.
  */
 function osu_standard_update_9028(&$sandbox) {
