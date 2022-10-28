@@ -13,7 +13,6 @@ dependencies:
   - block_content
   - breakpoint
   - ckeditor
-  - color
   - config
   - contact
   - contextual
@@ -73,6 +72,7 @@ dependencies:
   - cas
   - cas_attributes
   - ckeditor_div_manager
+  - ckeditor_liststyle
   - ckeditor_scayt
   - ctools
   - ctools_block
