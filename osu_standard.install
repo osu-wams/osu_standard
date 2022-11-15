@@ -48,6 +48,67 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Configure google cse for all sites.
+ */
+function osu_standard_update_9031(&$sandbox) {
+
+  $site_host = \Drupal::request()->getHost();
+  $site_host = str_replace(['dev.', 'stage.'], '', $site_host);
+
+  /** @var \Drupal\Core\Config\CachedStorage $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+
+  $install_profile_path = \Drupal::service('module_handler')
+    ->getModule('osu_standard')
+    ->getPath();
+  $install_profile_config_path = realpath($install_profile_path . '/config/install');
+
+  $file_source = new FileStorage($install_profile_config_path);
+
+  $google_search_config = $file_source->read('search.page.google_cse_search');
+  $google_search_config['configuration']['limit_domain'] = $site_host;
+  $config_storage->write('search.page.google_cse_search', $google_search_config);
+}
+
+/**
+ * Add google tag manager module.
+ */
+function osu_standard_update_9030(&$sandbox) {
+  /** @var Drupal\Core\ProxyClass\Extension\ModuleInstaller $module_installer_service */
+  $module_installer_service = \Drupal::service('module_installer');
+  $module_installer_service->install([
+    'editoria11y',
+    'google_cse',
+    'google_tag',
+    'osu_google_tag',
+  ]);
+
+  // Grant permissions to architect.
+  $architect = Role::load('architect');
+  $architect->grantPermission('administer account settings');
+  $architect->grantPermission('administer block css classes');
+  $architect->grantPermission('administer editoria11y checker');
+  $architect->grantPermission('link to any page');
+  $architect->grantPermission('manage editoria11y results');
+  $architect->grantPermission('mark as hidden in editoria11y');
+  $architect->grantPermission('mark as ok in editoria11y');
+  $architect->grantPermission('view editoria11y checker');
+  $architect->save();
+
+  $anonymous = Role::load('anonymous');
+  $anonymous->grantPermission('search Google CSE');
+  $anonymous->save();
+
+  $authenticated = Role::load('authenticated');
+  $authenticated->grantPermission('search Google CSE');
+  $authenticated->save();
+
+  $manage_site_configuration = Role::load('manage_site_configuration');
+  $manage_site_configuration->grantPermission('administer google tag manager');
+  $manage_site_configuration->save();
+}
+
+/**
  * Install new Modules, ckeditor_liststyle, .
  */
 function osu_standard_update_9029(&$sandbox) {

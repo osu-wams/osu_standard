@@ -91,6 +91,7 @@ dependencies:
   - feeds_tamper
   - field_group
   - fontawesome
+  - google_cse
   - google_tag
   - layout_builder_blocks
   - layout_builder_component_attributes
@@ -143,6 +144,7 @@ dependencies:
   # Custom Modules
   - osu_bootstrap_layout_builder
   - osu_ckeditor_plugins
+  - osu_google_tag
   - osu_default_content
   - osu_media
   - osu_roles
