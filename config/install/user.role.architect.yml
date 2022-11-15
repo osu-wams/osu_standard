@@ -1,3 +1,4 @@
+uuid: 2213b398-0a8c-4a69-b44a-98f10ee72cb8
 langcode: en
 status: true
 dependencies:
@@ -27,6 +28,7 @@ dependencies:
     - date_ap_style
     - dropzonejs
     - easy_breadcrumb
+    - editoria11y
     - exclude_node_title
     - feeds
     - feeds_tamper
@@ -92,8 +94,10 @@ permissions:
   - 'access webform overview'
   - 'access webform submission user'
   - 'add section library templates'
+  - 'administer account settings'
   - 'administer ap style settings'
   - 'administer block classes'
+  - 'administer block css classes'
   - 'administer block visibility groups'
   - 'administer block_content display'
   - 'administer block_content fields'
@@ -107,6 +111,7 @@ permissions:
   - 'administer css assets injector'
   - 'administer display modes'
   - 'administer easy breadcrumb'
+  - 'administer editoria11y checker'
   - 'administer exclude node title'
   - 'administer feeds'
   - 'administer feeds_tamper'
@@ -229,8 +234,12 @@ permissions:
   - 'export configuration'
   - 'import configuration'
   - 'import template from section library'
+  - 'link to any page'
+  - 'manage editoria11y results'
   - 'manage layout builder component attributes'
   - 'manage layout builder styles'
+  - 'mark as hidden in editoria11y'
+  - 'mark as ok in editoria11y'
   - 'override xmlsitemap link settings'
   - 'revert all revisions'
   - 'revert page revisions'
@@ -250,6 +259,7 @@ permissions:
   - 'view all media revisions'
   - 'view all revisions'
   - 'view any webform submission'
+  - 'view editoria11y checker'
   - 'view media'
   - 'view own unpublished content'
   - 'view own unpublished media'

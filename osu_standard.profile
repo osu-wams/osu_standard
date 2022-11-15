@@ -55,3 +55,17 @@ function osu_standard_default_modules(array &$install_state) {
     'osu_library_two_column_50_50',
   ], TRUE);
 }
+
+/**
+ * @param array $install_state
+ *  The Drupal Install State.
+ */
+function osu_standard_config_google_search(array &$install_state) {
+  $site_host = \Drupal::request()->getHost();
+  $site_host = str_replace( ['dev.', 'stage.'], '', $site_host);
+  /** @var \Drupal\Core\Config\CachedStorage $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+  $google_search_config = $config_storage->read('search.page.google_cse_search');
+  $google_search_config['configuration']['limit_domain'] = $site_host;
+  $config_storage->write('search.page.google_cse_search', $google_search_config);
+}
