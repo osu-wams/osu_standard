@@ -1,8 +1,9 @@
-uuid: 440be9f9-9eba-474b-bb44-902a90b83c59
 langcode: en
 status: true
 dependencies:
   module:
+    - captcha
+    - honeypot
     - webform
     - webform_node
 id: manage_webforms
@@ -15,9 +16,11 @@ permissions:
   - 'access webform help'
   - 'access webform overview'
   - 'access webform submission user'
+  - 'administer honeypot'
   - 'administer webform'
   - 'administer webform element access'
   - 'administer webform submission'
+  - 'bypass honeypot protection'
   - 'create webform'
   - 'delete any webform'
   - 'delete own webform'
@@ -31,6 +34,7 @@ permissions:
   - 'edit webform submissions own node'
   - 'edit webform twig'
   - 'edit webform variants'
+  - 'skip CAPTCHA'
   - 'view any webform submission'
   - 'view own webform submission'
   - 'view webform submissions own node'

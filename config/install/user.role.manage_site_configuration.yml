@@ -1,14 +1,15 @@
-uuid: b7c944b3-a703-413e-8f2f-bbdc3b9f865f
 langcode: en
 status: true
 dependencies:
   module:
+    - captcha
     - config
     - contact
     - contextual
     - date_ap_style
     - easy_breadcrumb
     - google_tag
+    - honeypot
     - path
     - pathauto
     - redirect
@@ -40,10 +41,12 @@ permissions:
   - 'administer themes'
   - 'administer toc_js'
   - 'administer url aliases'
+  - 'bypass honeypot protection'
   - 'create url aliases'
   - 'customize shortcut links'
   - 'export configuration'
   - 'import configuration'
+  - 'skip CAPTCHA'
   - 'switch shortcut sets'
   - 'synchronize configuration'
   - 'use advanced search'

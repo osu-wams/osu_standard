@@ -1,4 +1,3 @@
-uuid: 61daaf86-1910-4a23-9247-e531f664a18f
 langcode: en
 status: true
 dependencies:
@@ -10,10 +9,12 @@ dependencies:
     - media.type.remote_video
     - node.type.page
   module:
+    - captcha
     - contextual
     - dropzonejs
     - exclude_node_title
     - filter
+    - honeypot
     - layout_builder
     - layout_builder_component_attributes
     - media
@@ -35,6 +36,7 @@ permissions:
   - 'administer nodes'
   - 'administer redirects'
   - 'administer toc_js per node'
+  - 'bypass honeypot protection'
   - 'bypass node access'
   - 'configure editable page node layout overrides'
   - 'create and edit custom blocks'
@@ -65,6 +67,7 @@ permissions:
   - 'manage layout builder component attributes'
   - 'revert all revisions'
   - 'revert page revisions'
+  - 'skip CAPTCHA'
   - 'use bulk_image bulk upload form'
   - 'use exclude node title'
   - 'use text format full_html'

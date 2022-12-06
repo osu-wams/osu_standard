@@ -48,6 +48,118 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Configure CAPTCHA, reCAPTCHA, and Honeypot for all sites.
+ */
+function osu_standard_update_9033(&$sandbox) {
+  /** @var \Drupal\Core\Config\CachedStorage $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+
+  $install_profile_path = \Drupal::service('module_handler')
+    ->getModule('osu_standard')
+    ->getPath();
+  $install_profile_config_path = realpath($install_profile_path . '/config/install');
+
+  $file_source = new FileStorage($install_profile_config_path);
+
+  $captcha_config = $file_source->read('captcha.settings');
+  $captcha_contact_msg_feedback_config = $file_source->read('captcha.captcha_point.contact_message_feedback_form');
+  $captcha_contact_msg_personal_config = $file_source->read('captcha.captcha_point.contact_message_personal_form');
+  $captcha_user_login_config = $file_source->read('captcha.captcha_point.user_login_form');
+  $captcha_user_pass_config = $file_source->read('captcha.captcha_point.user_pass');
+  $captcha_user_register_config = $file_source->read('captcha.captcha_point.user_register_form');
+  $honeypot_config = $file_source->read('honeypot.settings');
+  $recaptcha_config = $file_source->read('recaptcha.settings');
+  $config_storage->write('captcha.settings', $captcha_config);
+  $config_storage->write('captcha.settings', $captcha_contact_msg_feedback_config);
+  $config_storage->write('captcha.settings', $captcha_contact_msg_personal_config);
+  $config_storage->write('captcha.settings', $captcha_user_login_config);
+  $config_storage->write('captcha.settings', $captcha_user_pass_config);
+  $config_storage->write('captcha.settings', $captcha_user_register_config);
+  $config_storage->write('captcha.settings', $honeypot_config);
+  $config_storage->write('captcha.settings', $recaptcha_config);
+}
+
+/**
+ * Add CAPTCHA, reCAPTCHA, and Honeypot module.
+ */
+function osu_standard_update_9032(&$sandbox) {
+  /** @var Drupal\Core\ProxyClass\Extension\ModuleInstaller $module_installer_service */
+  $module_installer_service = \Drupal::service('module_installer');
+  $module_installer_service->install([
+    'captcha',
+    'honeypot',
+    'repcaptcha',
+  ]);
+
+  // Grant permissions to architect.
+  $architect = Role::load('architect');
+  $architect->grantPermission('administer honeypot');
+  $architect->grantPermission('bypass honeypot protection');
+  $architect->grantPermission('skip CAPTCHA');
+  $architect->save();
+
+  // Grant permissions to content authors.
+  $content_authors = Role::load('content_authors');
+  $content_authors->grantPermission('bypass honeypot protection');
+  $content_authors->grantPermission('skip CAPTCHA');
+  $content_authors->save();
+
+  // Grant permissions to manage asset injector.
+  $manage_asset_injector = Role::load('manage_asset_injector');
+  $manage_asset_injector->grantPermission('bypass honeypot protection');
+  $manage_asset_injector->grantPermission('skip CAPTCHA');
+  $manage_asset_injector->save();
+
+  // Grant permissions to manage blocks.
+  $manage_blocks = Role::load('manage_blocks');
+  $manage_blocks->grantPermission('bypass honeypot protection');
+  $manage_blocks->grantPermission('skip CAPTCHA');
+  $manage_blocks->save();
+
+  // Grant permissions to manage content.
+  $manage_content = Role::load('manage_content');
+  $manage_content->grantPermission('bypass honeypot protection');
+  $manage_content->grantPermission('skip CAPTCHA');
+  $manage_content->save();
+
+  // Grant permissions to manage layout templates.
+  $manage_layout_templates = Role::load('manage_layout_templates');
+  $manage_layout_templates->grantPermission('bypass honeypot protection');
+  $manage_layout_templates->grantPermission('skip CAPTCHA');
+  $manage_layout_templates->save();
+
+  // Grant permissions to manage menus.
+  $manage_menus = Role::load('manage_menus');
+  $manage_menus->grantPermission('bypass honeypot protection');
+  $manage_menus->grantPermission('skip CAPTCHA');
+  $manage_menus->save();
+
+  // Grant permissions to manage site configuration.
+  $manage_site_configuration = Role::load('manage_site_configuration');
+  $manage_site_configuration->grantPermission('bypass honeypot protection');
+  $manage_site_configuration->grantPermission('skip CAPTCHA');
+  $manage_site_configuration->save();
+
+  // Grant permissions to manage taxonomy.
+  $manage_taxonomy = Role::load('manage_taxonomy');
+  $manage_taxonomy->grantPermission('bypass honeypot protection');
+  $manage_taxonomy->grantPermission('skip CAPTCHA');
+  $manage_taxonomy->save();
+
+  // Grant permissions to manage users.
+  $manage_users = Role::load('manage_users');
+  $manage_users->grantPermission('bypass honeypot protection');
+  $manage_users->grantPermission('skip CAPTCHA');
+  $manage_users->save();
+
+  // Grant permissions to manage webforms.
+  $manage_webforms = Role::load('manage_webforms');
+  $manage_webforms->grantPermission('bypass honeypot protection');
+  $manage_webforms->grantPermission('skip CAPTCHA');
+  $manage_webforms->save();
+}
+
+/**
  * Configure google cse for all sites.
  */
 function osu_standard_update_9031(&$sandbox) {

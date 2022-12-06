@@ -69,6 +69,7 @@ dependencies:
   - bootstrap_styles
   - media_bulk_upload
   - media_bulk_upload_dropzonejs
+  - captcha
   - cas
   - cas_attributes
   - ckeditor_div_manager
@@ -82,6 +83,7 @@ dependencies:
   - easy_breadcrumb
   - editor_advanced_link
   - editor_file
+  - editoria11y
   - entity
   - entity_reference_revisions
   - exclude_node_title
@@ -93,6 +95,7 @@ dependencies:
   - fontawesome
   - google_cse
   - google_tag
+  - honeypot
   - layout_builder_blocks
   - layout_builder_component_attributes
   - layout_builder_operation_link
@@ -120,6 +123,7 @@ dependencies:
   - purge_tokens
   - purge_ui
   - purge
+  - recaptcha
   - redirect
   - responsive_preview
   - seckit
