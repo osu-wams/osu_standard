@@ -10,9 +10,11 @@ dependencies:
     - media.type.remote_video
     - node.type.page
   module:
+    - captcha
     - dropzonejs
     - exclude_node_title
     - filter
+    - honeypot
     - layout_builder
     - layout_builder_component_attributes
     - media
@@ -32,6 +34,7 @@ permissions:
   - 'administer nodes'
   - 'administer redirects'
   - 'administer toc_js per node'
+  - 'bypass honeypot protection'
   - 'configure editable page node layout overrides'
   - 'create and edit custom blocks'
   - 'create document media'
@@ -55,6 +58,7 @@ permissions:
   - 'use exclude node title'
   - 'use text format full_html'
   - 'use views bulk edit'
+  - 'skip CAPTCHA'
   - 'view all revisions'
   - 'view own unpublished content'
   - 'view page revisions'

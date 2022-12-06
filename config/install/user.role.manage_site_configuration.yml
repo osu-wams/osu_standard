@@ -3,12 +3,14 @@ langcode: en
 status: true
 dependencies:
   module:
+    - captcha
     - config
     - contact
     - contextual
     - date_ap_style
     - easy_breadcrumb
     - google_tag
+    - honeypot
     - path
     - pathauto
     - redirect
@@ -27,11 +29,14 @@ permissions:
   - 'access site reports'
   - 'access user contact forms'
   - 'administer ap style settings'
+  - 'administer CAPTCHA'
   - 'administer contact forms'
   - 'administer easy breadcrumb'
   - 'administer google tag manager'
+  - 'administer honeypot'
   - 'administer menu'
   - 'administer pathauto'
+  - 'administer recaptcha'
   - 'administer redirect settings'
   - 'administer redirects'
   - 'administer search'
@@ -40,10 +45,12 @@ permissions:
   - 'administer themes'
   - 'administer toc_js'
   - 'administer url aliases'
+  - 'bypass honeypot protection'
   - 'create url aliases'
   - 'customize shortcut links'
   - 'export configuration'
   - 'import configuration'
+  - 'skip CAPTCHA'
   - 'switch shortcut sets'
   - 'synchronize configuration'
   - 'use advanced search'
