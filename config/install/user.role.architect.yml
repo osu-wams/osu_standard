@@ -105,7 +105,7 @@ permissions:
   - 'administer block_content fields'
   - 'administer block_content form display'
   - 'administer blocks'
-  - 'administer CAPTCHA'
+  - 'administer CAPTCHA settings'
   - 'administer contact forms'
   - 'administer contact_message display'
   - 'administer contact_message fields'

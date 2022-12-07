@@ -88,12 +88,12 @@ function osu_standard_update_9032(&$sandbox) {
   $module_installer_service->install([
     'captcha',
     'honeypot',
-    'repcaptcha',
+    'recaptcha',
   ]);
 
   // Grant permissions to architect.
   $architect = Role::load('architect');
-  $architect->grantPermission('administer CAPTCHA');
+  $architect->grantPermission('administer CAPTCHA settings');
   $architect->grantPermission('administer honeypot');
   $architect->grantPermission('administer recaptcha');
   $architect->grantPermission('bypass honeypot protection');
@@ -138,7 +138,7 @@ function osu_standard_update_9032(&$sandbox) {
 
   // Grant permissions to manage site configuration.
   $manage_site_configuration = Role::load('manage_site_configuration');
-  $manage_site_configuration->grantPermission('administer CAPTCHA');
+  $manage_site_configuration->grantPermission('administer CAPTCHA settings');
   $manage_site_configuration->grantPermission('administer honeypot');
   $manage_site_configuration->grantPermission('administer recaptcha');
   $manage_site_configuration->grantPermission('bypass honeypot protection');

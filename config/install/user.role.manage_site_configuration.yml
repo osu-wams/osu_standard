@@ -29,7 +29,7 @@ permissions:
   - 'access site reports'
   - 'access user contact forms'
   - 'administer ap style settings'
-  - 'administer CAPTCHA'
+  - 'administer CAPTCHA settings'
   - 'administer contact forms'
   - 'administer easy breadcrumb'
   - 'administer google tag manager'
