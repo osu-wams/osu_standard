@@ -48,6 +48,25 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Add Google Analytics.
+ */
+function osu_standard_update_9034(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'google_analytics',
+  ], TRUE);
+
+  $architect = Role::load('architect');
+  $architect->grantPermission('administer google analytics');
+  $architect->save();
+
+  $manage_site_configuration = Role::load('manage_site_configuration');
+  $manage_site_configuration->grantPermission('administer google analytics');
+  $manage_site_configuration->save();
+
+  return t('Enabled Google Analytics and assigned permissions.');
+}
+
+/**
  * Configure CAPTCHA, reCAPTCHA, and Honeypot for all sites.
  */
 function osu_standard_update_9033(&$sandbox) {

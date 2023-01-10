@@ -32,6 +32,7 @@ permissions:
   - 'administer CAPTCHA settings'
   - 'administer contact forms'
   - 'administer easy breadcrumb'
+  - 'administer google analytics'
   - 'administer google tag manager'
   - 'administer honeypot'
   - 'administer menu'

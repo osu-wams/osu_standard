@@ -93,6 +93,7 @@ dependencies:
   - feeds_tamper
   - field_group
   - fontawesome
+  - google_analytics
   - google_cse
   - google_tag
   - honeypot

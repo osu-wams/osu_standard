@@ -119,6 +119,7 @@ permissions:
   - 'administer feeds'
   - 'administer feeds_tamper'
   - 'administer filters'
+  - 'administer google analytics'
   - 'administer google tag manager'
   - 'administer honeypot'
   - 'administer image styles'
