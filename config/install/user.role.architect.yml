@@ -138,6 +138,7 @@ permissions:
   - 'administer node display'
   - 'administer node fields'
   - 'administer node form display'
+  - 'administer node_revision_delete'
   - 'administer nodes'
   - 'administer pathauto'
   - 'administer permissions'

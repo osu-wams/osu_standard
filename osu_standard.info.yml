@@ -114,6 +114,7 @@ dependencies:
   - metatag_verification
   - metatag_views
   - module_filter
+  - node_revision_delete
   - oembed_providers
   - paragraphs
   - pathauto
