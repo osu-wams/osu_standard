@@ -36,6 +36,7 @@ permissions:
   - 'administer google tag manager'
   - 'administer honeypot'
   - 'administer menu'
+  - 'administer node_revision_delete'
   - 'administer pathauto'
   - 'administer recaptcha'
   - 'administer redirect settings'

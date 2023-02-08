@@ -48,6 +48,31 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Add node_revision_delete module and configurations.
+ */
+function osu_standard_update_9035(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'node_revision_delete',
+  ], TRUE);
+  $architect = Role::load('architect');
+  $architect->grantPermission('administer node_revision_delete');
+  $architect->save();
+
+  $manage_site_configuration = Role::load('manage_site_configuration');
+  $manage_site_configuration->grantPermission('administer node_revision_delete');
+  $manage_site_configuration->save();
+
+  /** @var Drupal\Core\Config\ConfigFactory $config */
+  $config = \Drupal::service('config.factory');
+  $node_revision_delete_config = $config->getEditable('node_revision_delete.settings');
+  $node_revision_delete_config->set('defaults.amount.status', TRUE);
+  $node_revision_delete_config->set('defaults.amount.settings.amount', 25);
+  $node_revision_delete_config->set('defaults.created.status', TRUE);
+  $node_revision_delete_config->set('defaults.created.settings.age', 2);
+  $node_revision_delete_config->save();
+}
+
+/**
  * Add Google Analytics.
  */
 function osu_standard_update_9034(&$sandbox) {
