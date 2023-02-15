@@ -1,5 +1,5 @@
 layout_builder_theme: dark
-background_colors: "osu-bg-page-default|Default\r\nosu-bg-page-alt-1|White\r\nosu-bg-page-alt-2|Dark\r\n"
+background_colors: "osu-bg-page-default|Default\r\nosu-bg-page-alt-1|White\r\nosu-bg-page-alt-2|Dark\r\nosu-bg-moondust|Moondust\r\nosu-bg-crater|Crater\r\nosu-bg-osuorange|Beaver Orange\r\nosu-bg-light-grey|Light Grey\r\n"
 background_image:
   bundle: image
   field: field_media_image
@@ -38,10 +38,11 @@ rounded_corner_top_left: "bs-border-radius-top-left-1|Radius 1\r\nbs-border-radi
 rounded_corner_top_right: "bs-border-radius-top-right-1|Radius 1\r\nbs-border-radius-top-right-2|Radius 2\r\nbs-border-radius-top-right-3|Radius 3"
 rounded_corner_bottom_left: "bs-border-radius-bottom-left-1|Radius 1\r\nbs-border-radius-bottom-left-2|Radius 2\r\nbs-border-radius-bottom-left-3|Radius 3"
 rounded_corner_bottom_right: "bs-border-radius-bottom-right-1|Radius 1\r\nbs-border-radius-bottom-right-2|Radius 2\r\nbs-border-radius-bottom-right-3|Radius 3"
+box_shadow: "osu-shadow|Regular"
 scroll_effects: "fade-zoom-in|Fade In\r\nfade-up|Fade Up\r\nfade-down|Fade Down\r\nfade-left|Fade Left\r\nfade-right|Fade Right\r\nfade-up-right|Fade Up Right\r\nfade-up-left|Fade Up Left\r\nfade-down-right|Fade Down Right\r\nfade-down-left|Fade Down Left\r\nzoom-in|Zoom In\r\nzoom-in-up|Zoom In Up\r\nzoom-in-down|Zoom In Down\r\nzoom-in-left|Zoom In Left\r\nzoom-in-right|Zoom In Right\r\nzoom-out|Zoom Out\r\nzoom-out-up|Zoom Out Up\r\nzoom-out-down|Zoom Out Down\r\nzoom-out-right|Zoom Out Right\r\nzoom-out-left|Zoom Out Left"
 attribute_type: data
 data_key: aos
-scroll_effects_attr_type: 1
+scroll_effects_attr_type: true
 scroll_effects_data_key: data-aos
 scroll_effects_library_type: external
 min_height: "osu-min-h-100|100px\r\nosu-min-h-200|200px\r\nosu-min-h-300|300px\r\nosu-min-h-400|400px\r\nosu-min-h-500|500px\r\nosu-min-h-600|600px\r\nosu-min-h-700|700px\r\nosu-min-h-800|800px"

@@ -48,6 +48,44 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Update bootstrap layout builder options.
+ */
+function osu_standard_update_9036(&$sandbox) {
+  $bootstrap_layout_builder_updates = [
+    'bootstrap_layout_builder.layout_option.blb_col_1_full_width',
+    'bootstrap_layout_builder.layout_option.blb_col_2_full_width',
+    'bootstrap_layout_builder.layout_option.blb_col_2_two_equal_columns',
+    'bootstrap_layout_builder.layout_option.blb_col_3_full_width',
+    'bootstrap_layout_builder.layout_option.blb_col_3_three_equal_columns',
+    'bootstrap_layout_builder.layout_option.blb_col_4_four_equal_columns',
+    'bootstrap_layout_builder.layout_option.blb_col_4_full_width',
+    'bootstrap_layout_builder.layout_option.blb_col_5_2_2_4_2_2',
+    'bootstrap_layout_builder.layout_option.blb_col_5_full_width',
+    'bootstrap_layout_builder.layout_option.blb_col_6_full_width',
+    'bootstrap_layout_builder.layout_option.blb_col_6_six_equal_columns',
+  ];
+  $install_profile_path = \Drupal::service('module_handler')
+    ->getModule('osu_standard')
+    ->getPath();
+  $install_profile_config_path = realpath($install_profile_path . '/config/install');
+  $file_source = new FileStorage($install_profile_config_path);
+  foreach ($bootstrap_layout_builder_updates as $bootstrap_layout_builder_update) {
+    /** @var \Drupal\Core\Config\CachedStorage $config_storage */
+    $config_storage = \Drupal::service('config.storage');
+    $config_storage->write($bootstrap_layout_builder_update, $file_source->read($bootstrap_layout_builder_update));
+  }
+  // Update bootstrap styles.
+  $background_color_options = "osu-bg-page-default|Default\r\nosu-bg-page-alt-1|White\r\nosu-bg-page-alt-2|Dark\r\nosu-bg-moondust|Moondust\r\nosu-bg-crater|Crater\r\nosu-bg-osuorange|Beaver Orange\r\nosu-bg-light-grey|Light Grey\r\n";
+  $box_shadow = "osu-shadow|Regular";
+  $config = \Drupal::service('config.factory')
+    ->getEditable('bootstrap_styles.settings');
+  $config->set('background_colors', $background_color_options);
+  $config->set('box_shadow', $box_shadow);
+  $config->save();
+  return t('Updated Bootstrap Layout Builder Breakpoints with default options');
+}
+
+/**
  * Add node_revision_delete module and configurations.
  */
 function osu_standard_update_9035(&$sandbox) {
