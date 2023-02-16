@@ -48,6 +48,17 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Disable live preview option for bootstrap layout builder.
+ */
+function osu_standard_update_9037(&$sandbox) {
+  /** @var Drupal\Core\Config\Config $bootstrap_layout_builder_settings */
+  $bootstrap_layout_builder_settings = \Drupal::service('config.factory')
+    ->getEditable('bootstrap_layout_builder.settings');
+  $bootstrap_layout_builder_settings->set('live_preview', FALSE);
+  $bootstrap_layout_builder_settings->save();
+}
+
+/**
  * Update bootstrap layout builder options.
  */
 function osu_standard_update_9036(&$sandbox) {
