@@ -67,6 +67,11 @@ dependencies:
   - block_visibility_groups_admin
   - bootstrap_layout_builder
   - bootstrap_styles
+  - charts
+  - charts_blocks
+  - charts_highcharts_drilldown
+  - charts_highcharts_maps
+  - charts_highcharts
   - media_bulk_upload
   - media_bulk_upload_dropzonejs
   - captcha
