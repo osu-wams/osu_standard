@@ -2,7 +2,7 @@ name: OSU Standard
 type: profile
 description: 'Standard Drupal Installation Profile.'
 core_version_requirement: ^9 || ^10
-version: 1.0.18
+version: 1.0.19
 distribution:
   name: Oregon State
   langcode: en
@@ -137,6 +137,7 @@ dependencies:
   - section_library
   - superfish
   - tamper
+  - text_field_formatter
   - toc_js
   - toc_js_per_node
   - token

@@ -48,6 +48,16 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Add text_field_formatter module.
+ */
+function osu_standard_update_9038(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'text_field_formatter',
+  ], TRUE);
+  return t('Module text_field_formatter enabled.');
+}
+
+/**
  * Disable live preview option for bootstrap layout builder.
  */
 function osu_standard_update_9037(&$sandbox) {
