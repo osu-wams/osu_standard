@@ -77,7 +77,6 @@ dependencies:
   - captcha
   - cas
   - cas_attributes
-  - ckeditor_div_manager
   - ckeditor_liststyle
   - ckeditor_scayt
   - ctools
@@ -153,6 +152,8 @@ dependencies:
   - webform_node
   - webform_ui
   - xmlsitemap
+  - xmlsitemap_custom
+  - xmlsitemap_engines
   # Custom Modules
   - osu_bootstrap_layout_builder
   - osu_ckeditor_plugins
