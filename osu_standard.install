@@ -50,7 +50,7 @@ function osu_standard_install($is_syncing) {
 /**
  * Add extra xml sitemap modules.
  */
-function osu_standard_update_N(&$sandbox) {
+function osu_standard_update_9039(&$sandbox) {
   \Drupal::service('module_installer')->install([
     'xmlsitemap_custom',
     'xmlsitemap_engines',
