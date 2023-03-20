@@ -48,6 +48,19 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Update oembed provider for alternate kaltura format.
+ */
+function osu_standard_update_9040(&$sandbox) {
+  /** @var \Drupal\Core\Config\Config $kaltura_obembed_provider */
+  $kaltura_obembed_provider = \Drupal::service('config.factory')
+    ->getEditable('oembed_providers.provider.osu_mediaspace');
+  $endpoints = $kaltura_obembed_provider->get('endpoints');
+  $endpoints[0]['schemes'][] = 'https://media.oregonstate.edu/media/t/*';
+  $kaltura_obembed_provider->set('endpoints', $endpoints);
+  $kaltura_obembed_provider->save();
+}
+
+/**
  * Add extra xml sitemap modules.
  */
 function osu_standard_update_9039(&$sandbox) {
