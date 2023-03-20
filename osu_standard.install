@@ -48,6 +48,17 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Add extra xml sitemap modules.
+ */
+function osu_standard_update_N(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'xmlsitemap_custom',
+    'xmlsitemap_engines',
+  ], TRUE);
+  return t('Modules xmlsitemap_custom, xmlsitemap_engines are enabled.');
+}
+
+/**
  * Add text_field_formatter module.
  */
 function osu_standard_update_9038(&$sandbox) {
