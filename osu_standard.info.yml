@@ -37,7 +37,6 @@ dependencies:
   - page_cache
   - path
   - path_alias
-  - rdf
   - search
   - serialization
   - shortcut
