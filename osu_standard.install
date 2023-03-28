@@ -60,7 +60,6 @@ function osu_standard_update_9041(&$sandbox) {
   \Drupal::service('module_installer')->install([
     'search404',
   ], TRUE);
-  return t('Module search404 has been enabled.');
   /** @var Drupal\Core\Config\Config $search404_settings */
   $search404_settings = \Drupal::service('config.factory')
     ->getEditable('search404.settings');
@@ -70,6 +69,7 @@ function osu_standard_update_9041(&$sandbox) {
   $search404_settings->set('search404_use_search_engine', TRUE);
   $search404_settings->set('search404_do_google_cse', TRUE);
   $search404_settings->save();
+  return t('Module search404 has been enabled.');
 }
 
 /**
