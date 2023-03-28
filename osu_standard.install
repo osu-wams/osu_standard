@@ -50,16 +50,7 @@ function osu_standard_install($is_syncing) {
 /**
  * Set config for Search 404 module.
  */
-function osu_standard_update_9041(&$sandbox) {
-  /** @var Drupal\Core\Config\Config $search404_settings */
-  $search404_settings = \Drupal::service('config.factory')
-    ->getEditable('search404.settings');
-  $search404_settings->set('search404_do_custom_search', TRUE);
-  $search404_settings->set('search404_custom_search_path', 'search/node?keys=@keys');
-  $search404_settings->set('search404_disable_error_message', TRUE);
-  $search404_settings->set('search404_use_search_engine', TRUE);
-  $search404_settings->set('search404_do_google_cse', TRUE);
-  $search404_settings->save();
+function osu_standard_update_9042(&$sandbox) {
 }
 
 /**
@@ -69,7 +60,16 @@ function osu_standard_update_9041(&$sandbox) {
   \Drupal::service('module_installer')->install([
     'search404',
   ], TRUE);
-  return t('Modules xmlsitemap_custom, xmlsitemap_engines are enabled.');
+  return t('Module search404 has been enabled.');
+  /** @var Drupal\Core\Config\Config $search404_settings */
+  $search404_settings = \Drupal::service('config.factory')
+    ->getEditable('search404.settings');
+  $search404_settings->set('search404_do_custom_search', TRUE);
+  $search404_settings->set('search404_custom_search_path', 'search/node?keys=@keys');
+  $search404_settings->set('search404_disable_error_message', TRUE);
+  $search404_settings->set('search404_use_search_engine', TRUE);
+  $search404_settings->set('search404_do_google_cse', TRUE);
+  $search404_settings->save();
 }
 
 /**
