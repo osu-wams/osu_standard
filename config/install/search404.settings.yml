@@ -1,4 +1,4 @@
- search404_redirect_301: false
+search404_redirect_301: false
 search404_do_custom_search: true
 search404_custom_search_path: 'search/node?keys=@keys'
 search404_jump: false
