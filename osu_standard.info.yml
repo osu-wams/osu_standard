@@ -131,6 +131,7 @@ dependencies:
   - recaptcha
   - redirect
   - responsive_preview
+  - search404
   - seckit
   - section_library
   - superfish
