@@ -1,4 +1,5 @@
 sitewide_token_support: false
+token_allowed_attributes: { }
 field:
   sync_frequency: 2
   overwrite: true
@@ -10,7 +11,7 @@ role:
   deny_login_no_match: false
   deny_registration_no_match: false
   mappings:
-    - rid: administrator
+    - rid: dx_administrator
       attribute: entitlement_drupal
       value: 'urn:mace:oregonstate.edu:entitlement:drupal-admin'
       method: exact_any

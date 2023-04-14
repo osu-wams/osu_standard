@@ -48,6 +48,28 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Add new role for DX Admin and update cas attributes.
+ */
+function osu_standard_update_9043(&$sandbox) {
+  $install_profile_path = \Drupal::service('module_handler')
+    ->getModule('osu_standard')
+    ->getPath();
+  $install_profile_config_path = realpath($install_profile_path . '/config/install');
+  /** @var Drupal\Core\Config\FileStorage $file_source */
+  $file_source = new FileStorage($install_profile_config_path);
+  if (is_null(Role::load('dx_administrator'))) {
+    $dx_admin_role_config = $file_source->read('user.role.dx_administrator');
+    $dx_admin_role = Role::create($dx_admin_role_config);
+    $dx_admin_role->save();
+  }
+  /** @var Drupal\Core\Config\Config $cas_attributes */
+  $cas_attributes = \Drupal::service('config.factory')
+    ->getEditable('cas_attributes.settings');
+
+  $cas_attributes->set('token_allowed_attributes', []);
+}
+
+/**
  * Set config for Search 404 module.
  */
 function osu_standard_update_9042(&$sandbox) {
