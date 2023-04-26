@@ -3,9 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_display.group.basic_group.default
     - core.entity_view_display.node.page.default
-    - core.entity_view_display.node.story.default
     - filter.format.basic_html
     - filter.format.full_html
     - filter.format.restricted_html
@@ -14,7 +12,8 @@ dependencies:
     - media.type.kaltura
     - media.type.local_video
     - media.type.remote_video
-    - taxonomy.vocabulary.osu_organization
+    - node.type.page
+    - node.type.webform
     - taxonomy.vocabulary.tags
   module:
     - acquia_connector
@@ -46,8 +45,6 @@ dependencies:
     - google_analytics
     - google_cse
     - google_tag
-    - group
-    - group_content_menu
     - honeypot
     - image
     - layout_builder
@@ -143,20 +140,6 @@ permissions:
   - 'administer filters'
   - 'administer google analytics'
   - 'administer google tag manager'
-  - 'administer group'
-  - 'administer group content menu types'
-  - 'administer group display'
-  - 'administer group fields'
-  - 'administer group form display'
-  - 'administer group_content display'
-  - 'administer group_content fields'
-  - 'administer group_content form display'
-  - 'administer group_content_menu display'
-  - 'administer group_content_menu fields'
-  - 'administer group_content_menu form display'
-  - 'administer group_content_menu_type labels'
-  - 'administer group_content_type labels'
-  - 'administer group_type labels'
   - 'administer honeypot'
   - 'administer image styles'
   - 'administer js assets injector'
@@ -217,25 +200,21 @@ permissions:
   - 'administer webform labels'
   - 'administer webform submission'
   - 'administer xmlsitemap'
-  - 'bypass group access'
   - 'bypass honeypot protection'
   - 'bypass node access'
   - 'cancel account'
   - 'change own username'
   - 'clear own profiles feeds'
   - 'clear profiles feeds'
-  - 'configure all basic_group group layout overrides'
   - 'configure all page node layout overrides'
   - 'configure all story node layout overrides'
   - 'configure any layout'
   - 'configure bootstrap layout builder'
   - 'configure bootstrap styles'
-  - 'configure editable basic_group group layout overrides'
   - 'configure editable page node layout overrides'
   - 'configure editable story node layout overrides'
   - 'configure layout builder restrictions'
   - 'create and edit custom blocks'
-  - 'create basic_group group'
   - 'create document media'
   - 'create image media'
   - 'create kaltura media'
