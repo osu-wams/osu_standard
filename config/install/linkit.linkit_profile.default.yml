@@ -41,3 +41,8 @@ matchers:
       substitution_type: media
       limit: 100
     weight: 0
+  1c1d49ac-212e-4ed6-9e16-7467297a44ec:
+    id: email
+    uuid: 1c1d49ac-212e-4ed6-9e16-7467297a44ec
+    settings: {  }
+    weight: -10
