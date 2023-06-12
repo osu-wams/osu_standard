@@ -48,6 +48,18 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Update version of Font Awesome.
+ */
+function osu_standard_update_9044(&$sandbox) {
+  /** @var Drupal\Core\Config\Config $font_awesome_settings */
+  $font_awesome_settings = \Drupal::service('config.factory')
+    ->getEditable('fontawesome.settings');
+  $font_awesome_settings->set('external_svg_location', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css');
+  $font_awesome_settings->set('external_shim_location', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/v4-shims.min.css');
+  $font_awesome_settings->save();
+}
+
+/**
  * Add new role for DX Admin and update cas attributes.
  */
 function osu_standard_update_9043(&$sandbox) {

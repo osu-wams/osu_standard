@@ -9,7 +9,6 @@ dependencies:
     - filter.format.restricted_html
     - media.type.document
     - media.type.image
-    - media.type.kaltura
     - media.type.local_video
     - media.type.remote_video
     - node.type.page
@@ -37,6 +36,7 @@ dependencies:
     - field_ui
     - file
     - filter
+    - google_analytics
     - google_tag
     - honeypot
     - image
@@ -48,8 +48,10 @@ dependencies:
     - media_bulk_upload
     - metatag
     - node
+    - node_revision_delete
     - path
     - pathauto
+    - recaptcha
     - redirect
     - responsive_preview
     - search
@@ -72,7 +74,6 @@ weight: 2
 is_admin: null
 permissions:
   - 'access administration pages'
-  - 'access all webform results'
   - 'access any webform configuration'
   - 'access content'
   - 'access content overview'
@@ -81,8 +82,6 @@ permissions:
   - 'access files overview'
   - 'access media overview'
   - 'access own webform configuration'
-  - 'access own webform results'
-  - 'access own webform submissions'
   - 'access responsive preview'
   - 'access shortcuts'
   - 'access site in maintenance mode'
@@ -97,16 +96,14 @@ permissions:
   - 'access webform overview'
   - 'access webform submission user'
   - 'add section library templates'
+  - 'administer CAPTCHA settings'
   - 'administer account settings'
   - 'administer ap style settings'
-  - 'administer block classes'
-  - 'administer block css classes'
   - 'administer block visibility groups'
   - 'administer block_content display'
   - 'administer block_content fields'
   - 'administer block_content form display'
   - 'administer blocks'
-  - 'administer CAPTCHA settings'
   - 'administer contact forms'
   - 'administer contact_message display'
   - 'administer contact_message fields'
@@ -126,7 +123,6 @@ permissions:
   - 'administer image styles'
   - 'administer js assets injector'
   - 'administer layout builder component attributes'
-  - 'administer layout builder styles configuration'
   - 'administer linkit profiles'
   - 'administer media'
   - 'administer media display'
@@ -188,7 +184,6 @@ permissions:
   - 'create webform content'
   - 'customize shortcut links'
   - 'delete all revisions'
-  - 'delete all webform submissions'
   - 'delete any document media'
   - 'delete any image media'
   - 'delete any local_video media'
@@ -233,7 +228,6 @@ permissions:
   - 'edit section library templates'
   - 'edit terms in tags'
   - 'edit webform assets'
-  - 'edit webform components'
   - 'edit webform source'
   - 'edit webform submissions any node'
   - 'edit webform submissions own node'
@@ -246,7 +240,6 @@ permissions:
   - 'link to any page'
   - 'manage editoria11y results'
   - 'manage layout builder component attributes'
-  - 'manage layout builder styles'
   - 'mark as hidden in editoria11y'
   - 'mark as ok in editoria11y'
   - 'override xmlsitemap link settings'
@@ -254,13 +247,13 @@ permissions:
   - 'revert page revisions'
   - 'revert webform revisions'
   - 'search content'
+  - 'skip CAPTCHA'
   - 'switch shortcut sets'
   - 'synchronize configuration'
   - 'update any media'
   - 'update media'
   - 'use advanced search'
   - 'use bulk_image bulk upload form'
-  - 'skip CAPTCHA'
   - 'use exclude node title'
   - 'use text format basic_html'
   - 'use text format full_html'
