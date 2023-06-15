@@ -57,6 +57,7 @@ dependencies:
     - search
     - section_library
     - shortcut
+    - simple_popup_blocks
     - system
     - taxonomy
     - toc_js
@@ -145,6 +146,7 @@ permissions:
   - 'administer responsive preview'
   - 'administer search'
   - 'administer shortcuts'
+  - 'administer simple_popup_blocks'
   - 'administer site configuration'
   - 'administer taxonomy'
   - 'administer taxonomy_term display'

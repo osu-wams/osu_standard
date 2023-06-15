@@ -48,6 +48,31 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Install Simple Popup Blocks.
+ */
+function osu_standard_update_9045(&$sandbox) {
+  \Drupal::service('module_installer')->install([
+    'osu_simple_popup_blocks',
+    'simple_popup_blocks',
+  ], TRUE);
+  $dx_administrator = Role::load('dx_administrator');
+  $dx_administrator->grantPermission('administer simple_popup_blocks');
+  $dx_administrator->save();
+
+  $architect = Role::load('architect');
+  $architect->grantPermission('administer simple_popup_blocks');
+  $architect->save();
+
+  $manage_site_configuration = Role::load('manage_site_configuration');
+  $manage_site_configuration->grantPermission('administer simple_popup_blocks');
+  $manage_site_configuration->save();
+
+  $manage_blocks = Role::load('manage_blocks');
+  $manage_blocks->grantPermission('administer simple_popup_blocks');
+  $manage_blocks->save();
+}
+
+/**
  * Update version of Font Awesome.
  */
 function osu_standard_update_9044(&$sandbox) {
