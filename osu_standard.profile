@@ -31,6 +31,10 @@ function osu_standard_install_tasks(&$install_state) {
     'display_name' => t('Add Modules.'),
     'display' => TRUE,
   ];
+  $tasks['osu_standard_update_default_configuration'] = [
+    'display_name' => t('Update provided configurations'),
+    'display' => TRUE,
+  ];
   return $tasks;
 }
 
@@ -58,15 +62,29 @@ function osu_standard_default_modules(array &$install_state) {
 }
 
 /**
+ * Apply Configuration updates to the site post install.
+ *
  * @param array $install_state
  *  The Drupal Install State.
  */
-function osu_standard_config_google_search(array &$install_state) {
+function osu_standard_update_default_configuration(array &$install_state) {
   $site_host = \Drupal::request()->getHost();
-  $site_host = str_replace( ['dev.', 'stage.'], '', $site_host);
-  /** @var \Drupal\Core\Config\CachedStorage $config_storage */
-  $config_storage = \Drupal::service('config.storage');
-  $google_search_config = $config_storage->read('search.page.google_cse_search');
-  $google_search_config['configuration']['limit_domain'] = $site_host;
-  $config_storage->write('search.page.google_cse_search', $google_search_config);
+  $site_host = str_replace(['dev.', 'stage.'], '', $site_host);
+
+  $config_factory = \Drupal::configFactory();
+  // Set Google CSE as default search.
+  $google_search_settings = $config_factory->getEditable('search.page.google_cse_search');
+  $google_search_config = $google_search_settings->get('configuration');
+  $google_search_config['limit_domain'] = $site_host;
+  $google_search_settings->set('configuration', $google_search_config);
+  $google_search_settings->save();
+
+  // Remove User and Node search.
+  $node_search = $config_factory->getEditable('search.page.node_search');
+  $node_search->set('status', FALSE);
+  $node_search->save();
+  $user_search = $config_factory->getEditable('search.page.user_search');
+  $user_search->set('status', FALSE);
+  $user_search->save();
+
 }

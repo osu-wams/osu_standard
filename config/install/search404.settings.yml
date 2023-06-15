@@ -1,6 +1,6 @@
 search404_redirect_301: false
 search404_do_custom_search: true
-search404_custom_search_path: 'search/node?keys=@keys'
+search404_custom_search_path: 'search/osu?keys=@keys'
 search404_jump: false
 search404_skip_auto_search: false
 search404_disable_error_message: true
