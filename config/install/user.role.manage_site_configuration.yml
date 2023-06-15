@@ -16,6 +16,7 @@ dependencies:
     - redirect
     - search
     - shortcut
+    - simple_popup_blocks
     - system
     - toc_js
 id: manage_site_configuration
@@ -43,6 +44,7 @@ permissions:
   - 'administer redirects'
   - 'administer search'
   - 'administer shortcuts'
+  - 'administer simple_popup_blocks'
   - 'administer site configuration'
   - 'administer themes'
   - 'administer toc_js'
