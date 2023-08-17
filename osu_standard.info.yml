@@ -2,7 +2,7 @@ name: OSU Standard
 type: profile
 description: 'Standard Drupal Installation Profile.'
 core_version_requirement: ^9 || ^10
-version: 1.0.29
+version: 1.0.30
 distribution:
   name: Oregon State
   langcode: en
@@ -57,6 +57,7 @@ dependencies:
   - admin_toolbar
   - admin_toolbar_tools
   - admin_toolbar_links_access_filter
+  - admin_toolbar_search
   - asset_injector
   - auto_entitylabel
   - date_ap_style
@@ -100,6 +101,7 @@ dependencies:
   - google_cse
   - google_tag
   - honeypot
+  - image_effects
   - layout_builder_blocks
   - layout_builder_component_attributes
   - layout_builder_operation_link
@@ -108,7 +110,6 @@ dependencies:
   - libraries
   - linkit
   - media_library_form_element
-  - media_library_theme_reset
   - memcache
   - metatag
   - metatag_google_cse
