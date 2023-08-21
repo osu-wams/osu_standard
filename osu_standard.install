@@ -48,6 +48,15 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Add new module(s) to existing sites.
+ */
+function osu_standard_update_9047(&$sandbox) {
+  Drupal::service('module_installer')->install([
+    'views_taxonomy_term_name_depth',
+  ], TRUE);
+}
+
+/**
  * Add new modules and Update CKEditor.
  */
 function osu_standard_update_9046(&$sandbox) {

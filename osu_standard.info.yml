@@ -146,6 +146,7 @@ dependencies:
   - views_conditional
   - views_bulk_edit
   - views_bulk_operations
+  - views_taxonomy_term_name_depth
   - webform
   - webform_access
   - webform_attachment
