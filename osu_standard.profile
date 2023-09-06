@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\user\Entity\User;
 
 /**
  * Implements hook_form_FORM_ID_alter()
@@ -87,4 +88,14 @@ function osu_standard_update_default_configuration(array &$install_state) {
   $user_search->set('status', FALSE);
   $user_search->save();
 
+  // Add cws_dpla to user 1 and enable cas
+  $super_user = User::load(1);
+  /** @var Drupal\cas\Service\CasUserManager $casUserManager */
+  $casUserManager = \Drupal::service('cas.user_manager');
+  $casUserManager->setCasUsernameForAccount($super_user, 'cws_dpla');
+
+  // Remove display author information from node Webform type
+  $node_type_webform = $config_factory->getEditable('node.type.webform');
+  $node_type_webform->set('display_submitted', FALSE);
+  $node_type_webform->save();
 }
