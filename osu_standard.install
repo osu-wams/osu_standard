@@ -48,6 +48,30 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Add Colorbox, Smart Date and Date Popup
+ */
+function osu_standard_update_9048(&$sandbox) {
+  Drupal::service('module_installer')->install([
+    'colorbox',
+    'date_popup',
+    'smart_date',
+  ], TRUE);
+  $dx_administrator = Role::load('dx_administrator');
+  $dx_administrator->grantPermission('administer smart date formats');
+  $dx_administrator->save();
+
+  $architect = Role::load('architect');
+  $architect->grantPermission('administer smart date formats');
+  $architect->save();
+
+  $manage_site_configuration = Role::load('manage_site_configuration');
+  $manage_site_configuration->grantPermission('administer smart date formats');
+  $manage_site_configuration->save();
+
+  return t('Added new modules, Colorbox, Date Popup and Smart date. Configured roles for permissions');
+}
+
+/**
  * Add new module(s) to existing sites.
  */
 function osu_standard_update_9047(&$sandbox) {

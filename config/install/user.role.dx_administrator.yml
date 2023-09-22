@@ -67,6 +67,7 @@ dependencies:
     - section_library
     - shortcut
     - simple_popup_blocks
+    - smart_date
     - system
     - taxonomy
     - toc_js
@@ -181,6 +182,7 @@ permissions:
   - 'administer shortcuts'
   - 'administer simple_popup_blocks'
   - 'administer site configuration'
+  - 'administer smart date formats'
   - 'administer taxonomy'
   - 'administer taxonomy_term display'
   - 'administer taxonomy_term fields'
