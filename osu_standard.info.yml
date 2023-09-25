@@ -83,7 +83,6 @@ dependencies:
   - ctools
   - ctools_block
   - ctools_views
-  - date_popup
   - dropzonejs
   - default_content
   - easy_breadcrumb

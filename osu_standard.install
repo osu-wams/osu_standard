@@ -48,6 +48,15 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Remove Date Popup.
+ */
+function osu_standard_update_9049(&$sandbox) {
+  Drupal::service('module_installer')->uninstall([
+    'date_popup',
+  ]);
+}
+
+/**
  * Add Colorbox, Smart Date and Date Popup
  */
 function osu_standard_update_9048(&$sandbox) {
