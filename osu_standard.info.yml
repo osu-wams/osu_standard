@@ -2,7 +2,7 @@ name: OSU Standard
 type: profile
 description: 'Standard Drupal Installation Profile.'
 core_version_requirement: ^9 || ^10
-version: 1.0.32
+version: 1.0.33
 distribution:
   name: Oregon State
   langcode: en
