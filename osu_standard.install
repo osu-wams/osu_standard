@@ -48,6 +48,35 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Updating paddings and margins.
+ */
+function osu_standard_update_10000(&$sandbox) {
+  $padding = "p-1|Padding 1\r\np-2|Padding 2\r\np-2-5|Padding 2.5\r\np-3|Padding 3\r\np-4|Padding 4\r\np-4-5|Padding 4_5\r\np-5|Padding 5\r\np-6|Padding 6\r\np-7|Padding 7";
+  $padding_left = "ps-1|Padding Left 1\r\nps-2|Padding Left 2\r\nps-2-5|Padding Left 2.5\r\nps-3|Padding Left 3\r\nps-4|Padding Left 4\r\nps-4-5|Padding Left 4_5\r\nps-5|Padding Left 5\r\nps-6|Padding Left 6\r\nps-7|Padding 7";
+  $padding_top = "pt-1|Padding Top 1\r\npt-2|Padding Top 2\r\npt-2-5|Padding Top 2.5\r\npt-3|Padding Top 3\r\npt-4|Padding Top 4\r\npt-4-5|Padding Top 4_5\r\npt-5|Padding Top 5\r\npt-6|Padding Top 6\r\npt-7|Padding 7";
+  $padding_right = "pe-1|Padding Right 1\r\npe-2|Padding Right 2\r\npe-2-5|Padding Right 2.5\r\npe-3|Padding Right 3\r\npe-4|Padding Right 4\r\npe-4-5|Padding Right 4_5\r\npe-5|Padding Right 5\r\npe-6|Padding Right 6\r\npe-7|Padding 7";
+  $padding_bottom = "pb-1|Padding Bottom 1\r\npb-2|Padding Bottom 2\r\npb-2-5|Padding Bottom 2.5\r\npb-3|Padding Bottom 3\r\npb-4|Padding Bottom 4\r\npb-4-5|Padding Bottom 4_5\r\npb-5|Padding Bottom 5\r\npb-6|Padding Bottom 6\r\npb-7|Padding 7";
+  $margin = "m-1|Margin 1\r\nm-2|Margin 2\r\nm-2-5|Margin 2.5\r\nm-3|Margin 3\r\nm-4|Margin 4\r\nm-4-5|Margin 4_5\r\nm-5|Margin 5\r\nm-6|Margin 6\r\nm-7|Margin 7";
+  $margin_left = "ms-1|Margin Left 1\r\nms-2|Margin Left 2\r\nms-2-5|Margin Left 2.5\r\nms-3|Margin Left 3\r\nms-4|Margin Left 4\r\nms-4-5|Margin Left 4_5\r\nms-5|Margin Left 5\r\nms-6|Margin Left 6\r\nms-7|Margin 7";
+  $margin_top = "mt-1|Margin Top 1\r\nmt-2|Margin Top 2\r\nmt-2-5|Margin Top 2.5\r\nmt-3|Margin Top 3\r\nmt-4|Margin Top 4\r\nmt-4-5|Margin Top 4_5\r\nmt-5|Margin Top 5\r\nmt-6|Margin Top 6\r\nmt-7|Margin 7";
+  $margin_right = "me-1|Margin Right 1\r\nme-2|Margin Right 2\r\nme-2-5|Margin Right 2.5\r\nme-3|Margin Right 3\r\nme-4|Margin Right 4\r\nme-4-5|Margin Right 4_5\r\nme-5|Margin Right 5\r\nme-6|Margin Right 6\r\nme-7|Margin 7";
+  $margin_bottom = "mb-1|Margin Bottom 1\r\nmb-2|Margin Bottom 2\r\nmb-2-5|Margin Bottom 2.5\r\nmb-3|Margin Bottom 3\r\nmb-4|Margin Bottom 4\r\nmb-4-5|Margin Bottom 4_5\r\nmb-5|Margin Bottom 5\r\nmb-6|Margin Bottom 6\r\nmb-7|Margin 7";
+  $config = Drupal::service('config.factory')
+    ->getEditable('bootstrap_styles.settings');
+  $config->set('padding', $padding);
+  $config->set('padding_left', $padding_left);
+  $config->set('padding_top', $padding_top);
+  $config->set('padding_right', $padding_right);
+  $config->set('padding_bottom', $padding_bottom);
+  $config->set('margin', $margin);
+  $config->set('margin_left', $margin_left);
+  $config->set('margin_top', $margin_top);
+  $config->set('margin_right', $margin_right);
+  $config->set('margin_bottom', $margin_bottom);
+  $config->save();
+}
+
+/**
  * Remove Date Popup.
  */
 function osu_standard_update_9049(&$sandbox) {
