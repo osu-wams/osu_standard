@@ -60,7 +60,7 @@ function osu_standard_update_10001(&$sandbox) {
   $architect = Role::load('architect');
   $architect->grantPermission('access block library');
   $architect->grantPermission('administer block classes');
-  $architect->grantPermission('administer block contents');
+  $architect->grantPermission('administer block content');
   $architect->grantPermission('administer block types');
   $architect->save();
 
