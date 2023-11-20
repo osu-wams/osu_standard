@@ -5,6 +5,7 @@ dependencies:
   module:
     - block
     - block_class
+    - block_content
     - block_visibility_groups
     - captcha
     - contextual
@@ -16,8 +17,11 @@ label: 'Manage Blocks'
 weight: -5
 is_admin: null
 permissions:
+  - 'access block library'
   - 'access contextual links'
   - 'administer block classes'
+  - 'administer block content'
+  - 'administer block types'
   - 'administer block visibility groups'
   - 'administer blocks'
   - 'administer simple_popup_blocks'
