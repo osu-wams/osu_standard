@@ -77,6 +77,7 @@ is_admin: null
 permissions:
   - 'access administration pages'
   - 'access any webform configuration'
+  - 'access block library'
   - 'access content'
   - 'access content overview'
   - 'access contextual links'
@@ -101,6 +102,9 @@ permissions:
   - 'administer CAPTCHA settings'
   - 'administer account settings'
   - 'administer ap style settings'
+  - 'administer block classes'
+  - 'administer block content'
+  - 'administer block types'
   - 'administer block visibility groups'
   - 'administer block_content display'
   - 'administer block_content fields'
