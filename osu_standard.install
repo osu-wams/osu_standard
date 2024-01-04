@@ -48,6 +48,17 @@ function osu_standard_install($is_syncing) {
 }
 
 /**
+ * Update Editoria11y to wait for our custom tests.
+ */
+function osu_standard_update_10002(&$sandbox) {
+  /** @var Drupal\Core\Config\Config $editoria11y_settings */
+  $editoria11y_settings = Drupal::service('config.factory')
+    ->getEditable('editoria11y.settings');
+  $editoria11y_settings->set('custom_tests', 1);
+  $editoria11y_settings->save();
+}
+
+/**
  * Update Roles to now manage Block Content.
  */
 function osu_standard_update_10001(&$sandbox) {
