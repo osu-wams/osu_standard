@@ -1,4 +1,4 @@
-uuid: 693909ed-cd33-4abd-b077-83cec9bec872
+uuid: e9337d40-1ffa-4fd8-a6b5-c1b0c3b2bb59
 langcode: en
 status: true
 dependencies:
@@ -8,6 +8,7 @@ dependencies:
     - admin_toolbar_search
     - contact
     - exclude_node_title
+    - file
     - filter
     - google_cse
     - media
@@ -29,6 +30,7 @@ permissions:
   - 'access site-wide contact form'
   - 'access toolbar'
   - 'access tour'
+  - 'delete own files'
   - 'exclude own node title'
   - 'search Google CSE'
   - 'search content'
