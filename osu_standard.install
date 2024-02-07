@@ -1247,3 +1247,33 @@ function osu_standard_update_10002(&$sandbox) {
   $editoria11y_settings->set('custom_tests', 1);
   $editoria11y_settings->save();
 }
+
+/**
+ * Update permissions to allow users to delete files.
+ */
+function osu_standard_update_10003(&$sandbox) {
+  $dx_administrator = Role::load('dx_administrator');
+  $dx_administrator->grantPermission('delete any file');
+  $dx_administrator->grantPermission('delete own files');
+  $dx_administrator->save();
+
+  $architect = Role::load('architect');
+  $architect->grantPermission('delete any file');
+  $architect->grantPermission('delete own files');
+  $architect->save();
+
+  $content_authors = Role::load('content_authors');
+  $content_authors->grantPermission('access files overview');
+  $content_authors->grantPermission('delete own files');
+  $content_authors->save();
+
+  $manage_content = Role::load('manage_content');
+  $manage_content->grantPermission('access files overview');
+  $manage_content->grantPermission('delete any file');
+  $manage_content->grantPermission('delete own files');
+  $manage_content->save();
+
+  $authenticated = Role::load('authenticated');
+  $authenticated->grantPermission('delete own files');
+  $authenticated->save();
+}
