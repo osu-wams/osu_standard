@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_display.node.page.default
     - filter.format.full_html
+    - media.type.audio
     - media.type.document
     - media.type.image
     - media.type.kaltura
@@ -16,6 +17,7 @@ dependencies:
     - contextual
     - dropzonejs
     - exclude_node_title
+    - file
     - filter
     - honeypot
     - layout_builder
@@ -34,6 +36,7 @@ is_admin: null
 permissions:
   - 'access content overview'
   - 'access contextual links'
+  - 'access files overview'
   - 'access media overview'
   - 'administer content types'
   - 'administer nodes'
@@ -52,7 +55,9 @@ permissions:
   - 'create remote_video media'
   - 'create url aliases'
   - 'delete all revisions'
+  - 'delete any audio media'
   - 'delete any document media'
+  - 'delete any file'
   - 'delete any image media'
   - 'delete any kaltura media'
   - 'delete any local_video media'
@@ -60,7 +65,9 @@ permissions:
   - 'delete any page content'
   - 'delete any remote_video media'
   - 'delete media'
+  - 'delete own audio media'
   - 'delete own document media'
+  - 'delete own files'
   - 'delete own image media'
   - 'delete own kaltura media'
   - 'delete own local_video media'
@@ -74,6 +81,7 @@ permissions:
   - 'edit any local_video media'
   - 'edit any page content'
   - 'edit any remote_video media'
+  - 'edit own audio media'
   - 'edit own document media'
   - 'edit own image media'
   - 'edit own kaltura media'
