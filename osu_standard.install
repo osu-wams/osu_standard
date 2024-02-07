@@ -1277,3 +1277,13 @@ function osu_standard_update_10003(&$sandbox) {
   $authenticated->grantPermission('delete own files');
   $authenticated->save();
 }
+
+/**
+ * Rollback Search404 configuration setting.
+ */
+function osu_standard_update_10004(&$sandbox) {
+  \Drupal::configFactory()
+    ->getEditable('system.site')
+    ->set('page.404', '')
+    ->save();
+}
