@@ -1287,3 +1287,15 @@ function osu_standard_update_10004(&$sandbox) {
     ->set('page.404', '')
     ->save();
 }
+
+/**
+ * Set the Default option for Madrone Theme 404 page.
+ */
+function osu_standard_update_10005(&$sandbox) {
+  $config_factory = \Drupal::configFactory();
+  $editable_config = $config_factory->getEditable('system.theme');
+  $default_theme = $editable_config->get('default');
+  $theme_config = $config_factory->getEditable("{$default_theme}.settings");
+  $theme_config->set('madrone_use_default_404', TRUE);
+  $theme_config->save();
+}
