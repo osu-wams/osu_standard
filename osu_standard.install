@@ -1304,6 +1304,32 @@ function osu_standard_update_10005(&$sandbox): void {
 /**
  * Setup Linkpurpose module.
  */
-function osu_standard_update_10006(&$sandbox) {
+function osu_standard_update_10006(&$sandbox): TranslatableMarkup {
+  Drupal::service('module_installer')->install([
+    'linkpurpose',
+  ]);
+  $install_profile_path = Drupal::service('module_handler')
+    ->getModule('osu_standard')
+    ->getPath();
 
+  $config_path = realpath($install_profile_path . '/config/install');
+  /** @var \Drupal\Core\Config\CachedStorage $config_storage */
+  $config_storage = Drupal::service('config.storage');
+  $file_source = new FileStorage($config_path);
+  $config_storage->write('linkpurpose.settings', $file_source->read('linkpurpose.settings'));
+
+  $dx_administrator = Role::load('dx_administrator');
+  $dx_administrator->grantPermission('administer linkpurpose');
+  $dx_administrator->save();
+
+  $architect = Role::load('architect');
+  $architect->grantPermission('administer linkpurpose');
+  $architect->save();
+
+  $manage_site_config = Role::load('manage_site_configuration');
+  $manage_site_config->grantPermission('administer linkit profiles');
+  $manage_site_config->grantPermission('administer linkpurpose');
+  $manage_site_config->save();
+
+  return t('Installed module and imported configuration');
 }

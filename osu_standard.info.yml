@@ -110,6 +110,7 @@ dependencies:
   - layout_builder_restrictions_by_region
   - libraries
   - linkit
+  - linkpurpose
   - media_library_form_element
   - memcache
   - metatag
