@@ -1333,3 +1333,26 @@ function osu_standard_update_10006(&$sandbox): TranslatableMarkup {
 
   return t('Installed module and imported configuration');
 }
+
+/**
+ * Add two new options for layout builder 2 column.
+ */
+function osu_standard_update_10007(&$sandbox): TranslatableMarkup {
+  $bootstrap_layout_builder_updates = [
+    'bootstrap_layout_builder.layout_option.blb_col_2_33_67',
+    'bootstrap_layout_builder.layout_option.blb_col_2_67_33',
+  ];
+  $install_profile_path = Drupal::service('module_handler')
+    ->getModule('osu_standard')
+    ->getPath();
+  $config_path = realpath($install_profile_path . '/config/install');
+  /** @var \Drupal\Core\Config\CachedStorage $config_storage */
+  $config_storage = Drupal::service('config.storage');
+  $file_source = new FileStorage($config_path);
+
+  foreach ($bootstrap_layout_builder_updates as $bootstrap_layout_builder_update) {
+    $config_storage->write($bootstrap_layout_builder_update, $file_source->read($bootstrap_layout_builder_update));
+  }
+
+  return t('Added 33%/67% and 67%/33% layout options to the two column layout builder');
+}

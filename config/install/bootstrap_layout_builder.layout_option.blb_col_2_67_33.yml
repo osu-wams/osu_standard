@@ -1,10 +1,10 @@
 langcode: en
 status: true
 dependencies: {  }
-id: blb_col_2_75_25
+id: blb_col_2_67_33
 layout_id: blb_col_2
-label: '75% 25%'
-structure: '9 3'
+label: '67% 33%'
+structure: '8 4'
 breakpoints:
   extra_wide_desktop: extra_wide_desktop
   desktop: desktop
@@ -15,4 +15,4 @@ default_breakpoints:
   extra_wide_desktop: '0'
   desktop: '0'
   tablet: '0'
-weight: -8
+weight: -6
