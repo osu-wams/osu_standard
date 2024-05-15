@@ -45,7 +45,6 @@ function osu_standard_install($is_syncing): void {
     'name' => 'Organization',
     'description' => 'A set of tags to represent the structure of your organization. e.g. Schools and/or Units',
   ])->save();
-
 }
 
 /**
@@ -82,7 +81,6 @@ function osu_standard_update_8001(): void {
   }
   $cas_attributes->set('role', $cas_attributes_roles);
   $cas_attributes->save(TRUE);
-
 }
 
 /**
@@ -481,7 +479,6 @@ function osu_standard_update_9014(&$sandbox): void {
   $path_auto_pattern->save();
 }
 
-
 /**
  * Install new modules.
  */
@@ -520,7 +517,6 @@ function osu_standard_update_9017(&$sandbox): void {
   $manage_site_configuration = Role::load('manage_site_configuration');
   $manage_site_configuration->grantPermission('administer ap style settings');
   $manage_site_configuration->save();
-
 }
 
 /**
@@ -589,7 +585,6 @@ function osu_standard_update_9021(&$sandbox): void {
   $architect->grantPermission('administer feeds');
   $architect->grantPermission('administer feeds_tamper');
   $architect->save();
-
 }
 
 /**
@@ -669,7 +664,6 @@ function osu_standard_update_9026(&$sandbox): void {
   $architect->grantPermission('administer xmlsitemap');
   $architect->grantPermission('override xmlsitemap link settings');
   $architect->save();
-
 }
 
 /**
@@ -767,7 +761,6 @@ function osu_standard_update_9030(&$sandbox): void {
  * Configure google cse for all sites.
  */
 function osu_standard_update_9031(&$sandbox): void {
-
   $site_host = Drupal::request()->getHost();
   $site_host = str_replace(['dev.', 'stage.'], '', $site_host);
 
@@ -1052,8 +1045,7 @@ function osu_standard_update_9041(&$sandbox): TranslatableMarkup {
 /**
  * Set config for Search 404 module.
  */
-function osu_standard_update_9042(&$sandbox) {
-}
+function osu_standard_update_9042(&$sandbox) {}
 
 /**
  * Add new role for DX Admin and update cas attributes.
@@ -1355,4 +1347,20 @@ function osu_standard_update_10007(&$sandbox): TranslatableMarkup {
   }
 
   return t('Added 33%/67% and 67%/33% layout options to the two column layout builder');
+}
+
+/**
+ * Add osu-align-items-stretch option back into Bootstrap Styles.
+ */
+function osu_standard_update_10008(&$sandbox): TranslatableMarkup {
+  $bootstrap_style_updates = [
+    "items_alignment" => "osu-align-items-stretch|Stretch\r\nosu-align-items-start|Top\r\nosu-align-items-center|Center\r\nosu-align-items-end|Bottom",
+  ];
+  $config = Drupal::service('config.factory')
+    ->getEditable('bootstrap_styles.settings');
+  foreach ($bootstrap_style_updates as $bootstrap_style_key => $bootstrap_style_update) {
+    $config->set($bootstrap_style_key, $bootstrap_style_update);
+  }
+  $config->save();
+  return t('Updated Alignment options for Bootstrap Styles.');
 }
