@@ -2,7 +2,7 @@ name: OSU Standard
 type: profile
 description: 'Standard Drupal Installation Profile.'
 core_version_requirement: ^9 || ^10
-version: 1.1.6
+version: 1.1.7
 distribution:
   name: Oregon State
   langcode: en
@@ -55,36 +55,33 @@ dependencies:
   - acquia_purge
   - address
   - admin_toolbar
-  - admin_toolbar_tools
   - admin_toolbar_links_access_filter
   - admin_toolbar_search
+  - admin_toolbar_tools
   - asset_injector
   - auto_entitylabel
-  - date_ap_style
   - better_exposed_filters
   - block_class
   - block_visibility_groups
   - block_visibility_groups_admin
   - bootstrap_layout_builder
   - bootstrap_styles
-  - charts
-  - charts_blocks
-  - charts_highcharts_drilldown
-  - charts_highcharts_maps
-  - charts_highcharts
-  - media_bulk_upload
-  - media_bulk_upload_dropzonejs
   - captcha
   - cas
   - cas_attributes
+  - charts
+  - charts_blocks
+  - charts_highcharts
+  - charts_highcharts_drilldown
   - ckeditor_liststyle
   - ckeditor_scayt
   - colorbox
   - ctools
   - ctools_block
   - ctools_views
-  - dropzonejs
+  - date_ap_style
   - default_content
+  - dropzonejs
   - easy_breadcrumb
   - editor_advanced_link
   - editor_file
@@ -110,8 +107,9 @@ dependencies:
   - layout_builder_restrictions_by_region
   - libraries
   - linkit
+  - media_bulk_upload
+  - media_bulk_upload_dropzonejs
   - linkpurpose
-  - media_library_form_element
   - memcache
   - metatag
   - metatag_google_cse
@@ -124,13 +122,13 @@ dependencies:
   - oembed_providers
   - paragraphs
   - pathauto
+  - purge
   - purge_drush
   - purge_processor_cron
   - purge_processor_lateruntime
   - purge_queuer_coretags
   - purge_tokens
   - purge_ui
-  - purge
   - recaptcha
   - redirect
   - responsive_preview
@@ -140,14 +138,14 @@ dependencies:
   - superfish
   - tamper
   - text_field_formatter
+  - token
   - toc_js
   - toc_js_per_node
-  - token
   - variationcache
   - views_bootstrap
-  - views_conditional
   - views_bulk_edit
   - views_bulk_operations
+  - views_conditional
   - views_taxonomy_term_name_depth
   - webform
   - webform_access
@@ -157,7 +155,6 @@ dependencies:
   - webform_ui
   - xmlsitemap
   - xmlsitemap_custom
-  - xmlsitemap_engines
   # Custom Modules
   - osu_bootstrap_layout_builder
   - osu_ckeditor_plugins
