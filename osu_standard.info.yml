@@ -2,7 +2,7 @@ name: OSU Standard
 type: profile
 description: 'Standard Drupal Installation Profile.'
 core_version_requirement: ^9 || ^10
-version: 1.1.6
+version: 1.1.7
 distribution:
   name: Oregon State
   langcode: en
@@ -73,7 +73,6 @@ dependencies:
   - charts_blocks
   - charts_highcharts
   - charts_highcharts_drilldown
-  - charts_highcharts_maps
   - ckeditor_liststyle
   - ckeditor_scayt
   - colorbox
