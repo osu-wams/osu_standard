@@ -1364,3 +1364,21 @@ function osu_standard_update_10008(&$sandbox): TranslatableMarkup {
   $config->save();
   return t('Updated Alignment options for Bootstrap Styles.');
 }
+
+/**
+ * Give DX, Architect and manage Webform the permission to use the Webform
+ * filter format.
+ */
+function osu_standard_update_10009(&$sandbox): TranslatableMarkup {
+  $user_roles = [
+    'dx_administrator',
+    'architect',
+    'manage_webforms',
+  ];
+  foreach ($user_roles as $user_role) {
+    $role = Role::load($user_role);
+    $role->grantPermission('use text format webform_default');
+    $role->save();
+  }
+  return t('Granted permissions for DX Administrators, Architects and Manage Webforms the access to use the webform filter format.');
+}
