@@ -1382,3 +1382,24 @@ function osu_standard_update_10009(&$sandbox): TranslatableMarkup {
   }
   return t('Granted permissions for DX Administrators, Architects and Manage Webforms the access to use the webform filter format.');
 }
+
+/**
+ * Grant the ability to view and see editoria11y results to our content authors.
+ */
+function osu_standard_update_10010(&$sandbox): TranslatableMarkup {
+  $user_roles = [
+    'content_authors',
+    'manage_blocks',
+    'manage_content',
+  ];
+  foreach ($user_roles as $user_role) {
+    $role = Role::load($user_role);
+    $role->grantPermission('access site reports');
+    $role->grantPermission('manage editoria11y results');
+    $role->grantPermission('mark as hidden in editoria11y');
+    $role->grantPermission('mark as ok in editoria11y');
+    $role->grantPermission('view editoria11y checker');
+    $role->save();
+  }
+  return t('Granted the ability to see and use Editoria11y results to content author roles.');
+}
