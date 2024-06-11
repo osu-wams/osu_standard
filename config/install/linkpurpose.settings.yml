@@ -1,7 +1,7 @@
 domain: ''
 roots: ''
 shadowComponents: ''
-ignore: '#toolbar-administration a, #block-madrone-sitebranding a'
+ignore: '#toolbar-administration a, #block-madrone-sitebranding a, #block-madrone-main-menu a, #block-madrone-groupmenu a'
 hideIcon: ''
 noRunIfPresent: ''
 noRunIfAbsent: ''
