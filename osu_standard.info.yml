@@ -124,6 +124,7 @@ dependencies:
   - pathauto
   - purge
   - purge_drush
+  - purge_file
   - purge_processor_cron
   - purge_processor_lateruntime
   - purge_queuer_coretags
