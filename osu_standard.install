@@ -278,14 +278,24 @@ function osu_standard_update_10011(&$sandbox): TranslatableMarkup {
     ->getModule('osu_standard')
     ->getPath();
   $config_path = realpath($install_profile_path . '/config/install');
-  $purge_file_config = \Drupal::configFactory()
-    ->getEditable('purge_file.settings');
   /** @var \Drupal\Core\Config\CachedStorage $config_storage */
   $config_storage = Drupal::service('config.storage');
   $file_source = new FileStorage($config_path);
 
   $config_storage->write('purge_file.settings', $file_source->read('purge_file.settings'));
   return t('Installed purge module and imported configuration');
+}
+
+/**
+ * Update Fontawesome icon CSN version.
+ */
+function osu_standard_update_10012(&$sandbox) {
+  $fontawesome_settings = \Drupal::configFactory()
+    ->getEditable('fontawesome.settings');
+  $fontawesome_settings->set('external_svg_location', "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css");
+  $fontawesome_settings->set('external_shim_location', "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/v4-shims.min.css");
+  $fontawesome_settings->save();
+  return t("Updated Fontawesome settings.");
 }
 
 /**
