@@ -299,6 +299,18 @@ function osu_standard_update_10012(&$sandbox) {
 }
 
 /**
+ * Update the CAS login Path.
+ */
+function osu_standard_update_10013(&$sandbox): TranslatableMarkup {
+  $cas_settings = \Drupal::configFactory()->getEditable('cas.settings');
+  $cas_server_settings = $cas_settings->get('server');
+  $cas_server_settings['path'] = '/cas';
+  $cas_settings->set("server", $cas_server_settings);
+  $cas_settings->save();
+  return t("Updated CAS server login path to /cas");
+}
+
+/**
  * Installs an array of given modules.
  *
  * @param array $modules
