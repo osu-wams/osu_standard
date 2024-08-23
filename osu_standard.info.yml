@@ -55,7 +55,6 @@ dependencies:
   - acquia_purge
   - address
   - admin_toolbar
-  - admin_toolbar_links_access_filter
   - admin_toolbar_search
   - admin_toolbar_tools
   - asset_injector
