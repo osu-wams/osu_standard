@@ -311,6 +311,56 @@ function osu_standard_update_10013(&$sandbox): TranslatableMarkup {
 }
 
 /**
+ * Remove the DrupalFile CKEditor button.
+ */
+function osu_standard_update_10014(&$sandbox): TranslatableMarkup {
+  // Load the 'full_html' editor configuration.
+  $config_factory = \Drupal::service('config.factory');
+  $editor_config = $config_factory->getEditable('editor.editor.full_html');
+
+  if ($editor_config) {
+    // Get the current toolbar configuration.
+    $toolbar_config = $editor_config->get('settings.toolbar');
+
+    // Button to remove.
+    $button_to_remove = 'DrupalFile';
+
+    // Iterate through the toolbar configuration to find and remove the button.
+    $button_found = FALSE;
+    foreach ($toolbar_config['rows'] as &$row) {
+      foreach ($row as &$group) {
+        if (isset($group['items'])) {
+          if (($key = array_search($button_to_remove, $group['items'])) !== FALSE) {
+            unset($group['items'][$key]);
+            $group['items'] = array_values($group['items']); // Reindex the array.
+            $button_found = TRUE;
+          }
+        }
+      }
+    }
+
+    if ($button_found) {
+      // Save the updated toolbar configuration.
+      $editor_config->set('settings.toolbar', $toolbar_config);
+      $editor_config->save();
+
+      // Return a success message.
+      return t('The %button button was removed from the full_html editor toolbar.', [
+        '%button' => $button_to_remove,
+      ]);
+    }
+
+    // If the button was not found, return a message.
+    return t('The %button button was not found in the full_html editor toolbar.', [
+      '%button' => $button_to_remove,
+    ]);
+  }
+  else {
+    return t('The full_html editor configuration does not exist.');
+  }
+}
+
+/**
  * Installs an array of given modules.
  *
  * @param array $modules
