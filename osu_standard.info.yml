@@ -1,7 +1,7 @@
 name: OSU Standard
 type: profile
 description: 'Standard Drupal Installation Profile.'
-core_version_requirement: ^9 || ^10 || ^11
+core_version_requirement: ^10 || ^11
 version: 1.1.11
 distribution:
   name: Oregon State
@@ -14,7 +14,6 @@ dependencies:
   - breakpoint
   - ckeditor
   - config
-  - contact
   - contextual
   - datetime
   - dynamic_page_cache
@@ -46,7 +45,6 @@ dependencies:
   - telephone
   - text
   - toolbar
-  - tour
   - user
   - views
   - views_ui
@@ -141,7 +139,7 @@ dependencies:
   - token
   - toc_js
   - toc_js_per_node
-  - variationcache
+  - tour
   - views_bootstrap
   - views_bulk_edit
   - views_bulk_operations
