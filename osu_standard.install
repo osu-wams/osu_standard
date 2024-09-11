@@ -363,7 +363,7 @@ function osu_standard_update_10014(&$sandbox): TranslatableMarkup {
 /**
  * Update Editoria11y and Linkpurpose.
  */
-function osu_standard_update_10015(&$sandbox): TranslatableMarkup {
+function osu_standard_update_10016(&$sandbox): TranslatableMarkup {
   $editoria11y_ignore_elements = [
     '.block-local-tasks-block *',
     '.block-group-operations *',
