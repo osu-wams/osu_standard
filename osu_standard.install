@@ -361,6 +361,46 @@ function osu_standard_update_10014(&$sandbox): TranslatableMarkup {
 }
 
 /**
+ * Update Editoria11y and Linkpurpose.
+ */
+function osu_standard_update_10015(&$sandbox): TranslatableMarkup {
+  $editoria11y_ignore_elements = [
+    '.block-local-tasks-block *',
+    '.block-group-operations *',
+  ];
+  $config_factory = \Drupal::service('config.factory');
+  $editoria11y_settings = $config_factory->getEditable('editoria11y.settings');
+  $ignore_elements = array_filter(array_map('trim', explode(',', $editoria11y_settings->get('ignore_elements'))));
+  $ignore_elements = array_merge($ignore_elements, $editoria11y_ignore_elements);
+  $editoria11y_settings->set('ignore_elements', implode(',', $ignore_elements));
+  $editoria11y_settings->save();
+
+  $redundent_identifiers = [
+    '#block-madrone-main-menu a',
+    '#block-madrone-groupmenu a',
+  ];
+  $new_identifiers = [
+    '#madrone-primary-menu-container a',
+    '.block-superfish a',
+    '.block-menu a',
+    '.block-group-content-menu a',
+  ];
+  $linkpurpose_settings = $config_factory->getEditable('linkpurpose.settings');
+  $ignore_elements = array_filter(array_map('trim', explode(',', $linkpurpose_settings->get('ignore'))));
+  $ignore_elements = array_diff(
+    array_merge(
+      $ignore_elements,
+      $new_identifiers
+    ),
+    $redundent_identifiers
+  );
+  $linkpurpose_settings->set('ignore', implode(',', $ignore_elements));
+  $linkpurpose_settings->save();
+
+  return t('Updated editoria11y and linkpurpose');
+}
+
+/**
  * Installs an array of given modules.
  *
  * @param array $modules
