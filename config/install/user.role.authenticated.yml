@@ -1,4 +1,3 @@
-uuid: e9337d40-1ffa-4fd8-a6b5-c1b0c3b2bb59
 langcode: en
 status: true
 dependencies:
@@ -23,6 +22,7 @@ weight: -9
 is_admin: false
 permissions:
   - 'access administration pages'
+  - 'access content'
   - 'access responsive preview'
   - 'access shortcuts'
   - 'access toolbar'
