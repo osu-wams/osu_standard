@@ -361,6 +361,30 @@ function osu_standard_update_10014(&$sandbox): TranslatableMarkup {
 }
 
 /**
+ * Add other embed modes for media.
+ */
+function osu_standard_update_10015(&$sandbox): TranslatableMarkup {
+  // Load the 'full_html' filter configuration.
+  $config_factory = \Drupal::service('config.factory');
+  $editor_config = $config_factory->getEditable('filter.format.full_html');
+  $editor_filters = $editor_config->get('filters');
+  $media_view_modes = $editor_filters['media_embed']['settings']['allowed_view_modes'];
+  $osu_view_modes = [
+    "default" => "default",
+    "frameless" => "frameless",
+    "media_card" => "media_card",
+    "osu_orange_bottom" => "osu_orange_bottom",
+    "video_720" => "video_720",
+  ];
+
+  $updated_media_view_modes = array_merge($media_view_modes, $osu_view_modes);
+  $editor_filters['media_embed']['settings']['allowed_view_modes'] = $updated_media_view_modes;
+  $editor_config->set('filters', $editor_filters);
+  $editor_config->save();
+  return t('Updated embedding view modes');
+}
+
+/**
  * Update Editoria11y and Linkpurpose.
  */
 function osu_standard_update_10016(&$sandbox): TranslatableMarkup {

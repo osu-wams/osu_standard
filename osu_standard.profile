@@ -53,7 +53,6 @@ function osu_standard_default_modules(array &$install_state) {
     'ckeditor_div_manager',
     'osu_block_types',
     'osu_story',
-    'osu_groups_basic_group',
     'osu_profile',
     'osu_simple_tabs',
     'osu_library_hero',
@@ -61,6 +60,11 @@ function osu_standard_default_modules(array &$install_state) {
     'osu_library_three_column_equal',
     'osu_library_two_column_25_75',
     'osu_library_two_column_50_50',
+  ], TRUE);
+  // Adding these after to satisfy dependencies.
+  \Drupal::service('module_installer')->install([
+    'osu_groups',
+    'osu_groups_basic_group',
   ], TRUE);
 }
 
