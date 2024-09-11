@@ -6,7 +6,6 @@ dependencies:
     - filter.format.basic_html
   module:
     - admin_toolbar_search
-    - contact
     - exclude_node_title
     - file
     - filter
@@ -24,10 +23,8 @@ weight: -9
 is_admin: false
 permissions:
   - 'access administration pages'
-  - 'access content'
   - 'access responsive preview'
   - 'access shortcuts'
-  - 'access site-wide contact form'
   - 'access toolbar'
   - 'access tour'
   - 'delete own files'
