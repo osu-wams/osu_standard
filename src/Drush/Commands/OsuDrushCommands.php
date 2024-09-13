@@ -13,7 +13,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class OsuDrushCommands extends DrushCommands
 {
-
   /**
    * The entity type manager service.
    *
@@ -77,8 +76,12 @@ class OsuDrushCommands extends DrushCommands
    *
    * @return void
    */
-    private function updateGenerateAlias(string $entity_type, string $bundle = null, string $ids = null, bool $generate_alias): void
-    {
+    private function updateGenerateAlias(
+        string $entity_type,
+        string $bundle = null,
+        string $ids = null,
+        bool $generate_alias
+    ): void {
         $storage = $this->entityTypeManager->getStorage($entity_type);
         $query = $storage->getQuery();
       // No access checks needed.
@@ -121,7 +124,9 @@ class OsuDrushCommands extends DrushCommands
             $query->range($total, $this->batchSize);
         }
         $this->output()
-        ->writeln('Total ' . $entity_type . ' processed: ' . $total . '. Generate aliases automatically set to ' . ($generate_alias ? 'true' : 'false') . '.');
+        ->writeln('Total ' . $entity_type . ' processed: ' . $total .
+          '. Generate aliases automatically set to ' .
+          ($generate_alias ? 'true' : 'false') . '.');
     }
 
   /**
