@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @file
+ */
+
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Config\FileStorage;
@@ -332,7 +336,8 @@ function osu_standard_update_10014(&$sandbox): TranslatableMarkup {
         if (isset($group['items'])) {
           if (($key = array_search($button_to_remove, $group['items'])) !== FALSE) {
             unset($group['items'][$key]);
-            $group['items'] = array_values($group['items']); // Reindex the array.
+            // Reindex the array.
+            $group['items'] = array_values($group['items']);
             $button_found = TRUE;
           }
         }
@@ -471,7 +476,7 @@ function osu_standard_grant_permissions(array $roles, array $permissions): void 
       }
     }
   }
-  catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
+  catch (InvalidPluginDefinitionException | PluginNotFoundException $e) {
     Drupal::logger('osu_standard')->error($e->getMessage());
     throw new Exception('Unable to load user role storage.');
   }
