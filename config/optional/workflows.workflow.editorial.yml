@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - node.type.osu_simple_tabs
     - node.type.page
     - node.type.story
   module:
@@ -62,7 +61,6 @@ type_settings:
       weight: 1
   entity_types:
     node:
-      - osu_simple_tabs
       - page
       - story
   default_moderation_state: draft
