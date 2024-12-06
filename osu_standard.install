@@ -245,7 +245,8 @@ function osu_standard_update_10008(&$sandbox): TranslatableMarkup {
 }
 
 /**
- * Give DX, Architect and manage Webform the permission to use the Webform filter format.
+ * Give DX, Architect and manage Webform the permission to use the Webform
+ * filter format.
  */
 function osu_standard_update_10009(&$sandbox): TranslatableMarkup {
   $user_roles = [
@@ -433,7 +434,8 @@ function osu_standard_update_10016(&$sandbox): TranslatableMarkup {
 }
 
 /**
- * Add the Meta Image field to the Basic Page content type and set up the Metatag defautls.
+ * Add the Meta Image field to the Basic Page content type and set up the
+ * Metatag defautls.
  */
 function osu_standard_update_10017(&$sandbox) {
   $install_profile_source_path = _get_install_profile_source_path();
@@ -487,6 +489,19 @@ function osu_standard_update_10017(&$sandbox) {
 }
 
 /**
+ * Add filter_perms module and update module filter settings.
+ */
+function osu_standard_update_10018(&$sandbox): TranslatableMarkup {
+  osu_standard_install_modules(['filter_perms']);
+  /** @var \Drupal\Core\Config\Config $module_filter_settings */
+  $module_filter_settings = Drupal::service('config.factory')
+    ->getEditable('module_filter.settings');
+  $module_filter_settings->set('enabled_filters', ["permissions" => FALSE]);
+  $module_filter_settings->save();
+  return t('Added filter permissions module and enabled permissions filter.');
+}
+
+/**
  * Installs an array of given modules.
  *
  * @param array $modules
@@ -533,7 +548,7 @@ function osu_standard_grant_permissions(array $roles, array $permissions): void 
       }
     }
   }
-  catch (InvalidPluginDefinitionException | PluginNotFoundException $e) {
+  catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
     Drupal::logger('osu_standard')->error($e->getMessage());
     throw new Exception('Unable to load user role storage.');
   }
