@@ -91,6 +91,7 @@ dependencies:
   - feeds_ex
   - feeds_tamper
   - field_group
+  - filter_perms
   - fontawesome
   - google_analytics
   - google_cse
