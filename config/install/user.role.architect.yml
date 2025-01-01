@@ -27,6 +27,7 @@ dependencies:
     - captcha
     - config
     - contextual
+    - crop
     - date_ap_style
     - dropzonejs
     - easy_breadcrumb
@@ -111,6 +112,7 @@ permissions:
   - 'administer block_content form display'
   - 'administer blocks'
   - 'administer content types'
+  - 'administer crop types'
   - 'administer css assets injector'
   - 'administer display modes'
   - 'administer easy breadcrumb'
