@@ -502,6 +502,22 @@ function osu_standard_update_10018(&$sandbox): TranslatableMarkup {
 }
 
 /**
+ * Adding focal point module and permissions.
+ */
+function osu_standard_update_10019(&$sandbox): TranslatableMarkup {
+  osu_standard_install_modules(['crop', 'focal_point']);
+  $roles = [
+    'dx_administrator',
+    'architect',
+    'manage_site_configuration',
+  ];
+  osu_standard_grant_permissions($roles, ['administer crop types']);
+  // Just grant Administer crop to dx, doesn't seem to be used for focal.
+  osu_standard_grant_permissions(['dx_administrator'], ['administer crop']);
+  return t("Add Focal Point, Crop module and permissions");
+}
+
+/**
  * Installs an array of given modules.
  *
  * @param array $modules

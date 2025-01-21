@@ -92,6 +92,7 @@ dependencies:
   - feeds_tamper
   - field_group
   - filter_perms
+  - focal_point
   - fontawesome
   - google_analytics
   - google_cse
@@ -105,9 +106,9 @@ dependencies:
   - layout_builder_restrictions_by_region
   - libraries
   - linkit
+  - linkpurpose
   - media_bulk_upload
   - media_bulk_upload_dropzonejs
-  - linkpurpose
   - memcache
   - metatag
   - metatag_google_cse
@@ -137,9 +138,9 @@ dependencies:
   - superfish
   - tamper
   - text_field_formatter
-  - token
   - toc_js
   - toc_js_per_node
+  - token
   - tour
   - views_bootstrap
   - views_bulk_edit

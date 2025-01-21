@@ -6,6 +6,7 @@ dependencies:
     - captcha
     - config
     - contextual
+    - crop
     - date_ap_style
     - easy_breadcrumb
     - google_tag
@@ -30,8 +31,9 @@ permissions:
   - 'access contextual links'
   - 'access site in maintenance mode'
   - 'access site reports'
-  - 'administer ap style settings'
   - 'administer CAPTCHA settings'
+  - 'administer ap style settings'
+  - 'administer crop types'
   - 'administer easy breadcrumb'
   - 'administer google analytics'
   - 'administer google tag manager'
