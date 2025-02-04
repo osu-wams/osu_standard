@@ -38,7 +38,6 @@ dependencies:
     - field_ui
     - file
     - filter
-    - google_analytics
     - google_tag
     - honeypot
     - image
@@ -121,7 +120,6 @@ permissions:
   - 'administer feeds'
   - 'administer feeds_tamper'
   - 'administer filters'
-  - 'administer google analytics'
   - 'administer google tag manager'
   - 'administer honeypot'
   - 'administer image styles'

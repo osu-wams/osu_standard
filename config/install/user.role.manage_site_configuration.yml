@@ -35,7 +35,6 @@ permissions:
   - 'administer ap style settings'
   - 'administer crop types'
   - 'administer easy breadcrumb'
-  - 'administer google analytics'
   - 'administer google tag manager'
   - 'administer honeypot'
   - 'administer linkit profiles'

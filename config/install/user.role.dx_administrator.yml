@@ -41,7 +41,6 @@ dependencies:
     - file
     - filter
     - fontawesome
-    - google_analytics
     - google_cse
     - google_tag
     - honeypot
@@ -108,7 +107,6 @@ permissions:
   - 'access webform help'
   - 'access webform overview'
   - 'access webform submission user'
-  - 'add JS snippets for google analytics'
   - 'add section library templates'
   - 'administer CAPTCHA settings'
   - 'administer account settings'
@@ -137,7 +135,6 @@ permissions:
   - 'administer feeds_feed_type labels'
   - 'administer feeds_tamper'
   - 'administer filters'
-  - 'administer google analytics'
   - 'administer google tag manager'
   - 'administer honeypot'
   - 'administer image styles'
@@ -287,7 +284,6 @@ permissions:
   - 'mark as hidden in editoria11y'
   - 'mark as ok in editoria11y'
   - 'notify of path changes'
-  - 'opt-in or out of google analytics tracking'
   - 'override xmlsitemap link settings'
   - 'revert all revisions'
   - 'search Google CSE'
@@ -298,7 +294,6 @@ permissions:
   - 'synchronize configuration'
   - 'update any media'
   - 'update media'
-  - 'use PHP for google analytics tracking visibility'
   - 'use advanced search'
   - 'use bulk_image bulk upload form'
   - 'use exclude node title'
