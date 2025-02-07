@@ -99,6 +99,7 @@ dependencies:
   - google_tag
   - honeypot
   - image_effects
+  - imagemagick
   - layout_builder_blocks
   - layout_builder_component_attributes
   - layout_builder_operation_link
