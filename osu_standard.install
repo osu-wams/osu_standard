@@ -518,6 +518,18 @@ function osu_standard_update_10019(&$sandbox): TranslatableMarkup {
 }
 
 /**
+ * Set up ImageMagick for all sites
+ */
+function osu_standard_update_10020(&$sandbox): TranslatableMarkup {
+  osu_standard_install_modules(['imagemagick']);
+  $image_toolkit = Drupal::service('config.factory')
+    ->getEditable('system.image');
+  $image_toolkit->set('toolkit', 'imagemagick')->save();
+  $image_toolkit->save();
+  return t('ImageMagick installed and configured');
+}
+
+/**
  * Installs an array of given modules.
  *
  * @param array $modules
