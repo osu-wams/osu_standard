@@ -550,7 +550,15 @@ function osu_standard_update_10021(&$sandbox): TranslatableMarkup {
       "wrapper_classes" => "table-responsive",
     ],
   ];
+  $filter_image_lazy_load = [
+    "id" => "filter_image_lazy_load",
+    "provider" => "filter",
+    "status" => TRUE,
+    "weight" => -43,
+    "settings" => [],
+  ];
   $editor_filters["filter_responsive_table"] = $filter_responsive_table;
+  $editor_filters["filter_image_lazy_load"] = $filter_image_lazy_load;
   $editor_filters["filter_autop"]["status"] = TRUE;
   $editor_filters["editor_file_reference"]["status"] = FALSE;
 
