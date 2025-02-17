@@ -530,6 +530,58 @@ function osu_standard_update_10020(&$sandbox): TranslatableMarkup {
 }
 
 /**
+ * Enable and use the Responsive Table filter plugin.
+ */
+function osu_standard_update_10021(&$sandbox): TranslatableMarkup {
+  osu_standard_install_modules(['responsive_table_filter']);
+  /** @var \Drupal\Core\Config\ConfigFactory $editor_config */
+  $config_factory = Drupal::service('config.factory');
+  /** @var \Drupal\Core\Config\Config $editor_config */
+  $editor_config = $config_factory->getEditable('filter.format.full_html');
+  /** @var array $editor_filters */
+  $editor_filters = $editor_config->get('filters');
+  $filter_responsive_table = [
+    "id" => "filter_responsive_table",
+    "provider" => "responsive_table_filter",
+    "status" => TRUE,
+    "weight" => -45,
+    "settings" => [
+      "wrapper_element" => "div",
+      "wrapper_classes" => "table-responsive",
+    ],
+  ];
+  $filter_image_lazy_load = [
+    "id" => "filter_image_lazy_load",
+    "provider" => "filter",
+    "status" => TRUE,
+    "weight" => -43,
+    "settings" => [],
+  ];
+  $editor_filters["filter_responsive_table"] = $filter_responsive_table;
+  $editor_filters["filter_image_lazy_load"] = $filter_image_lazy_load;
+  $editor_filters["filter_autop"]["status"] = TRUE;
+  $editor_filters["editor_file_reference"]["status"] = FALSE;
+
+  // Reset weights of our plugins
+  $editor_filters["editor_file_reference"]["weight"] = -41;
+  $editor_filters["filter_align"]["weight"] = -50;
+  $editor_filters["filter_autop"]["weight"] = -44;
+  $editor_filters["filter_caption"]["weight"] = -49;
+  $editor_filters["filter_html"]["weight"] = -40;
+  $editor_filters["filter_html_escape"]["weight"] = -39;
+  $editor_filters["filter_html_image_secure"]["weight"] = -38;
+  $editor_filters["filter_htmlcorrector"]["weight"] = -42;
+  $editor_filters["filter_image_lazy_load"]["weight"] = -43;
+  $editor_filters["filter_url"]["weight"] = -47;
+  $editor_filters["linkit"]["weight"] = -46;
+  $editor_filters["media_embed"]["weight"] = -48;
+
+  $editor_config->set("filters", $editor_filters);
+  $editor_config->save();
+  return t('Enabled Responsive Table filter plugin');
+}
+
+/**
  * Installs an array of given modules.
  *
  * @param array $modules
