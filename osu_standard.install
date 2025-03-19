@@ -559,22 +559,22 @@ function osu_standard_update_10021(&$sandbox): TranslatableMarkup {
   ];
   $editor_filters["filter_responsive_table"] = $filter_responsive_table;
   $editor_filters["filter_image_lazy_load"] = $filter_image_lazy_load;
-  $editor_filters["filter_autop"]["status"] = TRUE;
+  $editor_filters["filter_autop"]["status"] = FALSE;
   $editor_filters["editor_file_reference"]["status"] = FALSE;
 
   // Reset weights of our plugins
-  $editor_filters["editor_file_reference"]["weight"] = -41;
   $editor_filters["filter_align"]["weight"] = -50;
-  $editor_filters["filter_autop"]["weight"] = -44;
   $editor_filters["filter_caption"]["weight"] = -49;
+  $editor_filters["media_embed"]["weight"] = -48;
+  $editor_filters["filter_url"]["weight"] = -47;
+  $editor_filters["linkit"]["weight"] = -46;
+  $editor_filters["filter_autop"]["weight"] = -44;
+  $editor_filters["filter_image_lazy_load"]["weight"] = -43;
+  $editor_filters["filter_htmlcorrector"]["weight"] = -42;
+  $editor_filters["editor_file_reference"]["weight"] = -41;
   $editor_filters["filter_html"]["weight"] = -40;
   $editor_filters["filter_html_escape"]["weight"] = -39;
   $editor_filters["filter_html_image_secure"]["weight"] = -38;
-  $editor_filters["filter_htmlcorrector"]["weight"] = -42;
-  $editor_filters["filter_image_lazy_load"]["weight"] = -43;
-  $editor_filters["filter_url"]["weight"] = -47;
-  $editor_filters["linkit"]["weight"] = -46;
-  $editor_filters["media_embed"]["weight"] = -48;
 
   $editor_config->set("filters", $editor_filters);
   $editor_config->save();
