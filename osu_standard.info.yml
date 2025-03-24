@@ -167,6 +167,7 @@ dependencies:
   - osu_media
   - osu_roles
   - osu_seckit
+  - osu_sitewide_alert
 themes:
   # Core Themes
   - claro
