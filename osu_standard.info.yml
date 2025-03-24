@@ -133,6 +133,8 @@ dependencies:
   - recaptcha
   - redirect
   - responsive_preview
+  - responsive_table_filter
+  - sitewide_alert
   - seckit
   - section_library
   - smart_date
