@@ -582,6 +582,63 @@ function osu_standard_update_10021(&$sandbox): TranslatableMarkup {
 }
 
 /**
+ * Sitewide Alerts for all OSU Drupal
+ */
+function osu_standard_update_10022(&$sandbox): TranslatableMarkup {
+  osu_standard_install_modules(['sitewide_alert', 'osu_sitewide_alert']);
+  $install_profile_source_path = _get_install_profile_source_path();
+  $sitewide_alert_config = $install_profile_source_path->read('sitewide_alert.settings');
+  // Setup the default settings for our site.
+  \Drupal::service('config.factory')
+    ->getEditable('sitewide_alert.settings')
+    ->setData($sitewide_alert_config)
+    ->save();
+  // Create Filter format.
+  Drupal::entityTypeManager()
+    ->getStorage('filter_format')
+    ->createFromStorageRecord($install_profile_source_path->read('filter.format.text_and_links'))
+    ->save();
+  // Create editor.
+  Drupal::entityTypeManager()
+    ->getStorage('editor')
+    ->createFromStorageRecord($install_profile_source_path->read('editor.editor.text_and_links'))
+    ->save();
+  // Create role.
+  Role::create($install_profile_source_path->read('user.role.alert_author'))
+    ->save();
+  // Grant permissions to existing roles.
+  $view_roles = ['anonymous', 'authenticated'];
+  $view_perm = 'view published sitewide alert entities';
+  $manage_roles = [
+    'administrator',
+    'dx_administrator',
+    'architect',
+    'manage_site_configuration',
+  ];
+  $manage_perms = [
+    'administer sitewide alert',
+    'administer sitewide alert entities',
+  ];
+  $full_access_roles = ['dx_administrator', 'architect'];
+  $full_access_perms = [
+    'add sitewide alert entities',
+    'administer sitewide alert',
+    'administer sitewide alert entities',
+    'delete all sitewide alert revisions',
+    'delete sitewide alert entities',
+    'edit sitewide alert entities',
+    'revert all sitewide alert revisions',
+    'use text format text_and_links',
+    'view all sitewide alert revisions',
+  ];
+  osu_standard_grant_permissions($view_roles, [$view_perm]);
+  osu_standard_grant_permissions($manage_roles, $manage_perms);
+  osu_standard_grant_permissions($full_access_roles, $full_access_perms);
+
+  return t('Sitewide Alerts installed and configured');
+}
+
+/**
  * Installs an array of given modules.
  *
  * @param array $modules

@@ -9,6 +9,7 @@ dependencies:
     - google_cse
     - media
     - search
+    - sitewide_alert
     - system
 id: anonymous
 label: 'Anonymous user'
@@ -21,3 +22,4 @@ permissions:
   - 'use exclude node title'
   - 'use text format restricted_html'
   - 'view media'
+  - 'view published sitewide alert entities'

@@ -13,6 +13,7 @@ dependencies:
     - responsive_preview
     - search
     - shortcut
+    - sitewide_alert
     - system
     - toolbar
     - tour
@@ -38,4 +39,5 @@ permissions:
   - 'use text format basic_html'
   - 'view media'
   - 'view own unpublished media'
+  - 'view published sitewide alert entities'
   - 'view the administration theme'

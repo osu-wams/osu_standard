@@ -9,22 +9,26 @@ dependencies:
     - crop
     - date_ap_style
     - easy_breadcrumb
+    - google_analytics
     - google_tag
     - honeypot
     - linkit
     - linkpurpose
+    - node_revision_delete
     - path
     - pathauto
+    - recaptcha
     - redirect
     - search
     - shortcut
     - simple_popup_blocks
+    - sitewide_alert
     - smart_date
     - system
     - toc_js
 id: manage_site_configuration
 label: 'Manage Site Configuration'
-weight: 1
+weight: 7
 is_admin: null
 permissions:
   - 'access administration pages'
@@ -50,6 +54,8 @@ permissions:
   - 'administer shortcuts'
   - 'administer simple_popup_blocks'
   - 'administer site configuration'
+  - 'administer sitewide alert'
+  - 'administer sitewide alert entities'
   - 'administer smart date formats'
   - 'administer themes'
   - 'administer toc_js'
