@@ -522,6 +522,7 @@ function osu_standard_update_10019(&$sandbox): TranslatableMarkup {
  */
 function osu_standard_update_10020(&$sandbox): TranslatableMarkup {
   osu_standard_install_modules(['imagemagick']);
+  /** @var \Drupal\Core\Config\Config $image_toolkit */
   $image_toolkit = Drupal::service('config.factory')
     ->getEditable('system.image');
   $image_toolkit->set('toolkit', 'imagemagick')->save();
@@ -534,7 +535,7 @@ function osu_standard_update_10020(&$sandbox): TranslatableMarkup {
  */
 function osu_standard_update_10021(&$sandbox): TranslatableMarkup {
   osu_standard_install_modules(['responsive_table_filter']);
-  /** @var \Drupal\Core\Config\ConfigFactory $editor_config */
+  /** @var \Drupal\Core\Config\ConfigFactory $config_factory */
   $config_factory = Drupal::service('config.factory');
   /** @var \Drupal\Core\Config\Config $editor_config */
   $editor_config = $config_factory->getEditable('filter.format.full_html');
@@ -636,6 +637,20 @@ function osu_standard_update_10022(&$sandbox): TranslatableMarkup {
   osu_standard_grant_permissions($full_access_roles, $full_access_perms);
 
   return t('Sitewide Alerts installed and configured');
+}
+
+/**
+ * Update FontAwesome version.
+ */
+function osu_standard_update_10023(&$sandbox) {
+  /** @var \Drupal\Core\Config\ConfigFactory $config_factory */
+  $config_factory = Drupal::service('config.factory');
+  /** @var \Drupal\Core\Config\Config $fontawesome_settings */
+  $fontawesome_settings = $config_factory->getEditable('fontawesome.settings');
+  $fontawesome_settings->set('external_svg_location', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css');
+  $fontawesome_settings->set('external_shim_location', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/v4-shims.min.css');
+  $fontawesome_settings->save();
+  return t('Updated FontAwesome version');
 }
 
 /**
