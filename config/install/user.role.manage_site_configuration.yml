@@ -22,7 +22,6 @@ dependencies:
     - search
     - shortcut
     - simple_popup_blocks
-    - sitewide_alert
     - smart_date
     - system
     - toc_js
@@ -44,6 +43,7 @@ permissions:
   - 'administer honeypot'
   - 'administer linkit profiles'
   - 'administer linkpurpose'
+  - 'administer madrone theme'
   - 'administer menu'
   - 'administer node_revision_delete'
   - 'administer pathauto'
@@ -54,8 +54,6 @@ permissions:
   - 'administer shortcuts'
   - 'administer simple_popup_blocks'
   - 'administer site configuration'
-  - 'administer sitewide alert'
-  - 'administer sitewide alert entities'
   - 'administer smart date formats'
   - 'administer themes'
   - 'administer toc_js'

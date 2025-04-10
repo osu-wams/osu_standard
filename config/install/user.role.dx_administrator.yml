@@ -59,6 +59,7 @@ dependencies:
     - node
     - node_revision_delete
     - oembed_providers
+    - osu_roles
     - paragraphs
     - path
     - pathauto
@@ -148,6 +149,7 @@ permissions:
   - 'administer layout builder component attributes'
   - 'administer linkit profiles'
   - 'administer linkpurpose'
+  - 'administer madrone theme'
   - 'administer media'
   - 'administer media display'
   - 'administer media fields'

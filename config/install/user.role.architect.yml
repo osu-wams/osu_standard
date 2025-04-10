@@ -155,8 +155,6 @@ permissions:
   - 'administer shortcuts'
   - 'administer simple_popup_blocks'
   - 'administer site configuration'
-  - 'administer sitewide alert'
-  - 'administer sitewide alert entities'
   - 'administer smart date formats'
   - 'administer taxonomy'
   - 'administer taxonomy_term display'

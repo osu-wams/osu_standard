@@ -611,10 +611,7 @@ function osu_standard_update_10022(&$sandbox): TranslatableMarkup {
   $view_roles = ['anonymous', 'authenticated'];
   $view_perm = 'view published sitewide alert entities';
   $manage_roles = [
-    'administrator',
     'dx_administrator',
-    'architect',
-    'manage_site_configuration',
   ];
   $manage_perms = [
     'administer sitewide alert',
@@ -623,8 +620,6 @@ function osu_standard_update_10022(&$sandbox): TranslatableMarkup {
   $full_access_roles = ['dx_administrator', 'architect'];
   $full_access_perms = [
     'add sitewide alert entities',
-    'administer sitewide alert',
-    'administer sitewide alert entities',
     'delete all sitewide alert revisions',
     'delete sitewide alert entities',
     'edit sitewide alert entities',
@@ -651,6 +646,16 @@ function osu_standard_update_10023(&$sandbox) {
   $fontawesome_settings->set('external_shim_location', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/v4-shims.min.css');
   $fontawesome_settings->save();
   return t('Updated FontAwesome version');
+}
+
+/**
+ * Grant new permissions for osu_roles
+ */
+function osu_standard_update_10024(&$sandbox): TranslatableMarkup {
+  $theme_admin = ['dx_administrator', 'architect', 'manage_site_configuration'];
+  $theme_admin_perms = ['administer madrone theme'];
+  osu_standard_grant_permissions($theme_admin, $theme_admin_perms);
+  return t('Granted new permissions for osu_roles');
 }
 
 /**
