@@ -2,7 +2,11 @@
 
 namespace Drupal\osu_standard\Drush\Commands;
 
+use Consolidation\OutputFormatters\StructuredData\RowsOfFields;
+use Drupal\cas\Service\CasUserManager;
+use Drupal\Core\Datetime\DateFormatter;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drush\Attributes as CLI;
 use Drush\Commands\DrushCommands;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -13,6 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class OsuDrushCommands extends DrushCommands
 {
+
   /**
    * The entity type manager service.
    *
@@ -28,13 +33,28 @@ class OsuDrushCommands extends DrushCommands
     private int $batchSize = 50;
 
   /**
+   * @var \Drupal\cas\Service\CasUserManager
+   */
+    private CasUserManager $casUserManager;
+
+  /**
+   * @var \Drupal\Core\Datetime\DateFormatter
+   */
+    private DateFormatter $dateFormatter;
+
+  /**
    * Construct an OSU Commands object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    */
-    public function __construct(EntityTypeManagerInterface $entityTypeManager)
-    {
+    public function __construct(
+        EntityTypeManagerInterface $entityTypeManager,
+        CasUserManager $casUserManager,
+        DateFormatter $dateFormatter
+    ) {
         $this->entityTypeManager = $entityTypeManager;
+        $this->casUserManager = $casUserManager;
+        $this->dateFormatter = $dateFormatter;
     }
 
   /**
@@ -42,37 +62,39 @@ class OsuDrushCommands extends DrushCommands
    *
    * @return static
    */
-    public static function create(ContainerInterface $container)
+    public static function create(ContainerInterface $container): static
     {
         return new static(
-            $container->get('entity_type.manager')
+            $container->get('entity_type.manager'),
+            $container->get('cas.user_manager'),
+            $container->get('date.formatter')
         );
     }
 
   /**
    * Set the "generate aliases automatically" setting for nodes.
-   *
-   * @param string $entity_type
-   *   The entity type (e.g. 'node').
-   * @param string|NULL $bundle
-   *   (optional) The Bundle to filter by.
-   * @param string|NULL $ids
-   *   (optional) A CSV string of entity ID's to update.
-   *
-   * @return void
-   * @command osu:set-generate-alias
-   * @aliases osugalias
    */
-    public function setGenerateAlias(string $entity_type, string $bundle = null, string $ids = null): void
+    #[CLI\Command(name: 'osu:set-generate-alias', aliases: ['osugalias'])]
+    #[CLI\Argument('entity_type', description: 'The entity type (e.g. node).')]
+    #[CLI\Argument('bundle', description: 'The bundle to filter by.')]
+    #[CLI\Argument('ids', description: "A CSV string of entity ID's to update.")]
+    public function setGenerateAlias(string $entity_type, string $bundle, string $ids): void
     {
         $this->updateGenerateAlias($entity_type, $bundle, $ids, true);
     }
 
   /**
+   * Updates the 'Generate automatic URL alias' setting for specified entities.
+   *
    * @param string $entity_type
-   * @param string|NULL $bundle
-   * @param string|NULL $ids
+   *   The type of the entity (e.g., 'node', 'user', 'taxonomy_term').
+   * @param string|null $bundle
+   *   (Optional) The entity bundle type to filter by, if applicable.
+   * @param string|null $ids
+   *   (Optional) A comma-separated list of entity IDs to process. If null, all
+   *   entities of the specified type and bundle will be processed.
    * @param bool $generate_alias
+   *   Whether to enable or disable automatic alias generation for the entities.
    *
    * @return void
    */
@@ -125,27 +147,63 @@ class OsuDrushCommands extends DrushCommands
         }
         $this->output()
         ->writeln('Total ' . $entity_type . ' processed: ' . $total .
-          '. Generate aliases automatically set to ' .
-          ($generate_alias ? 'true' : 'false') . '.');
+        '. Generate aliases automatically set to ' .
+        ($generate_alias ? 'true' : 'false') . '.');
     }
 
   /**
    * Set the "generate aliases automatically" setting for nodes.
-   *
-   * @param string $entity_type
-   *   The entity type (e.g. 'node').
-   * @param string|NULL $bundle
-   *   (optional) The Bundle to filter by.
-   * @param string|NULL $ids
-   *   (optional) A CSV string of entity ID's to update.
-   *
-   * @return void
-   *
-   * @command osu:unset-generate-alias
-   * @aliases osuusgalias
    */
-    public function unsetGenerateAlias(string $entity_type, string $bundle = null, string $ids = null): void
+    #[CLI\Command(name: 'osu:unset-generate-alias', aliases: ['osuusgalias'])]
+    #[CLI\Argument('entity_type', description: 'The entity type (e.g. node).')]
+    #[CLI\Argument('bundle', description: 'The bundle to filter by.')]
+    #[CLI\Argument('ids', description: "A CSV string of entity ID's to update.")]
+    public function unsetGenerateAlias(string $entity_type, string $bundle, string $ids): void
     {
         $this->updateGenerateAlias($entity_type, $bundle, $ids, false);
+    }
+
+  /**
+   * Generate a report of users.
+   */
+    #[CLI\Command(name: 'osu:user-report')]
+    #[CLI\Help('Generate a report of users.')]
+    #[CLI\FieldLabels(labels: [
+    'uid' => 'ID',
+    'name' => 'User Name',
+    'cas' => 'CAS',
+    'mail' => 'Email',
+    'status' => 'Status',
+    'init' => 'Initial Mail',
+    'created' => 'Created',
+    'changed' => 'Updated',
+    'access' => 'Last Access',
+    'login' => 'Last Logged In',
+    'node_count' => 'Total Authored Nodes',
+    'roles' => 'Roles',
+    ])]
+    public function userSiteReport($options = ['format' => 'yaml']): RowsOfFields
+    {
+        $rows = [];
+        $users = $this->entityTypeManager->getStorage('user')->loadMultiple();
+        $node_storage = $this->entityTypeManager->getStorage('node');
+        foreach ($users as $user) {
+            $user_node_count = $node_storage->loadByProperties(['uid' => $user->id()]);
+            $rows[$user->id()] = [
+            'uid' => $user->id(),
+            'name' => $user->get('name')->value,
+            'cas' => $this->casUserManager->getCasUsernameForAccount($user->id()),
+            'mail' => $user->get('mail')->value,
+            'status' => $user->get('status')->value,
+            'init' => $user->get('init')->value,
+            'created' => $user->get('created')->value,
+            'changed' => $user->get('changed')->value,
+            'access' => $user->get('access')->value,
+            'login' => $user->get('login')->value,
+            'node_count' => count($user_node_count),
+            'roles' => implode(', ', $user->getRoles()),
+            ];
+        }
+        return new RowsOfFields($rows);
     }
 }
