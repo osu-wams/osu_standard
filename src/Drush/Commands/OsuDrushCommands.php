@@ -4,7 +4,10 @@ namespace Drupal\osu_standard\Drush\Commands;
 
 use Consolidation\OutputFormatters\StructuredData\RowsOfFields;
 use Drupal\cas\Service\CasUserManager;
+use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
+use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Datetime\DateFormatter;
+use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drush\Attributes as CLI;
 use Drush\Commands\DrushCommands;
@@ -88,23 +91,33 @@ class OsuDrushCommands extends DrushCommands
    *
    * @param string $entity_type
    *   The type of the entity (e.g., 'node', 'user', 'taxonomy_term').
-   * @param string|null $bundle
-   *   (Optional) The entity bundle type to filter by, if applicable.
-   * @param string|null $ids
-   *   (Optional) A comma-separated list of entity IDs to process. If null, all
-   *   entities of the specified type and bundle will be processed.
    * @param bool $generate_alias
    *   Whether to enable or disable automatic alias generation for the entities.
+   * @param string $bundle
+   *   (Optional) The entity bundle type to filter by, if applicable.
+   * @param string $ids
+   *   (Optional) A comma-separated list of entity IDs to process. If null, all
+   *   entities of the specified type and bundle will be processed.
    *
    * @return void
    */
     private function updateGenerateAlias(
         string $entity_type,
-        string $bundle = null,
-        string $ids = null,
-        bool $generate_alias
+        bool $generate_alias,
+        string $bundle,
+        string $ids
     ): void {
-        $storage = $this->entityTypeManager->getStorage($entity_type);
+        try {
+            $storage = $this->entityTypeManager->getStorage($entity_type);
+        } catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
+            $this->logger()->error('Failed to load @type storage: @message', [
+            '@type' => $entity_type,
+            '@message' => $e->getMessage(),
+            ]);
+            $this->output()->writeln('Operation aborted due to storage error.');
+            return;
+        }
+
         $query = $storage->getQuery();
       // No access checks needed.
         $query->accessCheck(false);
@@ -131,24 +144,39 @@ class OsuDrushCommands extends DrushCommands
         }
         $query->range(0, $this->batchSize);
         $total = 0;
+        $errors = 0;
         while ($entitie_ids = $query->execute()) {
             $entities = $storage->loadMultiple($entitie_ids);
 
             foreach ($entities as $entity) {
-                $path = $entity->get('path');
-                $path->pathauto = $generate_alias;
-                $entity->save();
-                $total++;
+                try {
+                    $path = $entity->get('path');
+                    $path->pathauto = $generate_alias;
+                    $entity->save();
+                    $total++;
+                } catch (EntityStorageException $entityStorageException) {
+                    $errors++;
+                    $entity_id = $entity->id();
+                    $this->logger()
+                    ->error('Failed to update @type entity (ID: @id): @message', [
+                    '@type' => $entity_type,
+                    '@id' => $entity_id,
+                    '@message' => $entityStorageException->getMessage(),
+                    ]);
+                }
             }
             $this->output->writeln('Processed ' . $total . ' ' . $entity_type . '.');
 
           // Reset the query for the next batch.
             $query->range($total, $this->batchSize);
         }
-        $this->output()
-        ->writeln('Total ' . $entity_type . ' processed: ' . $total .
-        '. Generate aliases automatically set to ' .
-        ($generate_alias ? 'true' : 'false') . '.');
+        $summary = "Total $entity_type processed: $total";
+        if ($errors > 0) {
+            $summary .= " (with $errors errors, see logs for details)";
+        }
+        $summary .= ". Generate aliases automatically set to " . ($generate_alias ? 'true' : 'false') . '.';
+
+        $this->output()->writeln($summary);
     }
 
   /**
@@ -165,6 +193,9 @@ class OsuDrushCommands extends DrushCommands
 
   /**
    * Generate a report of users.
+   *
+   * @throws InvalidPluginDefinitionException
+   * @throws PluginNotFoundException
    */
     #[CLI\Command(name: 'osu:user-report')]
     #[CLI\Help('Generate a report of users.')]
@@ -178,16 +209,20 @@ class OsuDrushCommands extends DrushCommands
     'created' => 'Created',
     'changed' => 'Updated',
     'access' => 'Last Access',
-    'login' => 'Last Logged In',
-    'node_count' => 'Total Authored Nodes',
+    'login' => 'Last Login',
+    'node_count' => 'Node Count',
     'roles' => 'Roles',
     ])]
-    public function userSiteReport($options = ['format' => 'yaml']): RowsOfFields
+    public function userSiteReport($options = ['format' => 'table']): RowsOfFields
     {
         $rows = [];
+
         $users = $this->entityTypeManager->getStorage('user')->loadMultiple();
         $node_storage = $this->entityTypeManager->getStorage('node');
         foreach ($users as $user) {
+            if ($user->id() == 0) {
+                continue;
+            }
             $user_node_count = $node_storage->loadByProperties(['uid' => $user->id()]);
             $rows[$user->id()] = [
             'uid' => $user->id(),
