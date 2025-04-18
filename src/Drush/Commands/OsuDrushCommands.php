@@ -201,7 +201,7 @@ class OsuDrushCommands extends DrushCommands
     #[CLI\Help('Generate a report of users.')]
     #[CLI\FieldLabels(labels: [
     'uid' => 'ID',
-    'name' => 'User Name',
+    'name' => 'Username',
     'cas' => 'CAS',
     'mail' => 'Email',
     'status' => 'Status',
