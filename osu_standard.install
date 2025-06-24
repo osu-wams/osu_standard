@@ -659,6 +659,22 @@ function osu_standard_update_10024(&$sandbox): TranslatableMarkup {
 }
 
 /**
+ * Update permissions for the Sitewide Alerts.
+ */
+function osu_standard_update_10025(&$sandbox): TranslatableMarkup {
+  $roles = ['architect', 'alert_author'];
+  $perm = 'administer sitewide alert entities';
+
+  foreach ($roles as $role) {
+    $sitewide_update_role = Role::load($role);
+    $sitewide_update_role->grantPermission($perm);
+    $sitewide_update_role->save();
+  }
+
+  return t('Updated permissions for the Sitewide Alerts');
+}
+
+/**
  * Installs an array of given modules.
  *
  * @param array $modules
