@@ -35,7 +35,6 @@ permissions:
   - 'update any media'
   - 'update media'
   - 'use admin toolbar search'
-  - 'use exclude node title'
   - 'use text format basic_html'
   - 'view media'
   - 'view own unpublished media'

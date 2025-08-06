@@ -312,7 +312,6 @@ permissions:
   - 'use PHP for google analytics tracking visibility'
   - 'use advanced search'
   - 'use bulk_image bulk upload form'
-  - 'use exclude node title'
   - 'use text format basic_html'
   - 'use text format full_html'
   - 'use text format restricted_html'
