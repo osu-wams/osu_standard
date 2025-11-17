@@ -1,8 +1,6 @@
-nid_list:
-  - 2
 translation_sync: true
 search: true
-type: hidden
+type: remove
 content_types:
   page: user
   osu_profile: all
