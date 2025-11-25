@@ -675,6 +675,22 @@ function osu_standard_update_10025(&$sandbox): TranslatableMarkup {
 }
 
 /**
+ * Update configs with new changes.
+ *
+ * Updating Exclude node title
+ */
+function osu_standard_update_10026(&$sandbox) {
+  /** @var \Drupal\Core\Config\ConfigFactory $config_factory */
+  $config_factory = Drupal::service('config.factory');
+  /** @var \Drupal\Core\Config\Config $exclude_node_title */
+  $exclude_node_title = $config_factory->getEditable('exclude_node_title.settings');
+  $exclude_node_title->set('type', 'remove');
+  $exclude_node_title->clear('nid_list');
+  $exclude_node_title->save();
+  return t('Updated configs with new changes');
+}
+
+/**
  * Installs an array of given modules.
  *
  * @param array $modules
