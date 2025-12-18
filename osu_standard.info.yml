@@ -55,7 +55,6 @@ dependencies:
   - admin_toolbar
   - admin_toolbar_search
   - admin_toolbar_tools
-  - asset_injector
   - auto_entitylabel
   - better_exposed_filters
   - block_class
