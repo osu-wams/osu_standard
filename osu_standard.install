@@ -698,7 +698,7 @@ function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
       ->getStorage('asset_injector_css')
       ->loadMultiple();
   }
-  catch (InvalidPluginDefinitionException | PluginNotFoundException $e) {
+  catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
     Drupal::logger('osu_standard')->error($e->getMessage());
     throw new UpdateException('Could not load Asset Injector storage: ' . $e->getMessage());
   }
@@ -707,7 +707,7 @@ function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
       ->getStorage('asset_injector_js')
       ->loadMultiple();
   }
-  catch (InvalidPluginDefinitionException | PluginNotFoundException $e) {
+  catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
     Drupal::logger('osu_standard')->error($e->getMessage());
     throw new UpdateException('Could not load Asset Injector storage: ' . $e->getMessage());
   }
@@ -719,6 +719,19 @@ function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
     if ($module_handler->moduleExists('asset_injector')) {
       $module_installer->uninstall(['asset_injector']);
       return t('Removed Asset Injector module');
+    }
+    // Remove the role from any user and delete it.
+    $usersHavingRole = \Drupal::entityTypeManager()
+      ->getStorage('user')
+      ->loadByProperties(['roles' => 'manage_asset_injector']);
+    foreach ($usersHavingRole as $user) {
+      $user->removeRole('manage_asset_injector');
+      $user->save();
+    }
+    // Delete role.
+    $manage_asset_injector = Role::load('manage_asset_injector');
+    if (!empty($manage_asset_injector)) {
+      $manage_asset_injector->delete();
     }
     return t('Asset Injector module not installed');
   }
@@ -772,7 +785,7 @@ function osu_standard_grant_permissions(array $roles, array $permissions): void 
       }
     }
   }
-  catch (InvalidPluginDefinitionException | PluginNotFoundException $e) {
+  catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
     Drupal::logger('osu_standard')->error($e->getMessage());
     throw new Exception('Unable to load user role storage.');
   }
