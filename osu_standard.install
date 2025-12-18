@@ -718,8 +718,16 @@ function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
     $module_installer = Drupal::service('module_installer');
     if ($module_handler->moduleExists('asset_injector')) {
       $module_installer->uninstall(['asset_injector']);
-      return t('Removed Asset Injector module');
     }
+    // Revoke Permissions.
+    $role_dx_administrator = Role::load('dx_administrator');
+    $role_dx_administrator->revokePermission('administer css assets injector');
+    $role_dx_administrator->revokePermission('administer js assets injector');
+    $role_dx_administrator->save();
+    $role_architect = Role::load('architect');
+    $role_architect->revokePermission('administer css assets injector');
+    $role_architect->revokePermission('administer js assets injector');
+    $role_architect->save();
     // Remove the role from any user and delete it.
     $usersHavingRole = \Drupal::entityTypeManager()
       ->getStorage('user')
@@ -733,7 +741,7 @@ function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
     if (!empty($manage_asset_injector)) {
       $manage_asset_injector->delete();
     }
-    return t('Asset Injector module not installed');
+    return t('Asset Injector Module, Permission and Role removed');
   }
   return t('Asset Injector module not removed, used by CSS Injector or JS Injector');
 }
