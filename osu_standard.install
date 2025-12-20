@@ -698,7 +698,7 @@ function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
       ->getStorage('asset_injector_css')
       ->loadMultiple();
   }
-  catch (InvalidPluginDefinitionException | PluginNotFoundException $e) {
+  catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
     Drupal::logger('osu_standard')->error($e->getMessage());
     throw new UpdateException('Could not load Asset Injector storage: ' . $e->getMessage());
   }
@@ -707,7 +707,7 @@ function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
       ->getStorage('asset_injector_js')
       ->loadMultiple();
   }
-  catch (InvalidPluginDefinitionException | PluginNotFoundException $e) {
+  catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
     Drupal::logger('osu_standard')->error($e->getMessage());
     throw new UpdateException('Could not load Asset Injector storage: ' . $e->getMessage());
   }
@@ -793,7 +793,7 @@ function osu_standard_grant_permissions(array $roles, array $permissions): void 
       }
     }
   }
-  catch (InvalidPluginDefinitionException | PluginNotFoundException $e) {
+  catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
     Drupal::logger('osu_standard')->error($e->getMessage());
     throw new Exception('Unable to load user role storage.');
   }
