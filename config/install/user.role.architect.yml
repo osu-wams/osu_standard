@@ -18,7 +18,6 @@ dependencies:
     - node.type.webform
     - taxonomy.vocabulary.tags
   module:
-    - asset_injector
     - block
     - block_class
     - block_content
@@ -116,7 +115,6 @@ permissions:
   - 'administer blocks'
   - 'administer content types'
   - 'administer crop types'
-  - 'administer css assets injector'
   - 'administer display modes'
   - 'administer easy breadcrumb'
   - 'administer editoria11y checker'
@@ -128,7 +126,6 @@ permissions:
   - 'administer google tag manager'
   - 'administer honeypot'
   - 'administer image styles'
-  - 'administer js assets injector'
   - 'administer layout builder component attributes'
   - 'administer linkit profiles'
   - 'administer linkpurpose'

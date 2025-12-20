@@ -10,6 +10,7 @@ use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Utility\UpdateException;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\shortcut\Entity\Shortcut;
@@ -245,8 +246,7 @@ function osu_standard_update_10008(&$sandbox): TranslatableMarkup {
 }
 
 /**
- * Give DX, Architect and manage Webform the permission to use the Webform
- * filter format.
+ * Permit DX, Architect, and manage Webform to use the Webform filter format.
  */
 function osu_standard_update_10009(&$sandbox): TranslatableMarkup {
   $user_roles = [
@@ -434,8 +434,7 @@ function osu_standard_update_10016(&$sandbox): TranslatableMarkup {
 }
 
 /**
- * Add the Meta Image field to the Basic Page content type and set up the
- * Metatag defautls.
+ * Add Meta Image to Basic Page and set up Metatag defaults.
  */
 function osu_standard_update_10017(&$sandbox) {
   $install_profile_source_path = _get_install_profile_source_path();
@@ -518,7 +517,7 @@ function osu_standard_update_10019(&$sandbox): TranslatableMarkup {
 }
 
 /**
- * Set up ImageMagick for all sites
+ * Set up ImageMagick for all sites.
  */
 function osu_standard_update_10020(&$sandbox): TranslatableMarkup {
   osu_standard_install_modules(['imagemagick']);
@@ -563,7 +562,7 @@ function osu_standard_update_10021(&$sandbox): TranslatableMarkup {
   $editor_filters["filter_autop"]["status"] = FALSE;
   $editor_filters["editor_file_reference"]["status"] = FALSE;
 
-  // Reset weights of our plugins
+  // Reset weights of our plugins.
   $editor_filters["filter_align"]["weight"] = -50;
   $editor_filters["filter_caption"]["weight"] = -49;
   $editor_filters["media_embed"]["weight"] = -48;
@@ -583,7 +582,7 @@ function osu_standard_update_10021(&$sandbox): TranslatableMarkup {
 }
 
 /**
- * Sitewide Alerts for all OSU Drupal
+ * Sitewide Alerts for all OSU Drupal.
  */
 function osu_standard_update_10022(&$sandbox): TranslatableMarkup {
   osu_standard_install_modules(['sitewide_alert', 'osu_sitewide_alert']);
@@ -649,7 +648,7 @@ function osu_standard_update_10023(&$sandbox) {
 }
 
 /**
- * Grant new permissions for osu_roles
+ * Grant new permissions for osu_roles.
  */
 function osu_standard_update_10024(&$sandbox): TranslatableMarkup {
   $theme_admin = ['dx_administrator', 'architect', 'manage_site_configuration'];
@@ -677,9 +676,9 @@ function osu_standard_update_10025(&$sandbox): TranslatableMarkup {
 /**
  * Update configs with new changes.
  *
- * Updating Exclude node title
+ * Updating Exclude node title.
  */
-function osu_standard_update_10026(&$sandbox) {
+function osu_standard_update_10026(&$sandbox): TranslatableMarkup {
   /** @var \Drupal\Core\Config\ConfigFactory $config_factory */
   $config_factory = Drupal::service('config.factory');
   /** @var \Drupal\Core\Config\Config $exclude_node_title */
@@ -688,6 +687,63 @@ function osu_standard_update_10026(&$sandbox) {
   $exclude_node_title->clear('nid_list');
   $exclude_node_title->save();
   return t('Updated configs with new changes');
+}
+
+/**
+ * Remove Asset Injector if CSS and JS Injectors are empty.
+ */
+function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
+  try {
+    $injectors_css = Drupal::entityTypeManager()
+      ->getStorage('asset_injector_css')
+      ->loadMultiple();
+  }
+  catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
+    Drupal::logger('osu_standard')->error($e->getMessage());
+    throw new UpdateException('Could not load Asset Injector storage: ' . $e->getMessage());
+  }
+  try {
+    $injectors_js = Drupal::entityTypeManager()
+      ->getStorage('asset_injector_js')
+      ->loadMultiple();
+  }
+  catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
+    Drupal::logger('osu_standard')->error($e->getMessage());
+    throw new UpdateException('Could not load Asset Injector storage: ' . $e->getMessage());
+  }
+  if (is_countable($injectors_css) && count($injectors_css) === 0 && is_countable($injectors_js) && count($injectors_js) === 0) {
+    // Uninstall module.
+    $module_handler = Drupal::moduleHandler();
+    /** @var \Drupal\Core\ProxyClass\Extension\ModuleInstaller $module_installer */
+    $module_installer = Drupal::service('module_installer');
+    if ($module_handler->moduleExists('asset_injector')) {
+      $module_installer->uninstall(['asset_injector']);
+    }
+    // Revoke Permissions.
+    $role_dx_administrator = Role::load('dx_administrator');
+    $role_dx_administrator->revokePermission('administer css assets injector');
+    $role_dx_administrator->revokePermission('administer js assets injector');
+    $role_dx_administrator->save();
+    $role_architect = Role::load('architect');
+    $role_architect->revokePermission('administer css assets injector');
+    $role_architect->revokePermission('administer js assets injector');
+    $role_architect->save();
+    // Remove the role from any user and delete it.
+    $usersHavingRole = \Drupal::entityTypeManager()
+      ->getStorage('user')
+      ->loadByProperties(['roles' => 'manage_asset_injector']);
+    foreach ($usersHavingRole as $user) {
+      $user->removeRole('manage_asset_injector');
+      $user->save();
+    }
+    // Delete role.
+    $manage_asset_injector = Role::load('manage_asset_injector');
+    if (!empty($manage_asset_injector)) {
+      $manage_asset_injector->delete();
+    }
+    return t('Asset Injector Module, Permission and Role removed');
+  }
+  return t('Asset Injector module not removed, used by CSS Injector or JS Injector');
 }
 
 /**

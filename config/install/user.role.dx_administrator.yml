@@ -17,7 +17,6 @@ dependencies:
     - taxonomy.vocabulary.tags
   module:
     - acquia_connector
-    - asset_injector
     - auto_entitylabel
     - block
     - block_class
@@ -129,7 +128,6 @@ permissions:
   - 'administer content types'
   - 'administer crop'
   - 'administer crop types'
-  - 'administer css assets injector'
   - 'administer display modes'
   - 'administer easy breadcrumb'
   - 'administer editoria11y checker'
@@ -145,7 +143,6 @@ permissions:
   - 'administer google tag manager'
   - 'administer honeypot'
   - 'administer image styles'
-  - 'administer js assets injector'
   - 'administer layout builder component attributes'
   - 'administer linkit profiles'
   - 'administer linkpurpose'

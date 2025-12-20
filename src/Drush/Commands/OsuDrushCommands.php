@@ -20,7 +20,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class OsuDrushCommands extends DrushCommands
 {
-
   /**
    * The entity type manager service.
    *
@@ -109,7 +108,7 @@ class OsuDrushCommands extends DrushCommands
     ): void {
         try {
             $storage = $this->entityTypeManager->getStorage($entity_type);
-        } catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
+        } catch (InvalidPluginDefinitionException | PluginNotFoundException $e) {
             $this->logger()->error('Failed to load @type storage: @message', [
             '@type' => $entity_type,
             '@message' => $e->getMessage(),
