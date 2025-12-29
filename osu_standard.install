@@ -10,7 +10,6 @@ use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\Core\Utility\UpdateException;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\shortcut\Entity\Shortcut;
@@ -693,6 +692,7 @@ function osu_standard_update_10026(&$sandbox): TranslatableMarkup {
  * Remove Asset Injector if CSS and JS Injectors are empty.
  */
 function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
+  $injectors_css = $injectors_js = [];
   try {
     $injectors_css = Drupal::entityTypeManager()
       ->getStorage('asset_injector_css')
@@ -700,7 +700,6 @@ function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
   }
   catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
     Drupal::logger('osu_standard')->error($e->getMessage());
-    throw new UpdateException('Could not load Asset Injector storage: ' . $e->getMessage());
   }
   try {
     $injectors_js = Drupal::entityTypeManager()
@@ -709,7 +708,6 @@ function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
   }
   catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
     Drupal::logger('osu_standard')->error($e->getMessage());
-    throw new UpdateException('Could not load Asset Injector storage: ' . $e->getMessage());
   }
   if (is_countable($injectors_css) && count($injectors_css) === 0 && is_countable($injectors_js) && count($injectors_js) === 0) {
     // Uninstall module.
