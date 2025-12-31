@@ -745,6 +745,26 @@ function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
 }
 
 /**
+ * Update Editoria11y settings.
+ */
+function osu_standard_update_10028(&$sandbox) {
+  /** @var \Drupal\Core\Config\ConfigFactory $config_factory */
+  $config_factory = Drupal::service('config.factory');
+  /** @var \Drupal\Core\Config\Config $editoria11y_settings */
+  $editoria11y_settings = $config_factory->getEditable('editoria11y.settings');
+  $existing_ignore_elements = $editoria11y_settings->get('ignore_elements');
+  $existing_ignore_elements = explode(',', $existing_ignore_elements);
+  $new_ignore_elements = ['.live-feeds *', '.live-feeds-news *'];
+  foreach ($existing_ignore_elements as &$value) {
+    $value = trim($value, ' ');
+  }
+  $updated_ignore_elements = array_merge($existing_ignore_elements, $new_ignore_elements);
+  $editoria11y_settings->set('ignore_elements', implode(',', $updated_ignore_elements));
+  $editoria11y_settings->save();
+  return t('Updated Editoria11y settings to include new ignores');
+}
+
+/**
  * Installs an array of given modules.
  *
  * @param array $modules
