@@ -80,7 +80,6 @@ dependencies:
   - dropzonejs
   - easy_breadcrumb
   - editor_advanced_link
-  - editor_file
   - editoria11y
   - entity
   - entity_reference_revisions

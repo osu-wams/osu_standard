@@ -40,6 +40,7 @@ dependencies:
     - filter
     - google_analytics
     - google_tag
+    - help
     - honeypot
     - image
     - layout_builder
@@ -87,6 +88,7 @@ permissions:
   - 'access contextual links'
   - 'access feed overview'
   - 'access files overview'
+  - 'access help pages'
   - 'access media overview'
   - 'access own webform configuration'
   - 'access responsive preview'

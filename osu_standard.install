@@ -296,7 +296,7 @@ function osu_standard_update_10011(&$sandbox): TranslatableMarkup {
 /**
  * Update Fontawesome icon CSN version.
  */
-function osu_standard_update_10012(&$sandbox) {
+function osu_standard_update_10012(&$sandbox): TranslatableMarkup {
   $fontawesome_settings = Drupal::configFactory()
     ->getEditable('fontawesome.settings');
   $fontawesome_settings->set('external_svg_location', "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css");
@@ -435,7 +435,7 @@ function osu_standard_update_10016(&$sandbox): TranslatableMarkup {
 /**
  * Add Meta Image to Basic Page and set up Metatag defaults.
  */
-function osu_standard_update_10017(&$sandbox) {
+function osu_standard_update_10017(&$sandbox): TranslatableMarkup {
   $install_profile_source_path = _get_install_profile_source_path();
 
   try {
@@ -635,7 +635,7 @@ function osu_standard_update_10022(&$sandbox): TranslatableMarkup {
 /**
  * Update FontAwesome version.
  */
-function osu_standard_update_10023(&$sandbox) {
+function osu_standard_update_10023(&$sandbox): TranslatableMarkup {
   /** @var \Drupal\Core\Config\ConfigFactory $config_factory */
   $config_factory = Drupal::service('config.factory');
   /** @var \Drupal\Core\Config\Config $fontawesome_settings */
@@ -747,7 +747,7 @@ function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
 /**
  * Update Editoria11y settings.
  */
-function osu_standard_update_10028(&$sandbox) {
+function osu_standard_update_10028(&$sandbox): TranslatableMarkup {
   /** @var \Drupal\Core\Config\ConfigFactory $config_factory */
   $config_factory = Drupal::service('config.factory');
   /** @var \Drupal\Core\Config\Config $editoria11y_settings */
@@ -762,6 +762,18 @@ function osu_standard_update_10028(&$sandbox) {
   $editoria11y_settings->set('ignore_elements', implode(',', $updated_ignore_elements));
   $editoria11y_settings->save();
   return t('Updated Editoria11y settings to include new ignores');
+}
+
+/**
+ * Update required modules and permissions.
+ */
+function osu_standard_update_10029(&$sandbox): TranslatableMarkup {
+  Drupal::service('module_installer')->uninstall(['editor_file']);
+  osu_standard_grant_permissions([
+    'dx_administrator',
+    'architect',
+  ], ['access help pages']);
+  return t('Removed editor_file module and granted access help pages permission');
 }
 
 /**
