@@ -777,6 +777,14 @@ function osu_standard_update_10029(&$sandbox): TranslatableMarkup {
 }
 
 /**
+ * Add Token URL Plus module.
+ */
+function osu_standard_update_10030(&$sandbox): TranslatableMarkup {
+  osu_standard_install_modules(['token_url_plus']);
+  return t('Added Token URL Plus module, util such time that the feature is merged into token itself.');
+}
+
+/**
  * Installs an array of given modules.
  *
  * @param array $modules
