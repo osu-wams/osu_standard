@@ -89,6 +89,7 @@ dependencies:
   - feeds_ex
   - feeds_tamper
   - field_group
+  - file_delete
   - filter_perms
   - focal_point
   - fontawesome
