@@ -173,3 +173,7 @@ themes:
   - claro
   # OSU Theme
   - madrone
+recipes:
+  required:
+    - osu_tours
+    - osu_trash
