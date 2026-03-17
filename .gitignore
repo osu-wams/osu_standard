@@ -1,3 +1,10 @@
-/.idea/
-/node_modules/
-/vendor/
+composer.lock
+/vendor
+/node_modules
+# Ignore Apples
+.DS_Store
+# Ignore IDEs
+/.idea
+/.vim
+/.nvim.lua
+/.vscode
