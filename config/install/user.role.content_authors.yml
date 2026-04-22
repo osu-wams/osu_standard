@@ -1,8 +1,8 @@
-uuid: 1cf416cc-d8aa-4687-91a1-67cf891932a6
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_display.group.basic_group.default
     - core.entity_view_display.node.page.default
     - filter.format.full_html
     - media.type.audio
@@ -14,6 +14,7 @@ dependencies:
     - node.type.page
   module:
     - captcha
+    - contextual
     - dropzonejs
     - editoria11y
     - exclude_node_title
@@ -36,6 +37,7 @@ weight: -8
 is_admin: null
 permissions:
   - 'access content overview'
+  - 'access contextual links'
   - 'access files overview'
   - 'access media overview'
   - 'access site reports'
