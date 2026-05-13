@@ -587,20 +587,21 @@ function osu_standard_update_10022(&$sandbox): TranslatableMarkup {
   osu_standard_install_modules(['sitewide_alert', 'osu_sitewide_alert']);
   $install_profile_source_path = _get_install_profile_source_path();
   $sitewide_alert_config = $install_profile_source_path->read('sitewide_alert.settings');
+  $entity_type_manager = \Drupal::entityTypeManager();
   // Setup the default settings for our site.
   \Drupal::service('config.factory')
     ->getEditable('sitewide_alert.settings')
     ->setData($sitewide_alert_config)
     ->save();
   // Create Filter format.
-  Drupal::entityTypeManager()
-    ->getStorage('filter_format')
-    ->createFromStorageRecord($install_profile_source_path->read('filter.format.text_and_links'))
+  /** @var \Drupal\Core\Config\Entity\ConfigEntityStorage $filter_storage */
+  $filter_storage = $entity_type_manager->getStorage('filter_format');
+  $filter_storage->createFromStorageRecord($install_profile_source_path->read('filter.format.text_and_links'))
     ->save();
   // Create editor.
-  Drupal::entityTypeManager()
-    ->getStorage('editor')
-    ->createFromStorageRecord($install_profile_source_path->read('editor.editor.text_and_links'))
+  /** @var \Drupal\Core\Config\Entity\ConfigEntityStorage $editor_storage */
+  $editor_storage = $entity_type_manager->getStorage('editor');
+  $editor_storage->createFromStorageRecord($install_profile_source_path->read('editor.editor.text_and_links'))
     ->save();
   // Create role.
   Role::create($install_profile_source_path->read('user.role.alert_author'))
@@ -730,6 +731,7 @@ function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
     $usersHavingRole = \Drupal::entityTypeManager()
       ->getStorage('user')
       ->loadByProperties(['roles' => 'manage_asset_injector']);
+    /** @var \Drupal\user\Entity\User $user */
     foreach ($usersHavingRole as $user) {
       $user->removeRole('manage_asset_injector');
       $user->save();
@@ -823,6 +825,7 @@ function osu_standard_grant_permissions(array $roles, array $permissions): void 
   try {
     $role_storage = Drupal::entityTypeManager()->getStorage('user_role');
     foreach ($roles as $role_name) {
+      /** @var \Drupal\user\Entity\Role $role */
       if ($role = $role_storage->load($role_name)) {
         foreach ($permissions as $permission) {
           $role->grantPermission($permission);
