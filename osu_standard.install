@@ -787,6 +787,28 @@ function osu_standard_update_10030(&$sandbox): TranslatableMarkup {
 }
 
 /**
+ * Update Linkpurpose excludes.
+ */
+function osu_standard_update_10031(&$sandbox): TranslatableMarkup {
+  $config_factory = Drupal::service('config.factory');
+  $new_identifiers = [
+    '.localist-widget a',
+    '#lclst_widget_footer a',
+  ];
+  $linkpurpose_settings = $config_factory->getEditable('linkpurpose.settings');
+  $ignore_elements = array_filter(array_map('trim', explode(',', $linkpurpose_settings->get('ignore'))));
+  $ignore_elements =
+    array_merge(
+      $ignore_elements,
+      $new_identifiers
+    );
+  $linkpurpose_settings->set('ignore', implode(',', $ignore_elements));
+  $linkpurpose_settings->save();
+
+  return t('Updated Linkpurpose excludes to not check against localist widgets.');
+}
+
+/**
  * Installs an array of given modules.
  *
  * @param array $modules
