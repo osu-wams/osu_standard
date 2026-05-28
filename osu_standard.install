@@ -809,6 +809,19 @@ function osu_standard_update_10031(&$sandbox): TranslatableMarkup {
 }
 
 /**
+ * Remove auto create user on CAS accounts.
+ */
+function osu_standard_update_10032(&$sandbox): TranslatableMarkup {
+  $config_factory = Drupal::service('config.factory');
+  $cas_settings = $config_factory->getEditable('cas.settings');
+  $user_account_settings = $cas_settings->get('user_accounts');
+  $user_account_settings['auto_register'] = FALSE;
+  $cas_settings->set('user_accounts', $user_account_settings);
+  $cas_settings->save();
+  return t('Disable auto register users');
+}
+
+/**
  * Installs an array of given modules.
  *
  * @param array $modules
