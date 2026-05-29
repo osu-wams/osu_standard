@@ -822,6 +822,17 @@ function osu_standard_update_10032(&$sandbox): TranslatableMarkup {
 }
 
 /**
+ * Remove the frontpage view by default
+ */
+function osu_standard_update_10033(&$sandbox): TranslatableMarkup {
+  $config_factory = Drupal::service('config.factory');
+  $frontpage_view = $config_factory->getEditable('views.view.frontpage');
+  $frontpage_view->set('status', FALSE);
+  $frontpage_view->save();
+  return t('Disabled the frontpage view');
+}
+
+/**
  * Installs an array of given modules.
  *
  * @param array $modules
