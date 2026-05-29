@@ -29,7 +29,7 @@ proxy:
   proxy_chains: ''
 user_accounts:
   prevent_normal_login: true
-  auto_register: true
+  auto_register: false
   email_assignment_strategy: 0
   email_hostname: oregonstate.edu
   email_attribute: ''
