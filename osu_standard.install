@@ -833,6 +833,22 @@ function osu_standard_update_10033(&$sandbox): TranslatableMarkup {
 }
 
 /**
+ * Update Image Quality to be at 90.
+ */
+function osu_standard_update_10034(&$sandbox): TranslatableMarkup {
+  $config_factory = Drupal::service('config.factory');
+  $imagemagick_settings = $config_factory->getEditable('imagemagick.settings');
+  $imagemagick_settings->set('quality', 90);
+  $imagemagick_settings->save();
+
+  $gd_image_quality = $config_factory->getEditable('system.image.gd');
+  $gd_image_quality->set('jpeg_quality', 90);
+  $gd_image_quality->save();
+
+  return t('Updating image quality settings to be 90% instead of 75');
+}
+
+/**
  * Installs an array of given modules.
  *
  * @param array $modules
