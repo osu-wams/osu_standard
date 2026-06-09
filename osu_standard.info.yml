@@ -1,6 +1,6 @@
 name: OSU Standard
 type: profile
-description: 'Standard Drupal Installation Profile.'
+description: "Standard Drupal Installation Profile."
 core_version_requirement: ^10 || ^11
 version: 1.1.30
 distribution:
