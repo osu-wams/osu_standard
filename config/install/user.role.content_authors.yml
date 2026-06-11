@@ -19,6 +19,7 @@ dependencies:
     - editoria11y
     - exclude_node_title
     - file
+    - file_delete
     - filter
     - honeypot
     - layout_builder
@@ -56,6 +57,7 @@ permissions:
   - 'create remote_video media'
   - 'create url aliases'
   - 'delete all revisions'
+  - 'delete files immediately'
   - 'delete media'
   - 'delete own audio media'
   - 'delete own document media'
