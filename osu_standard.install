@@ -8,6 +8,7 @@
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Config\UnsupportedDataTypeConfigException;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\field\Entity\FieldConfig;
@@ -822,7 +823,7 @@ function osu_standard_update_10032(&$sandbox): TranslatableMarkup {
 }
 
 /**
- * Remove the frontpage view by default
+ * Remove the frontpage view by default.
  */
 function osu_standard_update_10033(&$sandbox): TranslatableMarkup {
   $config_factory = Drupal::service('config.factory');
@@ -846,6 +847,107 @@ function osu_standard_update_10034(&$sandbox): TranslatableMarkup {
   $gd_image_quality->save();
 
   return t('Updating image quality settings to be 90% instead of 75');
+}
+
+/**
+ * Update Drupal to use CKEditor 5 and UI Icons.
+ */
+function osu_standard_update_10035(&$sandbox): TranslatableMarkup {
+  $cke5_modules = [
+    'ckeditor5',
+    'ckeditor5_plugin_pack',
+    'ckeditor5_plugin_pack_find_and_replace',
+    'ckeditor5_plugin_pack_fullscreen',
+    'ckeditor5_plugin_pack_indent_block',
+    'ckeditor5_plugin_pack_text_transformation',
+    'ckeditor5_plugin_pack_word_count',
+    'ui_icons_backport',
+    'ui_icons_ckeditor5',
+    'ui_icons_field',
+    'ui_icons_field_linkit',
+    'ui_icons_font',
+    'ui_icons_library',
+    'ui_icons_picker',
+  ];
+  // Sweeping list of new modules.
+  osu_standard_install_modules($cke5_modules);
+  // Add ui icons permission.
+  osu_standard_grant_permissions(['authenticated'], ['access ui icons library']);
+  /** @var \Drupal\ckeditor5\SmartDefaultSettings $smart_defaults */
+  $smart_defaults = \Drupal::service('ckeditor5.smart_default_settings');
+  $editor_storage = \Drupal::entityTypeManager()->getStorage('editor');
+  $install_profile_source_path = _get_install_profile_source_path();
+  /** @var \Drupal\editor\Entity\Editor[] $editors */
+  $editors = $editor_storage->loadMultiple();
+  foreach ($editors as $name => $editor) {
+    if ($editor->getEditor() === 'ckeditor5') {
+      continue;
+    }
+    if ($name === 'webform_default') {
+      continue;
+    }
+    if ($editor->getEditor() ==='ckeditor') {
+      /** @var \Drupal\filter\Entity\FilterFormat $format */
+      $format = $editor->getFilterFormat();
+      // Set editor to ckeditor 5.
+      $editor->setEditor('ckeditor5');
+      // computerSettings returns a tuple of [$editor, $messages].
+      /**
+       * @var \Drupal\editor\Entity\Editor $editor
+       * @var array $messages
+       * */
+      [$editor, $messages] = $smart_defaults->computeSmartDefaultSettings($editor, $format);
+      // Get the settings.
+      $editor_settings = $editor->getSettings();
+      $new_editor = $install_profile_source_path->read("editor.editor.$name");
+      if ($new_editor) {
+        // Only Full HTML will have changes that need to be merged.
+        if ($name ==='full_html') {
+          $existing_styles = $editor_settings['plugins']['ckeditor5_style'];
+          $editor_settings = $new_editor['settings'];
+          $indexed = [];
+          $merged_styles = array_merge($existing_styles['styles'], $editor_settings['plugins']['ckeditor5_style']['styles']);
+          foreach ($merged_styles as $item) {
+            $indexed[$item['element']] = $item;
+          }
+          // Sort the new list of combined styles into one that should group
+          // like styles together.
+          usort($indexed, fn($a, $b) => strnatcasecmp($a['element'], $b['element']));
+          $merged_styles = ['styles' => array_values($indexed)];
+          $editor_settings['plugins']['ckeditor5_style'] = $merged_styles;
+          $editor->set('settings', $editor_settings);
+        }
+        // Replace all other editors with Config files.
+        else {
+          $editor_settings = $new_editor['settings'];
+        }
+        $editor->set('settings', $editor_settings);
+      }
+      $editor->save();
+      // Update filters to what we want them to be for all out formats.
+      try {
+        $new_filter = $install_profile_source_path->read("filter.format.$name");
+        if ($new_filter) {
+          if ($name === 'full_html') {
+            $format_filters = $format->get('filters');
+            $media_view_modes = array_merge($format_filters['media_embed']['settings']['allowed_view_modes'], $new_filter['filters']['media_embed']['settings']['allowed_view_modes']);
+            $updated_filters = array_merge($format_filters, $new_filter['filters']);
+            $updated_filters['media_embed']['settings']['allowed_view_modes'] = $media_view_modes;
+            $format->set('filters', $updated_filters);
+          }
+          else {
+            $format->set('filters', array_merge($format->get('filters'), $new_filter['filters']));
+          }
+        }
+      }
+      catch (UnsupportedDataTypeConfigException $exception) {
+        Drupal::logger('osu_standard')->error($exception->getMessage());
+        throw $exception;
+      }
+      $format->save();
+    }
+  }
+  return t('Updated all Text editors to use CKEditor 5');
 }
 
 /**
