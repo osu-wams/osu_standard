@@ -10,14 +10,17 @@ editor: ckeditor5
 settings:
   toolbar:
     items:
+      - fullscreen
       - undo
       - redo
       - '|'
+      - findAndReplace
+      - '|'
       - heading
+      - style
+      - '|'
       - bold
       - italic
-      - superscript
-      - subscript
       - '|'
       - removeFormat
       - '|'
@@ -30,72 +33,24 @@ settings:
       - indent
       - outdent
       - '|'
-      - drupalMedia
       - blockQuote
+      - drupalMedia
       - insertTable
       - specialCharacters
+      - icon
       - horizontalLine
-      - pageBreak
       - '|'
       - showBlocks
-      - fullscreen
       - sourceEditing
-      - code
-      - codeBlock
-      - style
-      - icon
   plugins:
     ckeditor5_alignment:
       enabled_alignments:
         - center
         - left
         - right
-    ckeditor5_codeBlock:
-      languages:
-        -
-          label: 'Plain text'
-          language: plaintext
-        -
-          label: C
-          language: c
-        -
-          label: 'C#'
-          language: cs
-        -
-          label: C++
-          language: cpp
-        -
-          label: CSS
-          language: css
-        -
-          label: Diff
-          language: diff
-        -
-          label: HTML
-          language: html
-        -
-          label: Java
-          language: java
-        -
-          label: JavaScript
-          language: javascript
-        -
-          label: PHP
-          language: php
-        -
-          label: Python
-          language: python
-        -
-          label: Ruby
-          language: ruby
-        -
-          label: TypeScript
-          language: typescript
-        -
-          label: XML
-          language: xml
     ckeditor5_heading:
       enabled_headings:
+        - heading1
         - heading2
         - heading3
         - heading4
@@ -106,6 +61,8 @@ settings:
         reversed: true
         startIndex: true
       multiBlock: true
+    ckeditor5_plugin_pack_find_and_replace__find_and_replace:
+      ui_type: dialog
     ckeditor5_plugin_pack_indent_block__indent_block:
       enabled: true
     ckeditor5_plugin_pack_text_transformation__text_transformation:
@@ -176,15 +133,32 @@ settings:
       word_count_enabled: true
       word_count_mode: words_chars
     ckeditor5_sourceEditing:
-      allowed_tags: {  }
+      allowed_tags:
+        - '<dl>'
+        - '<dt>'
+        - '<dd>'
+        - '<cite>'
+        - '<blockquote cite>'
     ckeditor5_style:
       styles:
         -
-          label: 'Dark Table'
-          element: '<table class="osu-table">'
+          label: 'Subheading (Muted)'
+          element: '<h2 class="text-muted">'
         -
-          label: 'Beaver Orange Table'
-          element: '<table class="osu-table-orange">'
+          label: 'Subheading (Light Weight)'
+          element: '<h2 class="fw-normal">'
+        -
+          label: 'Subheading Small'
+          element: '<h3 class="text-muted">'
+        -
+          label: 'Compact Feature Heading'
+          element: '<h2 class="display-6">'
+        -
+          label: 'Compact Sub Heading'
+          element: '<h3 class="display-6">'
+        -
+          label: Uppercase
+          element: '<p class="text-uppercase">'
         -
           label: 'Display 1'
           element: '<p class="display-1">'
@@ -221,6 +195,42 @@ settings:
         -
           label: 'Font Size 6'
           element: '<p class="fs-6">'
+        -
+          label: 'Font Size 7'
+          element: '<p class="fs-7">'
+        -
+          label: Lead
+          element: '<p class="lead">'
+        -
+          label: Smaller
+          element: '<p class="small">'
+        -
+          label: 'Success Callout'
+          element: '<p class="bg-success text-white p-3">'
+        -
+          label: 'Info Callout'
+          element: '<p class="bg-info text-white p-3">'
+        -
+          label: 'Warning Callout'
+          element: '<p class="bg-warning p-3">'
+        -
+          label: 'Left Callout'
+          element: '<p class="border-start border-4 ps-3">'
+        -
+          label: 'Dark Table'
+          element: '<table class="osu-table">'
+        -
+          label: 'Caption Top'
+          element: '<table class="caption-top">'
+        -
+          label: 'Beaver Orange Table'
+          element: '<table class="osu-table-orange">'
+        -
+          label: 'Orange Table Caption Top'
+          element: '<table class="osu-table-orange caption-top">'
+        -
+          label: Highlight
+          element: '<span class="mark">'
     ckeditor_link_styles_linkStyles:
       styles: {  }
     editor_advanced_link_link:

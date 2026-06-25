@@ -20,7 +20,7 @@ settings:
       - sourceEditing
   plugins:
     ckeditor5_plugin_pack_text_transformation__text_transformation:
-      enabled: false
+      enabled: true
       extra_transformations: ''
       extra_regex_transformations: {  }
       groups:
@@ -84,7 +84,7 @@ settings:
               enabled: 0
           enabled: 0
     ckeditor5_plugin_pack_word_count__word_count:
-      word_count_enabled: false
+      word_count_enabled: true
       word_count_mode: words_chars
     ckeditor5_sourceEditing:
       allowed_tags:

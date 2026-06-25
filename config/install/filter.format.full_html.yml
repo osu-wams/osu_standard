@@ -2,12 +2,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.media.1400x900
+    - core.entity_view_mode.media.400x375
+    - core.entity_view_mode.media.800x450
     - core.entity_view_mode.media.frameless
     - core.entity_view_mode.media.full
-    - core.entity_view_mode.media.hero_background
     - core.entity_view_mode.media.media_card
-    - core.entity_view_mode.media.osu_orange_bottom
     - core.entity_view_mode.media.video_720
   module:
     - editor
@@ -15,41 +14,41 @@ dependencies:
     - media
     - responsive_table_filter
     - ui_icons_text
-name: "Full HTML"
+name: 'Full HTML'
 format: full_html
 weight: -10
 filters:
   editor_file_reference:
     id: editor_file_reference
     provider: editor
-    status: false
-    weight: -40
-    settings: {}
+    status: true
+    weight: -42
+    settings: {  }
   filter_align:
     id: filter_align
     provider: filter
     status: true
     weight: -50
-    settings: {}
+    settings: {  }
   filter_autop:
     id: filter_autop
     provider: filter
     status: false
-    weight: -41
-    settings: {}
+    weight: -40
+    settings: {  }
   filter_caption:
     id: filter_caption
     provider: filter
     status: true
     weight: -49
-    settings: {}
+    settings: {  }
   filter_html:
     id: filter_html
     provider: filter
     status: false
     weight: -39
     settings:
-      allowed_html: '<table class="osu-table osu-table-orange"> <p class="display-1 display-2 display-3 display-4 display-5 display-6 fs-1 fs-2 fs-3 fs-4 fs-5 fs-6">'
+      allowed_html: '<dl> <dt> <dd> <cite> <blockquote cite> <h2 class="text-muted fw-normal display-6"> <h3 class="text-muted display-6"> <p class="text-uppercase display-1 display-2 display-3 display-4 display-5 display-6 fs-1 fs-2 fs-3 fs-4 fs-5 fs-6 fs-7 lead small bg-success text-white p-3 bg-info bg-warning border-start border-4 ps-3"> <table class="osu-table caption-top osu-table-orange"> <span class="mark">'
       filter_html_help: true
       filter_html_nofollow: false
   filter_html_escape:
@@ -57,30 +56,30 @@ filters:
     provider: filter
     status: false
     weight: -38
-    settings: {}
+    settings: {  }
   filter_html_image_secure:
     id: filter_html_image_secure
     provider: filter
     status: false
     weight: -37
-    settings: {}
+    settings: {  }
   filter_htmlcorrector:
     id: filter_htmlcorrector
     provider: filter
     status: true
-    weight: -42
-    settings: {}
+    weight: -45
+    settings: {  }
   filter_image_lazy_load:
     id: filter_image_lazy_load
     provider: filter
     status: true
-    weight: -43
-    settings: {}
+    weight: -41
+    settings: {  }
   filter_responsive_table:
     id: filter_responsive_table
     provider: responsive_table_filter
     status: true
-    weight: -44
+    weight: -46
     settings:
       wrapper_element: div
       wrapper_classes: table-responsive
@@ -88,7 +87,7 @@ filters:
     id: filter_url
     provider: filter
     status: true
-    weight: -46
+    weight: -44
     settings:
       filter_url_length: 72
   icon_embed:
@@ -103,7 +102,7 @@ filters:
     id: linkit
     provider: linkit
     status: true
-    weight: -45
+    weight: -43
     settings:
       title: true
       media_substitution: metadata
@@ -116,12 +115,11 @@ filters:
       default_view_mode: frameless
       allowed_view_modes:
         default: default
-        1400x900: 1400x900
+        400x375: 400x375
+        800x450: 800x450
         frameless: frameless
         full: full
-        hero_background: hero_background
         media_card: media_card
-        osu_orange_bottom: osu_orange_bottom
         video_720: video_720
       allowed_media_types:
         document: document
