@@ -822,7 +822,7 @@ function osu_standard_update_10032(&$sandbox): TranslatableMarkup {
 }
 
 /**
- * Remove the frontpage view by default
+ * Remove the frontpage view by default.
  */
 function osu_standard_update_10033(&$sandbox): TranslatableMarkup {
   $config_factory = Drupal::service('config.factory');
@@ -846,6 +846,15 @@ function osu_standard_update_10034(&$sandbox): TranslatableMarkup {
   $gd_image_quality->save();
 
   return t('Updating image quality settings to be 90% instead of 75');
+}
+
+/**
+ * Add the permission 'administer media display' to Architects.
+ */
+function osu_standard_update_10035(&$sandbox): TranslatableMarkup {
+  osu_standard_grant_permissions(['architect'], ['administer media display']);
+
+  return t('Adding Madrone Administration theme permissions.');
 }
 
 /**
