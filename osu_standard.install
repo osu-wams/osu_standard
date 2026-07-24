@@ -852,7 +852,7 @@ function osu_standard_update_10034(&$sandbox): TranslatableMarkup {
 /**
  * Update Drupal to use CKEditor 5 and UI Icons.
  */
-function osu_standard_update_10035(&$sandbox): TranslatableMarkup {
+function osu_standard_update_10036(&$sandbox): TranslatableMarkup {
   $cke5_modules = [
     'ckeditor5',
     'ckeditor5_plugin_pack',
