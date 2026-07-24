@@ -2,7 +2,7 @@ name: OSU Standard
 type: profile
 description: "Standard Drupal Installation Profile."
 core_version_requirement: ^10 || ^11
-version: 1.1.30
+version: 1.1.32
 distribution:
   name: Oregon State
   langcode: en
@@ -169,7 +169,6 @@ dependencies:
   - webform
   - webform_access
   - webform_attachment
-  - webform_bootstrap
   - webform_node
   - webform_ui
   - xmlsitemap

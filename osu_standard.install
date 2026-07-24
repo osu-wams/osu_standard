@@ -850,6 +850,15 @@ function osu_standard_update_10034(&$sandbox): TranslatableMarkup {
 }
 
 /**
+ * Add the permission 'administer media display' to Architects.
+ */
+function osu_standard_update_10035(&$sandbox): TranslatableMarkup {
+  osu_standard_grant_permissions(['architect'], ['administer media display']);
+
+  return t('Adding Madrone Administration theme permissions.');
+}
+
+/**
  * Update Drupal to use CKEditor 5 and UI Icons.
  */
 function osu_standard_update_10036(&$sandbox): TranslatableMarkup {
