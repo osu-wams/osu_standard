@@ -2,26 +2,31 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.media.1400x900
     - core.entity_view_mode.media.400x375
     - core.entity_view_mode.media.800x450
+    - core.entity_view_mode.media.fluid_image
     - core.entity_view_mode.media.frameless
     - core.entity_view_mode.media.full
+    - core.entity_view_mode.media.hero_background
+    - core.entity_view_mode.media.hero_background_w_caption
     - core.entity_view_mode.media.media_card
+    - core.entity_view_mode.media.osu_orange_bottom
     - core.entity_view_mode.media.video_720
   module:
-    - editor
-    - linkit
-    - media
-    - responsive_table_filter
-    - ui_icons_text
+    1: editor
+    2: linkit
+    3: media
+    4: responsive_table_filter
+    6: ui_icons_text
 name: 'Full HTML'
 format: full_html
-weight: -10
+weight: -50
 filters:
   editor_file_reference:
     id: editor_file_reference
     provider: editor
-    status: true
+    status: false
     weight: -42
     settings: {  }
   filter_align:
@@ -48,7 +53,7 @@ filters:
     status: false
     weight: -39
     settings:
-      allowed_html: '<dl> <dt> <dd> <cite> <blockquote cite> <h2 class="text-muted fw-normal display-6"> <h3 class="text-muted display-6"> <p class="text-uppercase display-1 display-2 display-3 display-4 display-5 display-6 fs-1 fs-2 fs-3 fs-4 fs-5 fs-6 fs-7 lead small bg-success text-white p-3 bg-info bg-warning border-start border-4 ps-3"> <table class="osu-table caption-top osu-table-orange"> <span class="mark">'
+      allowed_html: '<dl> <dt> <dd> <cite> <blockquote cite> <span> <p class="display-1 display-2 display-3 display-4 display-5 display-6 fs-1 fs-2 fs-3 fs-4 fs-5 fs-6 fs-7"> <a class="icon-link"> <table class="caption-top osu-table osu-table-orange">'
       filter_html_help: true
       filter_html_nofollow: false
   filter_html_escape:
@@ -72,7 +77,7 @@ filters:
   filter_image_lazy_load:
     id: filter_image_lazy_load
     provider: filter
-    status: true
+    status: false
     weight: -41
     settings: {  }
   filter_responsive_table:
@@ -97,6 +102,7 @@ filters:
     weight: -47
     settings:
       allowed_icon_pack:
+        font_awesome: font_awesome
         osuicons: osuicons
   linkit:
     id: linkit
@@ -115,11 +121,16 @@ filters:
       default_view_mode: frameless
       allowed_view_modes:
         default: default
+        1400x900: 1400x900
         400x375: 400x375
         800x450: 800x450
+        fluid_image: fluid_image
         frameless: frameless
         full: full
+        hero_background: hero_background
+        hero_background_w_caption: hero_background_w_caption
         media_card: media_card
+        osu_orange_bottom: osu_orange_bottom
         video_720: video_720
       allowed_media_types:
         document: document

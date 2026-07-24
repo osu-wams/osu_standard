@@ -127,7 +127,6 @@ settings:
         - '<dl>'
         - '<dt>'
         - '<dd>'
-        - '<img src alt height width data-entity-type data-entity-uuid data-align data-caption>'
         - '<blockquote cite>'
         - '<ul type>'
         - '<ol type>'
@@ -137,15 +136,11 @@ settings:
         - '<h5 id>'
         - '<h6 id>'
         - '<a hreflang data-entity-type data-entity-uuid>'
+        - '<span>'
     ckeditor_link_styles_linkStyles:
       styles: {  }
     editor_advanced_link_link:
       enabled_attributes: {  }
 image_upload:
-  status: true
-  scheme: public
-  directory: inline-images
-  max_size: null
-  max_dimensions:
-    width: null
-    height: null
+  status: false
+

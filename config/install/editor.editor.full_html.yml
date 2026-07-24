@@ -139,26 +139,9 @@ settings:
         - '<dd>'
         - '<cite>'
         - '<blockquote cite>'
+        - '<span>'
     ckeditor5_style:
       styles:
-        -
-          label: 'Subheading (Muted)'
-          element: '<h2 class="text-muted">'
-        -
-          label: 'Subheading (Light Weight)'
-          element: '<h2 class="fw-normal">'
-        -
-          label: 'Subheading Small'
-          element: '<h3 class="text-muted">'
-        -
-          label: 'Compact Feature Heading'
-          element: '<h2 class="display-6">'
-        -
-          label: 'Compact Sub Heading'
-          element: '<h3 class="display-6">'
-        -
-          label: Uppercase
-          element: '<p class="text-uppercase">'
         -
           label: 'Display 1'
           element: '<p class="display-1">'
@@ -199,38 +182,20 @@ settings:
           label: 'Font Size 7'
           element: '<p class="fs-7">'
         -
-          label: Lead
-          element: '<p class="lead">'
-        -
-          label: Smaller
-          element: '<p class="small">'
-        -
-          label: 'Success Callout'
-          element: '<p class="bg-success text-white p-3">'
-        -
-          label: 'Info Callout'
-          element: '<p class="bg-info text-white p-3">'
-        -
-          label: 'Warning Callout'
-          element: '<p class="bg-warning p-3">'
-        -
-          label: 'Left Callout'
-          element: '<p class="border-start border-4 ps-3">'
-        -
-          label: 'Dark Table'
-          element: '<table class="osu-table">'
+          label: 'Icon Link'
+          element: '<a class="icon-link">'
         -
           label: 'Caption Top'
           element: '<table class="caption-top">'
+        -
+          label: 'Dark Table'
+          element: '<table class="osu-table">'
         -
           label: 'Beaver Orange Table'
           element: '<table class="osu-table-orange">'
         -
           label: 'Orange Table Caption Top'
           element: '<table class="osu-table-orange caption-top">'
-        -
-          label: Highlight
-          element: '<span class="mark">'
     ckeditor_link_styles_linkStyles:
       styles: {  }
     editor_advanced_link_link:
@@ -248,3 +213,4 @@ image_upload:
   max_dimensions:
     width: null
     height: null
+
