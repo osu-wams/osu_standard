@@ -12,7 +12,7 @@ dependencies:
   - block
   - block_content
   - breakpoint
-  - ckeditor
+  - ckeditor5
   - config
   - contextual
   - datetime
@@ -69,8 +69,13 @@ dependencies:
   - charts_blocks
   - charts_highcharts
   - charts_highcharts_drilldown
-  - ckeditor_liststyle
-  - ckeditor_scayt
+  - ckeditor5_plugin_pack
+  - ckeditor5_plugin_pack_find_and_replace
+  - ckeditor5_plugin_pack_fullscreen
+  - ckeditor5_plugin_pack_indent_block
+  - ckeditor5_plugin_pack_text_transformation
+  - ckeditor5_plugin_pack_word_count
+  - ckeditor_link_styles
   - colorbox
   - ctools
   - ctools_block
@@ -133,9 +138,9 @@ dependencies:
   - redirect
   - responsive_preview
   - responsive_table_filter
-  - sitewide_alert
   - seckit
   - section_library
+  - sitewide_alert
   - smart_date
   - superfish
   - tamper
@@ -145,6 +150,13 @@ dependencies:
   - token
   - token_url_plus
   - tour
+  - ui_icons_backport
+  - ui_icons_ckeditor5
+  - ui_icons_field
+  - ui_icons_field_linkit
+  - ui_icons_font
+  - ui_icons_library
+  - ui_icons_picker
   - views_bootstrap
   - views_bulk_edit
   - views_bulk_operations
@@ -159,7 +171,6 @@ dependencies:
   - xmlsitemap_custom
   # Custom Modules
   - osu_bootstrap_layout_builder
-  - osu_ckeditor_plugins
   - osu_google_tag
   - osu_simple_popup_blocks
   - osu_default_content

@@ -8,6 +8,7 @@ dependencies:
     - filter.format.full_html
     - filter.format.restricted_html
     - filter.format.text_and_links
+    - filter.format.webform_default
     - media.type.audio
     - media.type.document
     - media.type.image
@@ -37,6 +38,7 @@ dependencies:
     - feeds_tamper
     - field_ui
     - file
+    - file_delete
     - filter
     - google_analytics
     - google_tag
@@ -208,6 +210,8 @@ permissions:
   - 'delete any webform content'
   - 'delete any webform submission'
   - 'delete any webform'
+  - 'delete files immediately'
+  - 'delete files override usage'
   - 'delete media'
   - 'delete own audio media'
   - 'delete own document media'

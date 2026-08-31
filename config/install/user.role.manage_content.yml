@@ -20,6 +20,7 @@ dependencies:
     - exclude_node_title
     - field_ui
     - file
+    - file_delete
     - filter
     - honeypot
     - layout_builder
@@ -73,6 +74,7 @@ permissions:
   - 'delete any page content'
   - 'delete any remote_video media'
   - 'delete any webform content'
+  - 'delete files immediately'
   - 'delete media'
   - 'delete own audio media'
   - 'delete own document media'

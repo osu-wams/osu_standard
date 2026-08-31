@@ -8,6 +8,7 @@
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Config\UnsupportedDataTypeConfigException;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\field\Entity\FieldConfig;
@@ -233,14 +234,16 @@ function osu_standard_update_10007(&$sandbox): TranslatableMarkup {
  */
 function osu_standard_update_10008(&$sandbox): TranslatableMarkup {
   $bootstrap_style_updates = [
-    "items_alignment" => "osu-align-items-stretch|Stretch\r\nosu-align-items-start|Top\r\nosu-align-items-center|Center\r\nosu-align-items-end|Bottom",
+    'items_alignment' => "osu-align-items-stretch|Stretch\r\nosu-align-items-start|Top\r\nosu-align-items-center|Center\r\nosu-align-items-end|Bottom",
   ];
   $config = Drupal::service('config.factory')
     ->getEditable('bootstrap_styles.settings');
+
   foreach ($bootstrap_style_updates as $bootstrap_style_key => $bootstrap_style_update) {
     $config->set($bootstrap_style_key, $bootstrap_style_update);
   }
   $config->save();
+
   return t('Updated Alignment options for Bootstrap Styles.');
 }
 
@@ -254,6 +257,7 @@ function osu_standard_update_10009(&$sandbox): TranslatableMarkup {
     'manage_webforms',
   ];
   osu_standard_grant_permissions($user_roles, ['use text format webform_default']);
+
   return t('Granted permissions for DX Administrators, Architects and Manage Webforms the access to use the webform filter format.');
 }
 
@@ -273,6 +277,7 @@ function osu_standard_update_10010(&$sandbox): TranslatableMarkup {
     'mark as ok in editoria11y',
     'view editoria11y checker',
   ]);
+
   return t('Granted the ability to see and use Editoria11y results to content author roles.');
 }
 
@@ -290,6 +295,7 @@ function osu_standard_update_10011(&$sandbox): TranslatableMarkup {
   $file_source = new FileStorage($config_path);
 
   $config_storage->write('purge_file.settings', $file_source->read('purge_file.settings'));
+
   return t('Installed purge module and imported configuration');
 }
 
@@ -299,10 +305,11 @@ function osu_standard_update_10011(&$sandbox): TranslatableMarkup {
 function osu_standard_update_10012(&$sandbox): TranslatableMarkup {
   $fontawesome_settings = Drupal::configFactory()
     ->getEditable('fontawesome.settings');
-  $fontawesome_settings->set('external_svg_location', "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css");
-  $fontawesome_settings->set('external_shim_location', "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/v4-shims.min.css");
+  $fontawesome_settings->set('external_svg_location', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+  $fontawesome_settings->set('external_shim_location', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/v4-shims.min.css');
   $fontawesome_settings->save();
-  return t("Updated Fontawesome settings.");
+
+  return t('Updated Fontawesome settings.');
 }
 
 /**
@@ -312,9 +319,10 @@ function osu_standard_update_10013(&$sandbox): TranslatableMarkup {
   $cas_settings = Drupal::configFactory()->getEditable('cas.settings');
   $cas_server_settings = $cas_settings->get('server');
   $cas_server_settings['path'] = '/cas';
-  $cas_settings->set("server", $cas_server_settings);
+  $cas_settings->set('server', $cas_server_settings);
   $cas_settings->save();
-  return t("Updated CAS server login path to /cas");
+
+  return t('Updated CAS server login path to /cas');
 }
 
 /**
@@ -334,10 +342,11 @@ function osu_standard_update_10014(&$sandbox): TranslatableMarkup {
 
     // Iterate through the toolbar configuration to find and remove the button.
     $button_found = FALSE;
+
     foreach ($toolbar_config['rows'] as &$row) {
       foreach ($row as &$group) {
         if (isset($group['items'])) {
-          if (($key = array_search($button_to_remove, $group['items'])) !== FALSE) {
+          if (($key = array_search($button_to_remove, $group['items'], TRUE)) !== FALSE) {
             unset($group['items'][$key]);
             // Reindex the array.
             $group['items'] = array_values($group['items']);
@@ -363,9 +372,8 @@ function osu_standard_update_10014(&$sandbox): TranslatableMarkup {
       '%button' => $button_to_remove,
     ]);
   }
-  else {
-    return t('The full_html editor configuration does not exist.');
-  }
+
+  return t('The full_html editor configuration does not exist.');
 }
 
 /**
@@ -378,17 +386,18 @@ function osu_standard_update_10015(&$sandbox): TranslatableMarkup {
   $editor_filters = $editor_config->get('filters');
   $media_view_modes = $editor_filters['media_embed']['settings']['allowed_view_modes'];
   $osu_view_modes = [
-    "default" => "default",
-    "frameless" => "frameless",
-    "media_card" => "media_card",
-    "osu_orange_bottom" => "osu_orange_bottom",
-    "video_720" => "video_720",
+    'default' => 'default',
+    'frameless' => 'frameless',
+    'media_card' => 'media_card',
+    'osu_orange_bottom' => 'osu_orange_bottom',
+    'video_720' => 'video_720',
   ];
 
   $updated_media_view_modes = array_merge($media_view_modes, $osu_view_modes);
   $editor_filters['media_embed']['settings']['allowed_view_modes'] = $updated_media_view_modes;
   $editor_config->set('filters', $editor_filters);
   $editor_config->save();
+
   return t('Updated embedding view modes');
 }
 
@@ -444,6 +453,7 @@ function osu_standard_update_10017(&$sandbox): TranslatableMarkup {
   }
   catch (EntityStorageException $e) {
     Drupal::logger('osu_standard')->error($e->getMessage());
+
     throw $e;
   }
 
@@ -453,6 +463,7 @@ function osu_standard_update_10017(&$sandbox): TranslatableMarkup {
   }
   catch (EntityStorageException $e) {
     Drupal::logger('osu_standard')->error($e->getMessage());
+
     throw $e;
   }
   /** @var \Drupal\Core\Config\CachedStorage $config_storage */
@@ -469,6 +480,7 @@ function osu_standard_update_10017(&$sandbox): TranslatableMarkup {
   $config_storage->write('core.entity_view_display.node.page.default', $node_view_display);
   // Update node page metatag defaults.
   $node_page_metatag_defaults = $config_storage->read('metatag.metatag_defaults.node__page');
+
   if ($node_page_metatag_defaults === FALSE) {
     $config_storage->write('metatag.metatag_defaults.node__page', $install_profile_source_path->read('metatag.metatag_defaults.node__page'));
   }
@@ -494,8 +506,9 @@ function osu_standard_update_10018(&$sandbox): TranslatableMarkup {
   /** @var \Drupal\Core\Config\Config $module_filter_settings */
   $module_filter_settings = Drupal::service('config.factory')
     ->getEditable('module_filter.settings');
-  $module_filter_settings->set('enabled_filters', ["permissions" => FALSE]);
+  $module_filter_settings->set('enabled_filters', ['permissions' => FALSE]);
   $module_filter_settings->save();
+
   return t('Added filter permissions module and enabled permissions filter.');
 }
 
@@ -512,7 +525,8 @@ function osu_standard_update_10019(&$sandbox): TranslatableMarkup {
   osu_standard_grant_permissions($roles, ['administer crop types']);
   // Just grant Administer crop to dx, doesn't seem to be used for focal.
   osu_standard_grant_permissions(['dx_administrator'], ['administer crop']);
-  return t("Add Focal Point, Crop module and permissions");
+
+  return t('Add Focal Point, Crop module and permissions');
 }
 
 /**
@@ -525,6 +539,7 @@ function osu_standard_update_10020(&$sandbox): TranslatableMarkup {
     ->getEditable('system.image');
   $image_toolkit->set('toolkit', 'imagemagick')->save();
   $image_toolkit->save();
+
   return t('ImageMagick installed and configured');
 }
 
@@ -540,43 +555,44 @@ function osu_standard_update_10021(&$sandbox): TranslatableMarkup {
   /** @var array $editor_filters */
   $editor_filters = $editor_config->get('filters');
   $filter_responsive_table = [
-    "id" => "filter_responsive_table",
-    "provider" => "responsive_table_filter",
-    "status" => TRUE,
-    "weight" => -45,
-    "settings" => [
-      "wrapper_element" => "div",
-      "wrapper_classes" => "table-responsive",
+    'id' => 'filter_responsive_table',
+    'provider' => 'responsive_table_filter',
+    'status' => TRUE,
+    'weight' => -45,
+    'settings' => [
+      'wrapper_element' => 'div',
+      'wrapper_classes' => 'table-responsive',
     ],
   ];
   $filter_image_lazy_load = [
-    "id" => "filter_image_lazy_load",
-    "provider" => "filter",
-    "status" => TRUE,
-    "weight" => -43,
-    "settings" => [],
+    'id' => 'filter_image_lazy_load',
+    'provider' => 'filter',
+    'status' => TRUE,
+    'weight' => -43,
+    'settings' => [],
   ];
-  $editor_filters["filter_responsive_table"] = $filter_responsive_table;
-  $editor_filters["filter_image_lazy_load"] = $filter_image_lazy_load;
-  $editor_filters["filter_autop"]["status"] = FALSE;
-  $editor_filters["editor_file_reference"]["status"] = FALSE;
+  $editor_filters['filter_responsive_table'] = $filter_responsive_table;
+  $editor_filters['filter_image_lazy_load'] = $filter_image_lazy_load;
+  $editor_filters['filter_autop']['status'] = FALSE;
+  $editor_filters['editor_file_reference']['status'] = FALSE;
 
   // Reset weights of our plugins.
-  $editor_filters["filter_align"]["weight"] = -50;
-  $editor_filters["filter_caption"]["weight"] = -49;
-  $editor_filters["media_embed"]["weight"] = -48;
-  $editor_filters["filter_url"]["weight"] = -47;
-  $editor_filters["linkit"]["weight"] = -46;
-  $editor_filters["filter_autop"]["weight"] = -44;
-  $editor_filters["filter_image_lazy_load"]["weight"] = -43;
-  $editor_filters["filter_htmlcorrector"]["weight"] = -42;
-  $editor_filters["editor_file_reference"]["weight"] = -41;
-  $editor_filters["filter_html"]["weight"] = -40;
-  $editor_filters["filter_html_escape"]["weight"] = -39;
-  $editor_filters["filter_html_image_secure"]["weight"] = -38;
+  $editor_filters['filter_align']['weight'] = -50;
+  $editor_filters['filter_caption']['weight'] = -49;
+  $editor_filters['media_embed']['weight'] = -48;
+  $editor_filters['filter_url']['weight'] = -47;
+  $editor_filters['linkit']['weight'] = -46;
+  $editor_filters['filter_autop']['weight'] = -44;
+  $editor_filters['filter_image_lazy_load']['weight'] = -43;
+  $editor_filters['filter_htmlcorrector']['weight'] = -42;
+  $editor_filters['editor_file_reference']['weight'] = -41;
+  $editor_filters['filter_html']['weight'] = -40;
+  $editor_filters['filter_html_escape']['weight'] = -39;
+  $editor_filters['filter_html_image_secure']['weight'] = -38;
 
-  $editor_config->set("filters", $editor_filters);
+  $editor_config->set('filters', $editor_filters);
   $editor_config->save();
+
   return t('Enabled Responsive Table filter plugin');
 }
 
@@ -587,9 +603,9 @@ function osu_standard_update_10022(&$sandbox): TranslatableMarkup {
   osu_standard_install_modules(['sitewide_alert', 'osu_sitewide_alert']);
   $install_profile_source_path = _get_install_profile_source_path();
   $sitewide_alert_config = $install_profile_source_path->read('sitewide_alert.settings');
-  $entity_type_manager = \Drupal::entityTypeManager();
+  $entity_type_manager = Drupal::entityTypeManager();
   // Setup the default settings for our site.
-  \Drupal::service('config.factory')
+  Drupal::service('config.factory')
     ->getEditable('sitewide_alert.settings')
     ->setData($sitewide_alert_config)
     ->save();
@@ -644,6 +660,7 @@ function osu_standard_update_10023(&$sandbox): TranslatableMarkup {
   $fontawesome_settings->set('external_svg_location', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css');
   $fontawesome_settings->set('external_shim_location', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/v4-shims.min.css');
   $fontawesome_settings->save();
+
   return t('Updated FontAwesome version');
 }
 
@@ -654,6 +671,7 @@ function osu_standard_update_10024(&$sandbox): TranslatableMarkup {
   $theme_admin = ['dx_administrator', 'architect', 'manage_site_configuration'];
   $theme_admin_perms = ['administer madrone theme'];
   osu_standard_grant_permissions($theme_admin, $theme_admin_perms);
+
   return t('Granted new permissions for osu_roles');
 }
 
@@ -686,6 +704,7 @@ function osu_standard_update_10026(&$sandbox): TranslatableMarkup {
   $exclude_node_title->set('type', 'remove');
   $exclude_node_title->clear('nid_list');
   $exclude_node_title->save();
+
   return t('Updated configs with new changes');
 }
 
@@ -694,6 +713,7 @@ function osu_standard_update_10026(&$sandbox): TranslatableMarkup {
  */
 function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
   $injectors_css = $injectors_js = [];
+
   try {
     $injectors_css = Drupal::entityTypeManager()
       ->getStorage('asset_injector_css')
@@ -702,6 +722,7 @@ function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
   catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
     Drupal::logger('osu_standard')->error($e->getMessage());
   }
+
   try {
     $injectors_js = Drupal::entityTypeManager()
       ->getStorage('asset_injector_js')
@@ -710,11 +731,13 @@ function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
   catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
     Drupal::logger('osu_standard')->error($e->getMessage());
   }
+
   if (is_countable($injectors_css) && count($injectors_css) === 0 && is_countable($injectors_js) && count($injectors_js) === 0) {
     // Uninstall module.
     $module_handler = Drupal::moduleHandler();
     /** @var \Drupal\Core\ProxyClass\Extension\ModuleInstaller $module_installer */
     $module_installer = Drupal::service('module_installer');
+
     if ($module_handler->moduleExists('asset_injector')) {
       $module_installer->uninstall(['asset_injector']);
     }
@@ -728,9 +751,10 @@ function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
     $role_architect->revokePermission('administer js assets injector');
     $role_architect->save();
     // Remove the role from any user and delete it.
-    $usersHavingRole = \Drupal::entityTypeManager()
+    $usersHavingRole = Drupal::entityTypeManager()
       ->getStorage('user')
       ->loadByProperties(['roles' => 'manage_asset_injector']);
+
     /** @var \Drupal\user\Entity\User $user */
     foreach ($usersHavingRole as $user) {
       $user->removeRole('manage_asset_injector');
@@ -738,11 +762,14 @@ function osu_standard_update_10027(&$sandbox): TranslatableMarkup {
     }
     // Delete role.
     $manage_asset_injector = Role::load('manage_asset_injector');
+
     if (!empty($manage_asset_injector)) {
       $manage_asset_injector->delete();
     }
+
     return t('Asset Injector Module, Permission and Role removed');
   }
+
   return t('Asset Injector module not removed, used by CSS Injector or JS Injector');
 }
 
@@ -757,12 +784,14 @@ function osu_standard_update_10028(&$sandbox): TranslatableMarkup {
   $existing_ignore_elements = $editoria11y_settings->get('ignore_elements');
   $existing_ignore_elements = explode(',', $existing_ignore_elements);
   $new_ignore_elements = ['.live-feeds *', '.live-feeds-news *'];
+
   foreach ($existing_ignore_elements as &$value) {
     $value = trim($value, ' ');
   }
   $updated_ignore_elements = array_merge($existing_ignore_elements, $new_ignore_elements);
   $editoria11y_settings->set('ignore_elements', implode(',', $updated_ignore_elements));
   $editoria11y_settings->save();
+
   return t('Updated Editoria11y settings to include new ignores');
 }
 
@@ -775,6 +804,7 @@ function osu_standard_update_10029(&$sandbox): TranslatableMarkup {
     'dx_administrator',
     'architect',
   ], ['access help pages']);
+
   return t('Removed editor_file module and granted access help pages permission');
 }
 
@@ -783,6 +813,7 @@ function osu_standard_update_10029(&$sandbox): TranslatableMarkup {
  */
 function osu_standard_update_10030(&$sandbox): TranslatableMarkup {
   osu_standard_install_modules(['token_url_plus']);
+
   return t('Added Token URL Plus module, util such time that the feature is merged into token itself.');
 }
 
@@ -797,8 +828,8 @@ function osu_standard_update_10031(&$sandbox): TranslatableMarkup {
   ];
   $linkpurpose_settings = $config_factory->getEditable('linkpurpose.settings');
   $ignore_elements = array_filter(array_map('trim', explode(',', $linkpurpose_settings->get('ignore'))));
-  $ignore_elements =
-    array_merge(
+  $ignore_elements
+    = array_merge(
       $ignore_elements,
       $new_identifiers
     );
@@ -818,6 +849,7 @@ function osu_standard_update_10032(&$sandbox): TranslatableMarkup {
   $user_account_settings['auto_register'] = FALSE;
   $cas_settings->set('user_accounts', $user_account_settings);
   $cas_settings->save();
+
   return t('Disable auto register users');
 }
 
@@ -829,6 +861,7 @@ function osu_standard_update_10033(&$sandbox): TranslatableMarkup {
   $frontpage_view = $config_factory->getEditable('views.view.frontpage');
   $frontpage_view->set('status', FALSE);
   $frontpage_view->save();
+
   return t('Disabled the frontpage view');
 }
 
@@ -855,6 +888,127 @@ function osu_standard_update_10035(&$sandbox): TranslatableMarkup {
   osu_standard_grant_permissions(['architect'], ['administer media display']);
 
   return t('Adding Madrone Administration theme permissions.');
+}
+
+/**
+ * Update Drupal to use CKEditor 5 and UI Icons.
+ */
+function osu_standard_update_10036(&$sandbox): TranslatableMarkup {
+  $cke5_modules = [
+    'ckeditor_link_styles',
+    'ckeditor5',
+    'ckeditor5_plugin_pack',
+    'ckeditor5_plugin_pack_find_and_replace',
+    'ckeditor5_plugin_pack_fullscreen',
+    'ckeditor5_plugin_pack_indent_block',
+    'ckeditor5_plugin_pack_text_transformation',
+    'ckeditor5_plugin_pack_word_count',
+    'ui_icons_backport',
+    'ui_icons_ckeditor5',
+    'ui_icons_field',
+    'ui_icons_field_linkit',
+    'ui_icons_font',
+    'ui_icons_library',
+    'ui_icons_picker',
+  ];
+  // Sweeping list of new modules.
+  osu_standard_install_modules($cke5_modules);
+  // Add ui icons permission.
+  osu_standard_grant_permissions(['authenticated'], ['access ui icons library']);
+  /** @var \Drupal\ckeditor5\SmartDefaultSettings $smart_defaults */
+  $smart_defaults = Drupal::service('ckeditor5.smart_default_settings');
+  $editor_storage = Drupal::entityTypeManager()->getStorage('editor');
+  $install_profile_source_path = _get_install_profile_source_path();
+  /** @var \Drupal\editor\Entity\Editor[] $editors */
+  $editors = $editor_storage->loadMultiple();
+
+  foreach ($editors as $name => $editor) {
+    if ($editor->getEditor() === 'ckeditor5') {
+      continue;
+    }
+
+    if ($name === 'webform_default') {
+      continue;
+    }
+
+    if ($editor->getEditor() === 'ckeditor') {
+      /** @var \Drupal\filter\Entity\FilterFormat $format */
+      $format = $editor->getFilterFormat();
+      // Set editor to ckeditor 5.
+      $editor->setEditor('ckeditor5');
+      // computerSettings returns a tuple of [$editor, $messages].
+      /**
+       * @var \Drupal\editor\Entity\Editor $editor
+       * @var array $messages
+       * */
+      [$editor, $messages] = $smart_defaults->computeSmartDefaultSettings($editor, $format);
+      // Get the settings.
+      $editor_settings = $editor->getSettings();
+      $new_editor = $install_profile_source_path->read("editor.editor.{$name}");
+
+      if ($new_editor) {
+        // Full and Basic HTML need updates.
+        if ($name === 'full_html' || $name === 'basic_html') {
+          if (array_key_exists('ckeditor5_style', $editor_settings['plugins'])) {
+            $existing_styles = $editor_settings['plugins']['ckeditor5_style'];
+          }
+          else {
+            $existing_styles = ['styles' => []];
+          }
+          $editor_settings = $new_editor['settings'];
+          $indexed = [];
+          $merged_styles = array_merge($existing_styles['styles'], $editor_settings['plugins']['ckeditor5_style']['styles']);
+
+          foreach ($merged_styles as $item) {
+            $indexed[$item['element']] = $item;
+          }
+          // Sort the new list of combined styles into one that should group
+          // like styles together.
+          usort($indexed, static fn ($a, $b) => strnatcasecmp($a['element'], $b['element']));
+          $merged_styles = ['styles' => array_values($indexed)];
+          $editor_settings['plugins']['ckeditor5_style'] = $merged_styles;
+          $editor->set('settings', $editor_settings);
+        }
+        // Replace all other editors with Config files.
+        else {
+          $editor_settings = $new_editor['settings'];
+        }
+        $editor->set('settings', $editor_settings);
+      }
+      $editor->save();
+
+      // Update filters to what we want them to be for all out formats.
+      try {
+        $new_filter = $install_profile_source_path->read("filter.format.{$name}");
+
+        if ($new_filter) {
+          if ($name === 'full_html' || $name === 'basic_html') {
+            $format_filters = $format->get('filters');
+            if (array_key_exists('media_embed', $format_filters)) {
+              $existing_view_modes = $format_filters['media_embed']['settings']['allowed_view_modes'];
+            } else {
+              $existing_view_modes = [];
+            }
+            $media_view_modes = array_merge($existing_view_modes, $new_filter['filters']['media_embed']['settings']['allowed_view_modes']);
+            $updated_filters = array_merge($format_filters, $new_filter['filters']);
+            $updated_filters['media_embed']['settings']['allowed_view_modes'] = $media_view_modes;
+            $format->set('filters', $updated_filters);
+          }
+          else {
+            $format->set('filters', array_merge($format->get('filters'), $new_filter['filters']));
+          }
+        }
+      }
+      catch (UnsupportedDataTypeConfigException $exception) {
+        Drupal::logger('osu_standard')->error($exception->getMessage());
+
+        throw $exception;
+      }
+      $format->save();
+    }
+  }
+
+  return t('Updated all Text editors to use CKEditor 5');
 }
 
 /**
@@ -895,6 +1049,7 @@ function osu_standard_grant_permissions(array $roles, array $permissions): void 
   // Load User Storage Service.
   try {
     $role_storage = Drupal::entityTypeManager()->getStorage('user_role');
+
     foreach ($roles as $role_name) {
       /** @var \Drupal\user\Entity\Role $role */
       if ($role = $role_storage->load($role_name)) {
@@ -907,6 +1062,7 @@ function osu_standard_grant_permissions(array $roles, array $permissions): void 
   }
   catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
     Drupal::logger('osu_standard')->error($e->getMessage());
+
     throw new Exception('Unable to load user role storage.');
   }
 }
@@ -923,5 +1079,6 @@ function _get_install_profile_source_path(): FileStorage {
     ->getModule('osu_standard')
     ->getPath();
   $config_path = realpath($install_profile_path . '/config/install');
+
   return new FileStorage($config_path);
 }
