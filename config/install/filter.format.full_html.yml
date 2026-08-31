@@ -53,7 +53,7 @@ filters:
     status: false
     weight: -39
     settings:
-      allowed_html: '<cite> <dl> <dt> <dd> <span> <blockquote cite> <ul type> <ol type> <h1 id> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <a class="icon-link"> <p class="display-1 display-2 display-3 display-4 display-5 display-6 fs-1 fs-2 fs-3 fs-4 fs-5 fs-6 fs-7 lead"> <table class="osu-table osu-table-orange caption-top caption-Bottom table-bordered table-borderless table-hover table-sm table-striped table-striped-columns"> <td class="table-active"> <tr class="table-active">'
+      allowed_html: '<cite> <dl> <dt> <dd> <span> <blockquote cite> <ul type> <ol type> <h1 id> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <a class="icon-link"> <p class="display-1 display-2 display-3 display-4 display-5 display-6 fs-1 fs-2 fs-3 fs-4 fs-5 fs-6 fs-7 lead"> <table class="osu-table osu-table-orange caption-top caption-bottom table-bordered table-borderless table-hover table-sm table-striped table-striped-columns"> <td class="table-active"> <tr class="table-active">'
       filter_html_help: true
       filter_html_nofollow: false
   filter_html_escape:

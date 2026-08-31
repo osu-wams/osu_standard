@@ -46,7 +46,7 @@ filters:
     status: true
     weight: -50
     settings:
-      allowed_html: '<br> <p class> <h1 id class> <h2 id class> <h3 id class> <h4 id class> <h5 id class> <h6 id class> <a class hreflang target href id data-entity-type data-entity-uuid data-entity-substitution> <table class="osu-table osu-table-orange caption-top caption-Bottom table-bordered table-borderless table-hover table-sm table-striped table-striped-columns"> <td class="table-active" rowspan colspan> <tr class="table-active"> <cite> <dl> <dt> <dd> <span> <blockquote cite> <ul type> <ol type reversed start> <strong> <em> <li> <hr> <th rowspan colspan> <thead> <tbody> <tfoot> <caption> <drupal-media data-entity-type data-entity-uuid alt data-view-mode data-caption data-align> <drupal-icon data-icon-id data-icon-settings class role aria-label aria-hidden>'
+      allowed_html: '<br> <p class> <h1 id class> <h2 id class> <h3 id class> <h4 id class> <h5 id class> <h6 id class> <a class hreflang target href id data-entity-type data-entity-uuid data-entity-substitution> <table class="osu-table osu-table-orange caption-top caption-bottom table-bordered table-borderless table-hover table-sm table-striped table-striped-columns"> <td class="table-active" rowspan colspan> <tr class="table-active"> <cite> <dl> <dt> <dd> <span> <blockquote cite> <ul type> <ol type reversed start> <strong> <em> <li> <hr> <th rowspan colspan> <thead> <tbody> <tfoot> <caption> <drupal-media data-entity-type data-entity-uuid alt data-view-mode data-caption data-align> <drupal-icon data-icon-id data-icon-settings class role aria-label aria-hidden>'
       filter_html_help: true
       filter_html_nofollow: false
   filter_html_escape:

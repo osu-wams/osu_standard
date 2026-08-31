@@ -187,7 +187,7 @@ settings:
         - label: "Caption Top"
           element: '<table class="caption-top">'
         - label: "Caption Bottom"
-          element: '<table class="caption-Bottom">'
+          element: '<table class="caption-bottom">'
         - label: "Bordered Table"
           element: '<table class="table-bordered">'
         - label: "Borderless Table"
