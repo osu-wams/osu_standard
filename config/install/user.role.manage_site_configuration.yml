@@ -1,4 +1,3 @@
-uuid: b7c944b3-a703-413e-8f2f-bbdc3b9f865f
 langcode: en
 status: true
 dependencies:
@@ -15,6 +14,7 @@ dependencies:
     - linkit
     - linkpurpose
     - node_revision_delete
+    - osu_roles
     - path
     - pathauto
     - recaptcha

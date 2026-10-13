@@ -170,13 +170,14 @@ dependencies:
   - xmlsitemap
   - xmlsitemap_custom
   # Custom Modules
+  - osu_block_types
   - osu_bootstrap_layout_builder
-  - osu_google_tag
-  - osu_simple_popup_blocks
   - osu_default_content
+  - osu_google_tag
   - osu_media
   - osu_roles
   - osu_seckit
+  - osu_simple_popup_blocks
   - osu_sitewide_alert
 themes:
   # Core Themes

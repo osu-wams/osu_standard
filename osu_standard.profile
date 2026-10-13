@@ -56,7 +56,6 @@ function osu_standard_install_tasks(&$install_state) {
 function osu_standard_default_modules(array &$install_state) {
   \Drupal::service('module_installer')->install([
     'ckeditor_div_manager',
-    'osu_block_types',
     'osu_story',
     'osu_profile',
     'osu_simple_tabs',

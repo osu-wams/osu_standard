@@ -1,4 +1,3 @@
-uuid: 13e66df1-d33a-40a0-8539-0ec2c5d9d0d6
 langcode: en
 status: true
 dependencies:
@@ -8,6 +7,7 @@ dependencies:
     - filter.format.full_html
     - filter.format.restricted_html
     - filter.format.text_and_links
+    - filter.format.webform_default
     - media.type.audio
     - media.type.document
     - media.type.image
@@ -39,6 +39,7 @@ dependencies:
     - feeds_tamper
     - field_ui
     - file
+    - file_delete
     - filter
     - fontawesome
     - google_analytics
@@ -242,6 +243,8 @@ permissions:
   - 'delete any webform'
   - 'delete any webform submission'
   - 'delete authmap'
+  - 'delete files immediately'
+  - 'delete files override usage'
   - 'delete media'
   - 'delete orphan revisions'
   - 'delete own audio media'

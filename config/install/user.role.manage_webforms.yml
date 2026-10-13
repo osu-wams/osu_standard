@@ -1,9 +1,11 @@
-uuid: 440be9f9-9eba-474b-bb44-902a90b83c59
 langcode: en
 status: true
 dependencies:
+  config:
+    - filter.format.webform_default
   module:
     - captcha
+    - filter
     - honeypot
     - webform
     - webform_node
