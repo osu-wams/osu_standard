@@ -984,9 +984,11 @@ function osu_standard_update_10036(&$sandbox): TranslatableMarkup {
         if ($new_filter) {
           if ($name === 'full_html' || $name === 'basic_html') {
             $format_filters = $format->get('filters');
+
             if (array_key_exists('media_embed', $format_filters)) {
               $existing_view_modes = $format_filters['media_embed']['settings']['allowed_view_modes'];
-            } else {
+            }
+            else {
               $existing_view_modes = [];
             }
             $media_view_modes = array_merge($existing_view_modes, $new_filter['filters']['media_embed']['settings']['allowed_view_modes']);
@@ -1009,6 +1011,35 @@ function osu_standard_update_10036(&$sandbox): TranslatableMarkup {
   }
 
   return t('Updated all Text editors to use CKEditor 5');
+}
+
+/**
+ * Update role Permissions.
+ */
+function osu_standard_update_10037(&$sandbox): TranslatableMarkup {
+  $block_permissions = [
+    'access block library',
+    'create basic block content',
+    'create osu_accordion block content',
+    'create osu_card block content',
+    'create osu_menu_bar_item block content',
+    'revert any basic block content revisions',
+    'revert any osu_accordion block content revisions',
+    'revert any osu_card block content revisions',
+    'revert any osu_menu_bar_item block content revisions',
+    'view any basic block content history',
+    'view any osu_accordion block content history',
+    'view any osu_card block content history',
+    'view any osu_menu_bar_item block content history',
+  ];
+
+  osu_standard_grant_permissions(['content_authors', 'manage_content'], $block_permissions);
+  osu_standard_grant_permissions(['dx_administrator'], [
+    'delete files immediately',
+    'delete files override usage',
+  ]);
+
+  return t('Added permissions for roles');
 }
 
 /**

@@ -13,6 +13,7 @@ dependencies:
     - node.type.page
     - node.type.webform
   module:
+    - block_content
     - captcha
     - contextual
     - dropzonejs
@@ -38,6 +39,7 @@ label: 'Manage Content'
 weight: -7
 is_admin: null
 permissions:
+  - 'access block library'
   - 'access content overview'
   - 'access contextual links'
   - 'access files overview'
@@ -54,11 +56,15 @@ permissions:
   - 'bypass node access'
   - 'configure editable page node layout overrides'
   - 'create and edit custom blocks'
+  - 'create basic block content'
   - 'create document media'
   - 'create image media'
   - 'create kaltura media'
   - 'create local_video media'
   - 'create media'
+  - 'create osu_accordion block content'
+  - 'create osu_card block content'
+  - 'create osu_menu_bar_item block content'
   - 'create page content'
   - 'create remote_video media'
   - 'create url aliases'
@@ -109,6 +115,10 @@ permissions:
   - 'mark as hidden in editoria11y'
   - 'mark as ok in editoria11y'
   - 'revert all revisions'
+  - 'revert any basic block content revisions'
+  - 'revert any osu_accordion block content revisions'
+  - 'revert any osu_card block content revisions'
+  - 'revert any osu_menu_bar_item block content revisions'
   - 'revert page revisions'
   - 'revert webform revisions'
   - 'skip CAPTCHA'
@@ -119,6 +129,10 @@ permissions:
   - 'use views bulk edit'
   - 'view all media revisions'
   - 'view all revisions'
+  - 'view any basic block content history'
+  - 'view any osu_accordion block content history'
+  - 'view any osu_card block content history'
+  - 'view any osu_menu_bar_item block content history'
   - 'view editoria11y checker'
   - 'view media'
   - 'view own unpublished content'
