@@ -32,6 +32,7 @@ is_admin: null
 permissions:
   - 'access administration pages'
   - 'access contextual links'
+  - 'access help pages'
   - 'access site in maintenance mode'
   - 'access site reports'
   - 'administer CAPTCHA settings'

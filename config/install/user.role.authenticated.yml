@@ -28,6 +28,7 @@ permissions:
   - 'access shortcuts'
   - 'access toolbar'
   - 'access tour'
+  - 'access ui icons library'
   - 'delete own files'
   - 'exclude own node title'
   - 'search Google CSE'
