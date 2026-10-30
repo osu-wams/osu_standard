@@ -1,4 +1,3 @@
-uuid: 8f7569d0-e682-4b7b-8a4e-fa3bdb0ba80c
 langcode: en
 status: true
 dependencies:
@@ -6,6 +5,9 @@ dependencies:
     - field.field.node.page.body
     - field.field.node.page.field_meta_tags
     - field.field.node.page.field_osu_meta_image
+    - field.field.node.page.field_seo_analysis
+    - field.field.node.page.field_seo_description
+    - field.field.node.page.field_seo_title
     - field.field.node.page.layout_builder__layout
     - node.type.page
   module:
@@ -15,15 +17,16 @@ dependencies:
     - metatag
     - text
     - user
+    - yoast_seo
 third_party_settings:
   layout_builder:
     enabled: true
     allow_custom: true
     sections:
-      - layout_id: 'bootstrap_layout_builder:blb_col_1'
+      - layout_id: "bootstrap_layout_builder:blb_col_1"
         layout_settings:
-          label: 'Default Page Section'
-          container_wrapper_classes: ''
+          label: "Default Page Section"
+          container_wrapper_classes: ""
           container_wrapper_attributes: null
           container_wrapper:
             bootstrap_styles:
@@ -108,94 +111,94 @@ third_party_settings:
                 class: null
               text_alignment:
                 class: null
-          container_wrapper_bg_color_class: ''
+          container_wrapper_bg_color_class: ""
           container_wrapper_bg_media: null
           container: container
-          section_classes: ''
+          section_classes: ""
           section_attributes: null
           regions_classes:
-            blb_region_col_1: ''
+            blb_region_col_1: ""
           regions_attributes:
-            blb_region_col_1: { }
-          breakpoints: { }
-          layout_regions_classes: { }
-          remove_gutters: '0'
-          context_mapping: { }
+            blb_region_col_1: {}
+          breakpoints: {}
+          layout_regions_classes: {}
+          remove_gutters: "0"
+          context_mapping: {}
         components:
           7d8d00f0-e477-440f-9a7d-9b56ef6aefe2:
             uuid: 7d8d00f0-e477-440f-9a7d-9b56ef6aefe2
             region: blb_region_col_1
             configuration:
-              id: 'field_block:node:page:body'
-              label_display: '0'
+              id: "field_block:node:page:body"
+              label_display: "0"
               context_mapping:
                 entity: layout_builder.entity
               formatter:
                 type: text_default
                 label: hidden
-                settings: { }
-                third_party_settings: { }
+                settings: {}
+                third_party_settings: {}
             weight: 1
-            additional: { }
+            additional: {}
           806578a5-9cb8-409d-a09e-b43bba4fa84b:
             uuid: 806578a5-9cb8-409d-a09e-b43bba4fa84b
             region: blb_region_col_1
             configuration:
-              id: 'extra_field_block:node:page:links'
-              label_display: '0'
+              id: "extra_field_block:node:page:links"
+              label_display: "0"
               context_mapping:
                 entity: layout_builder.entity
             weight: 2
-            additional: { }
+            additional: {}
           23050431-0772-44a7-9c25-3a8047a3c59e:
             uuid: 23050431-0772-44a7-9c25-3a8047a3c59e
             region: blb_region_col_1
             configuration:
-              id: 'field_block:node:page:field_meta_tags'
-              label_display: '0'
+              id: "field_block:node:page:field_meta_tags"
+              label_display: "0"
               context_mapping:
                 entity: layout_builder.entity
               formatter:
                 type: metatag_empty_formatter
                 label: above
-                settings: { }
-                third_party_settings: { }
+                settings: {}
+                third_party_settings: {}
             weight: 3
-            additional: { }
-        third_party_settings: { }
+            additional: {}
+        third_party_settings: {}
   layout_builder_restrictions:
-    allowed_block_categories: { }
+    allowed_block_categories: {}
     entity_view_mode_restriction:
       allowed_layouts:
-        - 'bootstrap_layout_builder:blb_col_1'
-        - 'bootstrap_layout_builder:blb_col_2'
-        - 'bootstrap_layout_builder:blb_col_3'
-        - 'bootstrap_layout_builder:blb_col_4'
-        - 'bootstrap_layout_builder:blb_col_5'
-        - 'bootstrap_layout_builder:blb_col_6'
+        - "bootstrap_layout_builder:blb_col_1"
+        - "bootstrap_layout_builder:blb_col_2"
+        - "bootstrap_layout_builder:blb_col_3"
+        - "bootstrap_layout_builder:blb_col_4"
+        - "bootstrap_layout_builder:blb_col_5"
+        - "bootstrap_layout_builder:blb_col_6"
       restricted_categories:
-        - 'Chaos Tools'
+        - "Chaos Tools"
         - Forms
         - Help
-        - 'Purge UI'
+        - "Purge UI"
         - User
         - core
-      blacklisted_blocks: { }
+      blacklisted_blocks: {}
       whitelisted_blocks:
-        'Content fields':
-          - 'field_block:node:page:uid'
-          - 'field_block:node:page:created'
-          - 'field_block:node:page:body'
-          - 'field_block:node:page:field_meta_tags'
-          - 'field_block:node:page:title'
+        "Content fields":
+          - "field_block:node:page:uid"
+          - "field_block:node:page:created"
+          - "field_block:node:page:body"
+          - "field_block:node:page:field_meta_tags"
+          - "field_block:node:page:title"
     entity_view_mode_restriction_by_region:
       allowed_layouts:
-        - 'bootstrap_layout_builder:blb_col_1'
-        - 'bootstrap_layout_builder:blb_col_2'
-        - 'bootstrap_layout_builder:blb_col_3'
-        - 'bootstrap_layout_builder:blb_col_4'
-        - 'bootstrap_layout_builder:blb_col_5'
-        - 'bootstrap_layout_builder:blb_col_6'
+        - "bootstrap_layout_builder:blb_col_1"
+        - "bootstrap_layout_builder:blb_col_2"
+        - "bootstrap_layout_builder:blb_col_3"
+        - "bootstrap_layout_builder:blb_col_4"
+        - "bootstrap_layout_builder:blb_col_5"
+        - "bootstrap_layout_builder:blb_col_6"
 id: node.page.default
 targetEntityType: node
 bundle: page
@@ -204,23 +207,27 @@ content:
   body:
     type: text_default
     label: hidden
-    settings: { }
-    third_party_settings: { }
+    settings: {}
+    third_party_settings: {}
     weight: 100
     region: content
   field_meta_tags:
     type: metatag_empty_formatter
     label: above
-    settings: { }
-    third_party_settings: { }
+    settings: {}
+    third_party_settings: {}
     weight: 102
     region: blb_region_col_1
   links:
-    settings: { }
-    third_party_settings: { }
+    settings: {}
+    third_party_settings: {}
     weight: 101
     region: content
 hidden:
+  entitygroupfield: true
+  field_osu_meta_image: true
+  field_seo_analysis: true
+  field_seo_description: true
+  field_seo_title: true
   layout_builder__layout: true
   toc_js: true
-  field_osu_meta_image: true

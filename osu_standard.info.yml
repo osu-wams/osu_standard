@@ -116,10 +116,8 @@ dependencies:
   - media_bulk_upload_dropzonejs
   - memcache
   - metatag
-  - metatag_google_cse
   - metatag_open_graph
   - metatag_twitter_cards
-  - metatag_verification
   - metatag_views
   - module_filter
   - node_revision_delete
@@ -138,6 +136,10 @@ dependencies:
   - redirect
   - responsive_preview
   - responsive_table_filter
+  - schema_metatag
+  - schema_organization
+  - schema_web_page
+  - schema_web_site
   - seckit
   - section_library
   - sitewide_alert
@@ -148,6 +150,7 @@ dependencies:
   - toc_js
   - toc_js_per_node
   - token
+  - token_or
   - token_url_plus
   - tour
   - ui_icons_backport
@@ -169,6 +172,7 @@ dependencies:
   - webform_ui
   - xmlsitemap
   - xmlsitemap_custom
+  - yoast_seo
   # Custom Modules
   - osu_block_types
   - osu_bootstrap_layout_builder

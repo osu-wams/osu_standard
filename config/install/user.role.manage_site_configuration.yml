@@ -58,6 +58,7 @@ permissions:
   - 'administer themes'
   - 'administer toc_js'
   - 'administer url aliases'
+  - 'administer yoast seo'
   - 'bypass honeypot protection'
   - 'create url aliases'
   - 'customize shortcut links'

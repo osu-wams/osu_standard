@@ -97,6 +97,7 @@ permissions:
   - 'use bulk_image bulk upload form'
   - 'use text format full_html'
   - 'use views bulk edit'
+  - 'use yoast seo'
   - 'view all media revisions'
   - 'view all revisions'
   - 'view any basic block content history'

@@ -2,6 +2,12 @@
 
 /**
  * @file
+ */
+
+declare(strict_types=1);
+
+/**
+ * @file
  * The Install Profile file.
  */
 
@@ -1040,6 +1046,29 @@ function osu_standard_update_10037(&$sandbox): TranslatableMarkup {
   ]);
 
   return t('Added permissions for roles');
+}
+
+/**
+ * Add Schema Metatag module and Yoast SEO, set permissions.
+ */
+function osu_standard_update_10038(&$sandbox): TranslatableMarkup {
+  $modules = [
+    'yoast_seo',
+    'schema_metatag',
+    'schema_organization',
+    'schema_web_page',
+    'schema_web_site',
+  ];
+
+  osu_standard_grant_permissions(['content_authors', 'manage_content'], ['use yoast seo']);
+  osu_standard_grant_permissions([
+    'manage_site_configuration',
+    'architect',
+    'dx_administrator'], ['administer yoast seo', 'use yoast seo']);
+
+  osu_standard_install_modules($modules);
+
+  return t('Addes Schema Stuff');
 }
 
 /**
