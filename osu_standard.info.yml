@@ -98,7 +98,6 @@ dependencies:
   - filter_perms
   - focal_point
   - fontawesome
-  - google_analytics
   - google_cse
   - google_tag
   - honeypot
