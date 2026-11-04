@@ -8,7 +8,6 @@ dependencies:
     - crop
     - date_ap_style
     - easy_breadcrumb
-    - google_analytics
     - google_tag
     - honeypot
     - linkit
@@ -38,7 +37,7 @@ permissions:
   - 'administer ap style settings'
   - 'administer crop types'
   - 'administer easy breadcrumb'
-  - 'administer google tag manager'
+  - 'administer google_tag_container'
   - 'administer honeypot'
   - 'administer linkit profiles'
   - 'administer linkpurpose'

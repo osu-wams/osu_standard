@@ -140,7 +140,7 @@ permissions:
   - 'administer feeds_feed_type labels'
   - 'administer feeds_tamper'
   - 'administer filters'
-  - 'administer google tag manager'
+  - 'administer google_tag_container'
   - 'administer honeypot'
   - 'administer image styles'
   - 'administer layout builder component attributes'
