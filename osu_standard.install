@@ -54,6 +54,30 @@ function osu_standard_install($is_syncing): void {
     'name' => 'Organization',
     'description' => 'A set of tags to represent the structure of your organization. e.g. Schools and/or Units',
   ])->save();
+
+  // Set CAS Settings
+  $cas_settings = Drupal::configFactory()->getEditable('cas.settings');
+  $cas_settings_server = $cas_settings->get('server');
+  $cas_settings_server['version'] = '2.0';
+  $cas_settings_server['hostname'] = 'login.oregonstate.edu';
+  $cas_settings_server['path'] = '/cas';
+  $cas_settings->set('server', $cas_settings_server);
+  $cas_settings_forced_login = $cas_settings->get('forced_login');
+  $cas_settings_forced_login['enabled'] = TRUE;
+  $cas_settings_forced_login['pages'] = '/user/login\r\n/login\r\n/admin';
+  $cas_settings->set('forced_login', $cas_settings_forced_login);
+  $cas_settings_logout = $cas_settings->get('logout');
+  $cas_settings_logout['cas_logout'] = TRUE;
+  $cas_settings->set('logout', $cas_settings_logout);
+  $cas_settings_user_accounts = $cas_settings->get('user_accounts');
+  $cas_settings_user_accounts['email_hostname'] = 'oregonstate.edu';
+  $cas_settings->set('user_accounts', $cas_settings_user_accounts);
+  $cas_settings->set('login_link_enabled', TRUE);
+  $cas_settings->set('login_link_label', 'OSU Login');
+  $cas_settings->set('login_success_message', 'Welcome!');
+
+  $cas_settings->save();
+
 }
 
 /**
