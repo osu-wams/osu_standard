@@ -1,5 +1,9 @@
 {
   "extends": [
-    "plugin:yml/recommended"
-  ]
+    "plugin:yml/recommended",
+    "drupal"
+  ],
+  "globals": {
+    "ga": true
+  }
 }
